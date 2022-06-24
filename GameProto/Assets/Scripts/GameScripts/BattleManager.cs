@@ -42,12 +42,16 @@ public class BattleManager : MonoBehaviour
 
     public BattleState state;
     public Target choice;
+    public Unit currentUnit;
     public bool choose;
+    public bool turnEnd;
 
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
     public GameObject[] playerPool = new GameObject[PLAYERS];
 
     public GameObject[] selectPool = new GameObject[ALL];
+
+    public List<Unit> playerOrder;
 
     public List<Unit> selected;
 
@@ -59,6 +63,11 @@ public class BattleManager : MonoBehaviour
         state = BattleState.START;
         SetupBattle(1);
         StartCoroutine(StartBattle());
+
+        foreach(GameObject selector in selectPool)
+        {
+            selector.SetActive(false);
+        }
     }
 
 
@@ -67,7 +76,14 @@ public class BattleManager : MonoBehaviour
     {
         if(state == BattleState.PLAYERTURN)
         {
-            ui.TogglePlayer(true);
+            if (choose == false)
+            {
+                ui.TogglePlayer(true);
+            }
+            else
+            {
+
+            }
         }
         else
         {
@@ -139,7 +155,25 @@ public class BattleManager : MonoBehaviour
     // Determines the fighters order in battle
     void determineTurnOrder()
     {
+        playerOrder.Clear();
+
+        foreach(Unit unit in players)
+        {
+            playerOrder.Add(unit);
+        }
+
+        foreach (Unit unit in monsters)
+        {
+            playerOrder.Add(unit);
+        }
+
         state = BattleState.PLAYERTURN;
+    }
+    
+    // Has an object engaging in battle
+    void unitTurn()
+    {
+
     }
 
     // Has the player select which unit is being targetted in battle
@@ -147,18 +181,28 @@ public class BattleManager : MonoBehaviour
     {
         choose = true;
 
-
-
         switch(choice)
         {
             case Target.ONE:
+                selectPool[0].SetActive(true);
                 break;
         }
+    }
+
+    void oneSelect(GameObject selector)
+    {
+
     }
 
     // The script for the player attack
     void playerAttack()
     {
-        
+        select();
+    }
+
+    // Has an opponent take damage
+    void dealDamage(int damage, Unit target)
+    {
+
     }
 }
