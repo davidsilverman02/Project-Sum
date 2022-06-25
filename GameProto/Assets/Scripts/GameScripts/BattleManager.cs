@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE }
 public enum Target { ONE}
+public enum PlayerCommand { ATTACK}
 
 public class BattleManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class BattleManager : MonoBehaviour
     const int PLAYER_UNITS = 4;
     const int ENEMY_UNITS = 4;
     const int ALL = 8;
+
+    public int selectedUnit;
+    public int choce;
 
     public GameManager manager;
     public BattleUIManager ui;
@@ -42,8 +46,11 @@ public class BattleManager : MonoBehaviour
 
     public BattleState state;
     public Target choice;
+    public PlayerCommand maneuver;
     public Unit currentUnit;
+    public Unit selectOne;
     public bool choose;
+    public bool onEnemy;
     public bool turnEnd;
 
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
@@ -189,9 +196,51 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void oneSelect(GameObject selector)
+    int seal()
     {
+        if(onEnemy)
+        {
+            choce = monsters.Count;
+        }
+        else
+        {
+            choce = players.Count;
+        }
 
+        if(selectedUnit < 0)
+        {
+            return choce - 1;
+        }
+        else if(selectedUnit > choce - 1)
+        {
+            return 0;
+        }
+        else
+        {
+            return selectedUnit;
+        }
+    }
+
+    void oneSelect()
+    {
+        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        {
+            selectedUnit = seal();
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        {
+            selectedUnit = seal();
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            onEnemy = !onEnemy;
+            selectedUnit = seal();
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            onEnemy = !onEnemy;
+            selectedUnit = seal();
+        }
     }
 
     // The script for the player attack
