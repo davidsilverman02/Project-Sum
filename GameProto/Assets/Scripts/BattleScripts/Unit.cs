@@ -31,4 +31,9 @@ public class Unit : MonoBehaviour
     {
         
     }
+
+    public void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+    }
 }

@@ -571,6 +571,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 381836138}
     - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: heroAim.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: enemyAim.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: heroAim.Array.data[0]
+      value: 
+      objectReference: {fileID: 703826388}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: heroAim.Array.data[1]
+      value: 
+      objectReference: {fileID: 1818167762}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: heroAim.Array.data[2]
+      value: 
+      objectReference: {fileID: 1377498084}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: heroAim.Array.data[3]
+      value: 
+      objectReference: {fileID: 1576283968}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: enemyAim.Array.data[0]
+      value: 
+      objectReference: {fileID: 1517665422}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: enemyAim.Array.data[1]
+      value: 
+      objectReference: {fileID: 1714154570}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: enemyAim.Array.data[2]
+      value: 
+      objectReference: {fileID: 291872203}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: enemyAim.Array.data[3]
+      value: 
+      objectReference: {fileID: 1416339040}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
       propertyPath: selectPool.Array.data[0]
       value: 
       objectReference: {fileID: 560754799}
@@ -690,6 +730,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &530512835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+  m_PrefabInstance: {fileID: 443714336}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327e57aa294074749a634d3f44d852f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &560754799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3216604627584455520, guid: 8fbbe86a2b760654babc16bc156a40fb, type: 3}
@@ -1195,7 +1246,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1229175738}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 530512835}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: playerAttackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1229175738
 MonoBehaviour:
   m_ObjectHideFlags: 0

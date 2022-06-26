@@ -26,20 +26,14 @@ public class BattleManager : MonoBehaviour
     public Transform heroPos3;
     public Transform heroPos4;
 
-    public Transform heroAim1;
-    public Transform heroAim2;
-    public Transform heroAim3;
-    public Transform heroAim4;
+    public List<Transform> heroAim;
 
     public Transform enemyPos1;
     public Transform enemyPos2;
     public Transform enemyPos3;
     public Transform enemyPos4;
 
-    public Transform enemyAim1;
-    public Transform enemyAim2;
-    public Transform enemyAim3;
-    public Transform enemyAim4;
+    public List<Transform> enemyAim;
 
     public List<Unit> players;
     public List<Unit> monsters;
@@ -89,7 +83,32 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                if(choice == Target.ONE)
+                {
 
+                    oneSelect();
+
+                    if (onEnemy)
+                    {
+                        selectPool[0].transform.position = enemyAim[selectedUnit].position;
+                        selectOne = monsters[selectedUnit];
+                    }
+                    else
+                    {
+                        selectPool[0].transform.position = heroAim[selectedUnit].position;
+                        selectOne = players[selectedUnit];
+                    }
+                }
+
+                if(Input.GetKeyDown(KeyCode.Return))
+                {
+                    switch(maneuver)
+                    {
+                        case PlayerCommand.ATTACK:
+                            StartCoroutine(playerAttack(selectOne));
+                            break;
+                    }
+                }
             }
         }
         else
@@ -108,7 +127,7 @@ public class BattleManager : MonoBehaviour
             {
                 case 1:
                     setUnit(false, enemyPool[0], enemyPos1);
-                    //setUnit(false, enemyPool[0], enemyPos2);
+                    setUnit(false, enemyPool[0], enemyPos2);
                     //setUnit(false, enemyPool[0], enemyPos3);
                     //setUnit(false, enemyPool[0], enemyPos4);
 
@@ -225,10 +244,12 @@ public class BattleManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
+            selectedUnit--;
             selectedUnit = seal();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
+            selectedUnit++;
             selectedUnit = seal();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -241,10 +262,12 @@ public class BattleManager : MonoBehaviour
             onEnemy = !onEnemy;
             selectedUnit = seal();
         }
+
+
     }
 
     // The script for the player attack
-    void playerAttack()
+    public void playerAttackButton()
     {
         select();
     }
@@ -252,6 +275,13 @@ public class BattleManager : MonoBehaviour
     // Has an opponent take damage
     void dealDamage(int damage, Unit target)
     {
+        target.TakeDamage(damage);
+    }
 
+    public IEnumerator playerAttack(Unit target)
+    {
+        dealDamage(3, target);
+
+        yield return new WaitForSeconds(0f);
     }
 }
