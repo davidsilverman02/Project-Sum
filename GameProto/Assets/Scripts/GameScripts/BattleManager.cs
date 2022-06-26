@@ -17,6 +17,7 @@ public class BattleManager : MonoBehaviour
 
     public int selectedUnit;
     public int choce;
+    public int unitMoving;
 
     public GameManager manager;
     public BattleUIManager ui;
@@ -73,7 +74,7 @@ public class BattleManager : MonoBehaviour
 
 
     // Runs items not run by the interfaces
-    private void FixedUpdate()
+    private void Update()
     {
         if(state == BattleState.PLAYERTURN)
         {
@@ -83,7 +84,9 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                if(choice == Target.ONE)
+                //ui.TogglePlayer(false);
+
+                if (choice == Target.ONE)
                 {
 
                     oneSelect();
@@ -115,6 +118,11 @@ public class BattleManager : MonoBehaviour
         {
             ui.TogglePlayer(false);
         }      
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     // Sets up the units in a battle
@@ -193,7 +201,7 @@ public class BattleManager : MonoBehaviour
             playerOrder.Add(unit);
         }
 
-        state = BattleState.PLAYERTURN;
+        
     }
     
     // Has an object engaging in battle
@@ -283,5 +291,19 @@ public class BattleManager : MonoBehaviour
         dealDamage(3, target);
 
         yield return new WaitForSeconds(0f);
+    }
+
+    public void nextTurn()
+    {
+        if(unitMoving <= playerOrder.Count - 1)
+        {
+            unitMoving = 0;
+        }
+        else
+        {
+            unitMoving++;
+        }
+
+        currentUnit = playerOrder[unitMoving];
     }
 }
