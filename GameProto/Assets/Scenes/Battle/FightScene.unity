@@ -595,6 +595,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1576283968}
     - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
+      propertyPath: selectPool.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666519650020934889, guid: b7d3baf326e11494e8e320e1c24622a8, type: 3}
       propertyPath: enemyAim.Array.data[0]
       value: 
       objectReference: {fileID: 1517665422}

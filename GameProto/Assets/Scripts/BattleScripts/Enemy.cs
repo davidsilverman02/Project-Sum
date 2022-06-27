@@ -6,19 +6,38 @@ using UnityEngine;
  * This Script Generates the Stats for enemies
  * 
  */
-public class Enemy : MonoBehaviour
+public class Enemy : Unit
 {
-    public Unit body;
-    public int health;
-    public int power;
-    public int str;
+    public BattleManager man;
 
-    
-
-    // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-        
+        man = FindObjectOfType<BattleManager>();
     }
 
+    public virtual void Behavior()
+    {
+        TurnCalled();
+        StartCoroutine(BaseSkill());
+    }
+
+    public void CompleteTurn()
+    {
+        man.nextTurn();
+    }
+
+    // Put this as the first line in behavior
+    public void TurnCalled()
+    {
+        man.turnCalled = true;
+    }
+
+    IEnumerator BaseSkill()
+    {
+        Debug.Log("yep");
+
+        yield return new WaitForSeconds(1f);
+
+        CompleteTurn();
+    }
 }

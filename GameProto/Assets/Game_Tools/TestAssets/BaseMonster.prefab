@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4478894201650107293}
   - component: {fileID: 478009288322531722}
   - component: {fileID: 1741969966333133474}
-  - component: {fileID: 2091575299175151572}
   m_Layer: 0
   m_Name: BaseMonster
   m_TagString: Untagged
@@ -96,23 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d3b17f70c614645a4cc34e6141af8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  body: {fileID: 0}
-  health: 0
-  power: 0
-  str: 0
---- !u!114 &2091575299175151572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9202355316507238259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c988954b3030e754f89b2b2f53e764ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   isPlayer: 0
+  hasTurn: 0
   unitName: 
   unitLevel: 0
   strength: 0
@@ -121,3 +105,4 @@ MonoBehaviour:
   maxHP: 0
   currentPP: 0
   maxPP: 0
+  man: {fileID: 0}

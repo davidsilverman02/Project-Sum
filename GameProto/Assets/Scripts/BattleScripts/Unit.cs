@@ -36,4 +36,9 @@ public class Unit : MonoBehaviour
     {
         currentHP -= damage;
     }
+
+    public bool Player()
+    {
+        return isPlayer;
+    }
 }

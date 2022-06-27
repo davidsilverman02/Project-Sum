@@ -46,8 +46,7 @@ public class BattleManager : MonoBehaviour
     public Unit selectOne;
     public bool choose;
     public bool onEnemy;
-    public bool turnEnd;
-
+    public bool turnCalled;
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
     public GameObject[] playerPool = new GameObject[PLAYERS];
 
@@ -65,17 +64,18 @@ public class BattleManager : MonoBehaviour
         state = BattleState.START;
         SetupBattle(1);
         StartCoroutine(StartBattle());
-
-        foreach(GameObject selector in selectPool)
-        {
-            selector.SetActive(false);
-        }
+        disableSelectors();
     }
 
 
     // Runs items not run by the interfaces
     private void Update()
     {
+        if(state == BattleState.PLAYERTURN || state == BattleState.ENEMYTURN)
+        {
+            state = stateIn(currentUnit);
+        }
+
         if(state == BattleState.PLAYERTURN)
         {
             if (choose == false)
@@ -84,7 +84,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                //ui.TogglePlayer(false);
+                ui.TogglePlayer(false);
 
                 if (choice == Target.ONE)
                 {
@@ -117,7 +117,17 @@ public class BattleManager : MonoBehaviour
         else
         {
             ui.TogglePlayer(false);
-        }      
+
+            disableSelectors();
+        }
+        
+        if(state == BattleState.ENEMYTURN)
+        {
+            if(turnCalled == false)
+            {
+                currentUnit.GetComponent<Enemy>().Behavior();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -184,6 +194,8 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ui.ToggleOverhead(false);
         determineTurnOrder();
+        currentUnit = playerOrder[unitMoving];
+        state = stateIn(currentUnit);
     }
 
     // Determines the fighters order in battle
@@ -200,8 +212,6 @@ public class BattleManager : MonoBehaviour
         {
             playerOrder.Add(unit);
         }
-
-        
     }
     
     // Has an object engaging in battle
@@ -291,11 +301,15 @@ public class BattleManager : MonoBehaviour
         dealDamage(3, target);
 
         yield return new WaitForSeconds(0f);
+
+        choose = false;
+
+        nextTurn();
     }
 
     public void nextTurn()
     {
-        if(unitMoving <= playerOrder.Count - 1)
+        if(unitMoving >= playerOrder.Count - 1)
         {
             unitMoving = 0;
         }
@@ -305,5 +319,27 @@ public class BattleManager : MonoBehaviour
         }
 
         currentUnit = playerOrder[unitMoving];
+
+        turnCalled = false;
+    }
+
+    public BattleState stateIn(Unit get)
+    {
+        if(get.Player())
+        {
+            return BattleState.PLAYERTURN;
+        }
+        else
+        {
+            return BattleState.ENEMYTURN;
+        }
+    }
+
+    void disableSelectors()
+    {
+        foreach (GameObject selector in selectPool)
+        {
+            selector.SetActive(false);
+        }
     }
 }
