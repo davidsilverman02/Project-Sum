@@ -96,11 +96,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 1
+  hasTurn: 0
+  isDead: 0
   unitName: 
   unitLevel: 0
   strength: 0
   defense: 0
   currentHP: 0
-  maxHP: 0
+  maxHP: 5
   currentPP: 0
   maxPP: 0

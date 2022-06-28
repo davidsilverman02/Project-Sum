@@ -97,12 +97,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   hasTurn: 0
+  isDead: 0
   unitName: 
   unitLevel: 0
   strength: 0
   defense: 0
+  speed: 0
   currentHP: 0
-  maxHP: 0
+  maxHP: 3
   currentPP: 0
   maxPP: 0
   man: {fileID: 0}

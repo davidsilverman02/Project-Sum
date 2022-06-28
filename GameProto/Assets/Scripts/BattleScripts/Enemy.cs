@@ -10,6 +10,11 @@ public class Enemy : Unit
 {
     public BattleManager man;
 
+    public override void Start()
+    {
+        currentHP = maxHP;
+    }
+
     public void Awake()
     {
         man = FindObjectOfType<BattleManager>();
@@ -19,6 +24,11 @@ public class Enemy : Unit
     {
         TurnCalled();
         StartCoroutine(BaseSkill());
+    }
+
+    public virtual void ItemDrop()
+    {
+
     }
 
     public void CompleteTurn()

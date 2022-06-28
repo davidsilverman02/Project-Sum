@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     public int selectedUnit;
     public int choce;
     public int unitMoving;
+    public int indexPoint;
 
     public GameManager manager;
     public BattleUIManager ui;
@@ -146,7 +147,7 @@ public class BattleManager : MonoBehaviour
                 case 1:
                     setUnit(false, enemyPool[0], enemyPos1);
                     setUnit(false, enemyPool[0], enemyPos2);
-                    //setUnit(false, enemyPool[0], enemyPos3);
+                    setUnit(false, enemyPool[0], enemyPos3);
                     //setUnit(false, enemyPool[0], enemyPos4);
 
                     break;
@@ -306,10 +307,23 @@ public class BattleManager : MonoBehaviour
 
         nextTurn();
     }
+    
+    
+    public IEnumerator killEnemy(Unit target)
+    {
+        for (float i = 20f; i < 0; i--)
+        {
+            yield return new WaitForSeconds(0.05f);
+        }
 
+        target.isDead = true;
+
+
+    }
+    
     public void nextTurn()
     {
-        if(unitMoving >= playerOrder.Count - 1)
+        if (unitMoving >= playerOrder.Count - 1)
         {
             unitMoving = 0;
         }
@@ -341,5 +355,33 @@ public class BattleManager : MonoBehaviour
         {
             selector.SetActive(false);
         }
+    }
+
+    void attackTalk(string words)
+    {
+        ui.ToggleOverhead(true);
+        ui.SetBattleDescription(words);
+    }
+
+    //Physically removes a unit
+    public void Remove(Unit toRemove)
+    {
+        if(toRemove.isPlayer)
+        {
+            indexPoint = players.IndexOf(toRemove);
+            Destroy(heroAim[indexPoint]);
+           
+            players.Remove(toRemove);
+        }
+        else
+        {
+            monsters.Remove(toRemove);
+        }
+
+        playerOrder.Remove(toRemove);
+
+        Destroy(toRemove);
+
+        
     }
 }

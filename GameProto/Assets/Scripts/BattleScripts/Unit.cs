@@ -6,6 +6,7 @@ public class Unit : MonoBehaviour
 {
     public bool isPlayer;
     public bool hasTurn;
+    public bool isDead;
 
     public string unitName;
     public int unitLevel;
@@ -13,7 +14,7 @@ public class Unit : MonoBehaviour
     // Individual Stats for a unit
     public int strength;
     public int defense;
-
+    public int speed;
 
     public int currentHP;
     public int maxHP;
@@ -21,15 +22,33 @@ public class Unit : MonoBehaviour
     public int maxPP;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        
+        // this will be replaced 
+        currentHP = maxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
+
+        if(currentPP > maxPP)
+        {
+            currentPP = maxPP;
+        }
+
+        if(currentHP <= 0)
+        {
+            isDead = true;
+        }
+        else
+        {
+            isDead = false;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -40,5 +59,15 @@ public class Unit : MonoBehaviour
     public bool Player()
     {
         return isPlayer;
+    }
+
+    public bool Dead()
+    {
+        return isDead;
+    }
+
+    public void Die(bool isDie)
+    {
+        isDead = true;
     }
 }
