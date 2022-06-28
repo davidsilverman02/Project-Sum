@@ -305,7 +305,14 @@ public class BattleManager : MonoBehaviour
 
         choose = false;
 
-        nextTurn();
+        if (target.Dead() && target.Player() == false)
+        {
+            StartCoroutine(killEnemy(target));
+        }
+        else
+        {
+            nextTurn();
+        }
     }
     
     
@@ -313,12 +320,12 @@ public class BattleManager : MonoBehaviour
     {
         for (float i = 20f; i < 0; i--)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0f);
         }
 
-        target.isDead = true;
+        RemoveUnit(target);
 
-
+        turnCalled = false;
     }
     
     public void nextTurn()
@@ -364,17 +371,22 @@ public class BattleManager : MonoBehaviour
     }
 
     //Physically removes a unit
-    public void Remove(Unit toRemove)
+    public void RemoveUnit(Unit toRemove)
     {
         if(toRemove.isPlayer)
         {
             indexPoint = players.IndexOf(toRemove);
             Destroy(heroAim[indexPoint]);
-           
+            heroAim.RemoveAt(indexPoint);
             players.Remove(toRemove);
         }
         else
         {
+            Debug.Log("Hit");
+
+            indexPoint = monsters.IndexOf(toRemove);
+            Destroy(enemyAim[indexPoint]);
+            enemyAim.RemoveAt(indexPoint);
             monsters.Remove(toRemove);
         }
 
@@ -382,6 +394,11 @@ public class BattleManager : MonoBehaviour
 
         Destroy(toRemove);
 
-        
+        determineTurnOrder();
+
+        if (unitMoving >= playerOrder.Count - 1)
+        {
+            unitMoving = 0;
+        }
     }
 }
