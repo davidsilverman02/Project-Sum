@@ -1,0 +1,3 @@
+// Have ui item follow an object
+Vector3 pos = Camera.main.WorldToScreenPoint(this.transform.position);
+[[insertObjHere]].transform.position = pos;
