@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public enum gameState {OVERWORLD, BATTLE, MENU}
     public gameState state;
     public Player ovPlayer;
-    public string level;
-    public string curLevel;
+    public int level;
+    public int curLevel;
     public float spawnX;
     public float spawnY;
     public float spawnZ;
@@ -26,33 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        curLevel = SceneManager.GetActiveScene().name;
-
-        switch (curLevel)
-        {
-            case "FightScene":
-                state = gameState.BATTLE;
-                break;
-            case "TitleScreen":
-                state = gameState.MENU;
-                break;
-            default:
-                state = gameState.OVERWORLD;
-                break;
-        }
-
-        if (state == gameState.OVERWORLD)
-        {
-            if(GameObject.Find("Player") == null)
-            {
-               GameObject plaer = Instantiate(player, new Vector3(spawnX, spawnY, spawnZ), gameObject.transform.rotation) as GameObject;
-            }
-            ovPlayer = FindObjectOfType<Player>();
-        }
-        else
-        {
-            ovPlayer = null;
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Update()
@@ -62,7 +36,7 @@ public class GameManager : MonoBehaviour
             spawnX = ovPlayer.gameObject.transform.position.x;
             spawnY = ovPlayer.gameObject.transform.position.y;
             spawnZ = ovPlayer.gameObject.transform.position.z;
-            level = SceneManager.GetActiveScene().name;
+            level = SceneManager.GetActiveScene().buildIndex;
             if(ovPlayer != null)
             {
                 if((ovPlayer.playe.movingX != 0 || ovPlayer.playe.movingY != 0) || ovPlayer.playe.movingZ != 0)
@@ -94,5 +68,49 @@ public class GameManager : MonoBehaviour
     public void LoadBack()
     {
         SceneManager.LoadScene(level);
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        curLevel = SceneManager.GetActiveScene().buildIndex;
+
+        switch (curLevel)
+        {
+            case 2:
+                state = gameState.BATTLE;
+                break;
+            case 0:
+                state = gameState.MENU;
+                break;
+            case 3:
+                state = gameState.MENU;
+                break;
+            default:
+                state = gameState.OVERWORLD;
+                break;
+        }
+        if (state == gameState.OVERWORLD)
+        {
+            if (GameObject.Find("Player") == null)
+            {
+                GameObject plaer = Instantiate(player, new Vector3(spawnX, spawnY, spawnZ), gameObject.transform.rotation) as GameObject;
+            }
+            ovPlayer = FindObjectOfType<Player>();
+        }
+        else
+        {
+            ovPlayer = null;
+        }
+    }
+
+    public void LoadLevel(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+    public void LoadLevel(int index, Vector3 pos)
+    {
+        SceneManager.LoadScene(index);
+
     }
 }

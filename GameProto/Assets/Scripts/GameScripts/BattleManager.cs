@@ -84,12 +84,18 @@ public class BattleManager : MonoBehaviour
 
         if(state == BattleState.WIN)
         {
-
+            if(hasEnded == false)
+            {
+                StartCoroutine(WinMenu());
+            }
         }
 
         if(state == BattleState.LOSE)
         {
-
+            if (hasEnded == false)
+            {
+                StartCoroutine(LoseMenu());
+            }
         }
 
         if(state == BattleState.PLAYERTURN || state == BattleState.ENEMYTURN)
@@ -459,6 +465,18 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        
+        manager.LoadBack();
+    }
+
+    IEnumerator LoseMenu()
+    {
+        hasEnded = true;
+
+        ui.SetBattleDescription("You Lose!");
+        ui.ToggleOverhead(true);
+
+        yield return new WaitForSeconds(1f);
+
+        manager.LoadLevel(3);
     }
 }
