@@ -70,4 +70,19 @@ public class Unit : MonoBehaviour
     {
         isDead = true;
     }
+
+    public int getStrength()
+    {
+        return strength;
+    }
+
+    public int getDefense()
+    {
+        return defense;
+    }
+
+    public int getSpeed()
+    {
+        return speed;
+    }
 }

@@ -28,14 +28,14 @@ public class BattleManager : MonoBehaviour
     public Transform heroPos3;
     public Transform heroPos4;
 
-    public List<Transform> heroAim;
+    public List<SelectRect> heroAim;
 
     public Transform enemyPos1;
     public Transform enemyPos2;
     public Transform enemyPos3;
     public Transform enemyPos4;
 
-    public List<Transform> enemyAim;
+    public List<SelectRect> enemyAim;
 
     public List<Unit> players;
     public List<Unit> monsters;
@@ -48,6 +48,7 @@ public class BattleManager : MonoBehaviour
     public bool choose;
     public bool onEnemy;
     public bool turnCalled;
+    public bool hasEnded;
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
     public GameObject[] playerPool = new GameObject[PLAYERS];
 
@@ -72,6 +73,25 @@ public class BattleManager : MonoBehaviour
     // Runs items not run by the interfaces
     private void Update()
     {
+        if(monsters.Count <= 0 || allDead(monsters))
+        {
+            state = BattleState.WIN;
+        }
+        else if(players.Count <= 0 || allDead(players))
+        {
+            state = BattleState.LOSE;
+        }
+
+        if(state == BattleState.WIN)
+        {
+
+        }
+
+        if(state == BattleState.LOSE)
+        {
+
+        }
+
         if(state == BattleState.PLAYERTURN || state == BattleState.ENEMYTURN)
         {
             state = stateIn(currentUnit);
@@ -94,12 +114,12 @@ public class BattleManager : MonoBehaviour
 
                     if (onEnemy)
                     {
-                        selectPool[0].transform.position = enemyAim[selectedUnit].position;
+                        selectPool[0].transform.position = enemyAim[selectedUnit].getPos();
                         selectOne = monsters[selectedUnit];
                     }
                     else
                     {
-                        selectPool[0].transform.position = heroAim[selectedUnit].position;
+                        selectPool[0].transform.position = heroAim[selectedUnit].getPos();
                         selectOne = players[selectedUnit];
                     }
                 }
@@ -146,8 +166,8 @@ public class BattleManager : MonoBehaviour
             {
                 case 1:
                     setUnit(false, enemyPool[0], enemyPos1);
-                    setUnit(false, enemyPool[0], enemyPos2);
-                    setUnit(false, enemyPool[0], enemyPos3);
+                    //setUnit(false, enemyPool[0], enemyPos2);
+                    //setUnit(false, enemyPool[0], enemyPos3);
                     //setUnit(false, enemyPool[0], enemyPos4);
 
                     break;
@@ -281,8 +301,6 @@ public class BattleManager : MonoBehaviour
             onEnemy = !onEnemy;
             selectedUnit = seal();
         }
-
-
     }
 
     // The script for the player attack
@@ -299,7 +317,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator playerAttack(Unit target)
     {
-        dealDamage(3, target);
+        dealDamage(currentUnit.getStrength(), target);
 
         yield return new WaitForSeconds(0f);
 
@@ -325,7 +343,7 @@ public class BattleManager : MonoBehaviour
 
         RemoveUnit(target);
 
-        turnCalled = false;
+        nextTurn();
     }
     
     public void nextTurn()
@@ -376,7 +394,7 @@ public class BattleManager : MonoBehaviour
         if(toRemove.isPlayer)
         {
             indexPoint = players.IndexOf(toRemove);
-            Destroy(heroAim[indexPoint]);
+            Destroy(heroAim[indexPoint].gameObject);
             heroAim.RemoveAt(indexPoint);
             players.Remove(toRemove);
         }
@@ -385,20 +403,62 @@ public class BattleManager : MonoBehaviour
             Debug.Log("Hit");
 
             indexPoint = monsters.IndexOf(toRemove);
-            Destroy(enemyAim[indexPoint]);
+            Destroy(enemyAim[indexPoint].gameObject);
             enemyAim.RemoveAt(indexPoint);
             monsters.Remove(toRemove);
         }
 
         playerOrder.Remove(toRemove);
 
-        Destroy(toRemove);
+        Destroy(toRemove.gameObject);
 
         determineTurnOrder();
+
+        if(currentUnit.Player())
+        {
+
+        }
 
         if (unitMoving >= playerOrder.Count - 1)
         {
             unitMoving = 0;
         }
+    }
+
+    // Sees if All objects in an object pool are dead
+    public bool allDead(List<Unit> units)
+    {
+        foreach(Unit agent in units)
+        {
+            if(agent.Dead() == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    //merges for merge sort
+    public void MergeUnits(List<Unit> unts, int lowerB, int mid, int upperB, int sort)
+    {
+
+    }
+
+    public void UnitSort(List<Unit> unts, int lowerB, int mid, int upperB, int sort)
+    {
+
+    }
+
+    IEnumerator WinMenu()
+    {
+        hasEnded = true;
+
+        ui.SetBattleDescription("You Win!");
+        ui.ToggleOverhead(true);
+
+        yield return new WaitForSeconds(1f);
+
+        
     }
 }

@@ -8,8 +8,10 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 4.5f;
     public float movingX;
     public float movingY;
+    public float movingZ;
     public float directionX;
     public float directionY;
+    public float directionZ;
     public int direct;
 
     public BoxCollider2D collider;
