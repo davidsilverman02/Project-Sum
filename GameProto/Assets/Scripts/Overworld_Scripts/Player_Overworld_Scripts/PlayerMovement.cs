@@ -14,20 +14,19 @@ public class PlayerMovement : MonoBehaviour
     public float directionZ;
     public int direct;
 
-    public BoxCollider2D collider;
-    public Rigidbody2D rigid;
+    //public BoxCollider2D collider;
+    public Rigidbody rigid;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
-        rigid = GetComponent<Rigidbody2D>();
+        //collider = GetComponent<BoxCollider2D>();
+        rigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        spriteDirection();
         Move();
     }
 
@@ -35,17 +34,12 @@ public class PlayerMovement : MonoBehaviour
     void Move()
     {
         movingX = Input.GetAxisRaw("Horizontal");
-        movingY = Input.GetAxisRaw("Vertical");
+        movingY = 0;
+        movingZ = Input.GetAxisRaw("Vertical");
 
         directionX = movingX * speed;
-        directionY = movingY * speed;
+        directionZ = movingZ * speed;
 
-        rigid.velocity = new Vector2(directionX, directionY);
-    }
-
-    // Changes Sprite Direction
-    void spriteDirection()
-    {
-
+        rigid.velocity = new Vector3(directionX, 0, directionZ);
     }
 }

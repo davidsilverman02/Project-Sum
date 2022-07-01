@@ -24,7 +24,7 @@ public class EnterRandomBattle : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D collide)
+    void OnCollisionStay(Collision collide)
     {
         if(collide.gameObject.GetComponent<Player>() == true)
         {

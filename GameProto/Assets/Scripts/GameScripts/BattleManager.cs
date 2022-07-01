@@ -354,16 +354,19 @@ public class BattleManager : MonoBehaviour
     
     public void nextTurn()
     {
-        if (unitMoving >= playerOrder.Count - 1)
+        do
         {
-            unitMoving = 0;
-        }
-        else
-        {
-            unitMoving++;
-        }
+            if (unitMoving >= playerOrder.Count - 1)
+            {
+                unitMoving = 0;
+            }
+            else
+            {
+                unitMoving++;
+            }
 
-        currentUnit = playerOrder[unitMoving];
+            currentUnit = playerOrder[unitMoving];
+        } while (currentUnit.CanFight() == false);
 
         turnCalled = false;
     }

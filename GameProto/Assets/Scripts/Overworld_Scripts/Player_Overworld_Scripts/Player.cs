@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float xCord;
-    public float yCord;
     public string level;
     public PlayerMovement playe;
 

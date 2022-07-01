@@ -43,9 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 835f4e486521b3d42b7e2006de06c46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1947278176459746785, guid: 4936334313fb6e840801fde074c02f58, type: 3}
+  player: {fileID: 791344665169994811, guid: 3f4ba317c2d9b564e8f8af9445d2296b, type: 3}
   state: 0
   ovPlayer: {fileID: 0}
-  level: 
+  level: 0
+  curLevel: 0
   spawnX: 0
-  spawnY: 0
+  spawnY: 0.5
+  spawnZ: 0
+  playerMoving: 0

@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Screens/TitleScreen.unity
     guid: 3d004b81df1af4b40af0855c1bafe1c9
   - enabled: 1
-    path: Assets/Scenes/TestRooms/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/TestRooms/3DScene.unity
+    guid: dbb123d23fdaf9849b497e8f590db8ef
   - enabled: 1
     path: Assets/Scenes/Battle/FightScene.unity
     guid: 92c108e6b0005dc4c84072d54bed601d

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class ButtonLoad : MonoBehaviour
 {
-    public string tri;
+    public int tri;
 
     public void Load()
     {
