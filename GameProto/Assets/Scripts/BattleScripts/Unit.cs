@@ -68,7 +68,14 @@ public class Unit : MonoBehaviour
 
     public bool CanFight()
     {
-        return isDead;
+        if(isDead)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public void Die(bool isDie)

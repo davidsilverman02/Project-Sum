@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+       
     }
 
     void Update()

@@ -1186,6 +1186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eNumerator: 1
-  eDenominator: 20
+  eDenominator: 2
   inRange: 0
   manager: {fileID: 0}

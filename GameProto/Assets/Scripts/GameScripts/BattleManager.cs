@@ -49,6 +49,7 @@ public class BattleManager : MonoBehaviour
     public bool onEnemy;
     public bool turnCalled;
     public bool hasEnded;
+    public bool executed;
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
     public GameObject[] playerPool = new GameObject[PLAYERS];
 
@@ -111,6 +112,7 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
+                
                 ui.TogglePlayer(false);
 
                 if (choice == Target.ONE)
@@ -132,12 +134,15 @@ public class BattleManager : MonoBehaviour
 
                 if(Input.GetKeyDown(KeyCode.Return))
                 {
-                    switch(maneuver)
+                    switch (maneuver)
                     {
                         case PlayerCommand.ATTACK:
+                            Debug.Log("Attack");
+                            executed = true;
                             StartCoroutine(playerAttack(selectOne));
                             break;
                     }
+                    
                 }
             }
         }
@@ -195,9 +200,9 @@ public class BattleManager : MonoBehaviour
     void placeParty()
     {
         setUnit(true, playerPool[0], heroPos1);
-        //setUnit(true, playerPool[0], heroPos2);
-        //setUnit(true, playerPool[0], heroPos3);
-        //setUnit(true, playerPool[0], heroPos4);
+        setUnit(true, playerPool[0], heroPos2);
+        setUnit(true, playerPool[0], heroPos3);
+        setUnit(true, playerPool[0], heroPos4);
     }
 
     // Puts a unit in the battle
@@ -329,6 +334,7 @@ public class BattleManager : MonoBehaviour
 
         choose = false;
 
+        
         if (target.Dead() && target.Player() == false)
         {
             StartCoroutine(killEnemy(target));
@@ -337,6 +343,7 @@ public class BattleManager : MonoBehaviour
         {
             nextTurn();
         }
+        
     }
     
     
@@ -354,8 +361,10 @@ public class BattleManager : MonoBehaviour
     
     public void nextTurn()
     {
+        
         do
         {
+            Debug.Log("InLoop");
             if (unitMoving >= playerOrder.Count - 1)
             {
                 unitMoving = 0;
@@ -364,9 +373,10 @@ public class BattleManager : MonoBehaviour
             {
                 unitMoving++;
             }
-
+            
             currentUnit = playerOrder[unitMoving];
         } while (currentUnit.CanFight() == false);
+        
 
         turnCalled = false;
     }
