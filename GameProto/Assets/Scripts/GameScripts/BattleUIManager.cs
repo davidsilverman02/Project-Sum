@@ -7,6 +7,7 @@ using TMPro;
 public class BattleUIManager : MonoBehaviour
 {
     public BattleManager bManager;
+    public StatBar stat;
 
     public GameObject all;
 
@@ -18,12 +19,22 @@ public class BattleUIManager : MonoBehaviour
     void Start()
     {
         bManager = FindObjectOfType<BattleManager>();
+        stat.ActivateUnits();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (bManager.state == BattleState.PLAYERTURN)
+        {
+            stat.selectActive(true);
+            stat.selectUsing(bManager.findPlayerIndex());
+        }
+        else
+        {
+            stat.selectActive(false);
+        }
     }
 
     // Sets the description of the battle

@@ -21,6 +21,8 @@ public class Unit : MonoBehaviour
     public int currentPP;
     public int maxPP;
 
+    public UnitUI ui;
+
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -96,5 +98,15 @@ public class Unit : MonoBehaviour
     public int getSpeed()
     {
         return speed;
+    }
+
+    public string getName()
+    {
+        return unitName;
+    }
+
+    public void ToggleSelected(bool select)
+    {
+        ui.SetTarget(select);
     }
 }

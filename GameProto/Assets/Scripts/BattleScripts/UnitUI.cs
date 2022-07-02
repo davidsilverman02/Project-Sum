@@ -5,11 +5,15 @@ using UnityEngine;
 public class UnitUI : MonoBehaviour
 {
     public GameObject selected;
-    public GameObject inUse;
 
     public void Start()
     {
         Reset();
+    }
+
+    public void Update()
+    {
+        gameObject.transform.rotation = Quaternion.LookRotation(-Camera.main.transform.forward, Camera.main.transform.up);
     }
 
     public void SetTarget(bool active)

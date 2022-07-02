@@ -53,14 +53,11 @@ public class BattleManager : MonoBehaviour
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
     public GameObject[] playerPool = new GameObject[PLAYERS];
 
-    public GameObject[] selectPool = new GameObject[ALL];
-
     public List<Unit> playerOrder;
 
     public List<Unit> selected;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         manager = FindObjectOfType<GameManager>();
         ui = FindObjectOfType<BattleUIManager>();
@@ -70,6 +67,11 @@ public class BattleManager : MonoBehaviour
         disableSelectors();
     }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+       
+    }
 
     // Runs items not run by the interfaces
     private void Update()
@@ -109,6 +111,8 @@ public class BattleManager : MonoBehaviour
             if (choose == false)
             {
                 ui.TogglePlayer(true);
+
+                disableSelectors();
             }
             else
             {
@@ -122,12 +126,10 @@ public class BattleManager : MonoBehaviour
 
                     if (onEnemy)
                     {
-                        selectPool[0].transform.position = enemyAim[selectedUnit].getPos();
                         selectOne = monsters[selectedUnit];
                     }
                     else
                     {
-                        selectPool[0].transform.position = heroAim[selectedUnit].getPos();
                         selectOne = players[selectedUnit];
                     }
                 }
@@ -137,8 +139,6 @@ public class BattleManager : MonoBehaviour
                     switch (maneuver)
                     {
                         case PlayerCommand.ATTACK:
-                            Debug.Log("Attack");
-                            executed = true;
                             StartCoroutine(playerAttack(selectOne));
                             break;
                     }
@@ -150,7 +150,7 @@ public class BattleManager : MonoBehaviour
         {
             ui.TogglePlayer(false);
 
-            disableSelectors();
+            
         }
         
         if(state == BattleState.ENEMYTURN)
@@ -165,6 +165,11 @@ public class BattleManager : MonoBehaviour
     private void FixedUpdate()
     {
         
+    }
+
+    public int getPlayerCount()
+    {
+        return players.Count;
     }
 
     // Sets up the units in a battle
@@ -245,12 +250,6 @@ public class BattleManager : MonoBehaviour
             playerOrder.Add(unit);
         }
     }
-    
-    // Has an object engaging in battle
-    void unitTurn()
-    {
-
-    }
 
     // Has the player select which unit is being targetted in battle
     void select()
@@ -260,7 +259,6 @@ public class BattleManager : MonoBehaviour
         switch(choice)
         {
             case Target.ONE:
-                selectPool[0].SetActive(true);
                 break;
         }
     }
@@ -312,6 +310,18 @@ public class BattleManager : MonoBehaviour
             onEnemy = !onEnemy;
             selectedUnit = seal();
         }
+
+        foreach(Unit unit in playerOrder)
+        {
+            if(unit == selectOne)
+            {
+                unit.ToggleSelected(true);
+            }
+            else
+            {
+                unit.ToggleSelected(false);
+            }
+        }
     }
 
     // The script for the player attack
@@ -334,7 +344,6 @@ public class BattleManager : MonoBehaviour
 
         choose = false;
 
-        
         if (target.Dead() && target.Player() == false)
         {
             StartCoroutine(killEnemy(target));
@@ -364,7 +373,6 @@ public class BattleManager : MonoBehaviour
         
         do
         {
-            Debug.Log("InLoop");
             if (unitMoving >= playerOrder.Count - 1)
             {
                 unitMoving = 0;
@@ -395,9 +403,9 @@ public class BattleManager : MonoBehaviour
 
     void disableSelectors()
     {
-        foreach (GameObject selector in selectPool)
+        foreach (Unit unit in playerOrder)
         {
-            selector.SetActive(false);
+            unit.ToggleSelected(false);
         }
     }
 
@@ -444,6 +452,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public int findPlayerIndex()
+    {
+        return players.IndexOf(currentUnit);
+    }
+
     // Sees if All objects in an object pool are dead
     public bool allDead(List<Unit> units)
     {
@@ -467,6 +480,14 @@ public class BattleManager : MonoBehaviour
     public void UnitSort(List<Unit> unts, int lowerB, int mid, int upperB, int sort)
     {
 
+    }
+
+    void deselectUnits()
+    {
+        foreach(Unit unit in playerOrder)
+        {
+            unit.ui.SetTarget(false);
+        }
     }
 
     IEnumerator WinMenu()
