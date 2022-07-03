@@ -91,6 +91,11 @@ public class BattleManager : MonoBehaviour
             {
                 StartCoroutine(WinMenu());
             }
+
+            foreach(Unit unit in playerOrder)
+            {
+                unit.ToggleSelected(false);
+            }
         }
 
         if(state == BattleState.LOSE)
@@ -98,6 +103,11 @@ public class BattleManager : MonoBehaviour
             if (hasEnded == false)
             {
                 StartCoroutine(LoseMenu());
+            }
+
+            foreach (Unit unit in playerOrder)
+            {
+                unit.ToggleSelected(false);
             }
         }
 
@@ -333,6 +343,8 @@ public class BattleManager : MonoBehaviour
     // Has an opponent take damage
     void dealDamage(int damage, Unit target)
     {
+        target.StartCoroutine(target.DamageDisplay(damage, 0.2f));
+
         target.TakeDamage(damage);
     }
 
@@ -360,7 +372,7 @@ public class BattleManager : MonoBehaviour
     {
         for (float i = 20f; i < 0; i--)
         {
-            yield return new WaitForSeconds(0f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         RemoveUnit(target);

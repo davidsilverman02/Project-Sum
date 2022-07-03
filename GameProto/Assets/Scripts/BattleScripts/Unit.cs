@@ -109,4 +109,25 @@ public class Unit : MonoBehaviour
     {
         ui.SetTarget(select);
     }
+
+    public void ToggleDamage(bool damage)
+    {
+        ui.SetDamage(damage);
+    }
+
+    public void DamageNum(int setNum)
+    {
+        ui.DamageLevel(setNum);
+    }
+
+    public IEnumerator DamageDisplay(int damage, float time)
+    {
+        DamageNum(damage);
+
+        ToggleDamage(true);
+
+        yield return new WaitForSeconds(time);
+
+        ToggleDamage(false);
+    }
 }
