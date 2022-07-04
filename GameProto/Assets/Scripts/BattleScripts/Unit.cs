@@ -21,6 +21,9 @@ public class Unit : MonoBehaviour
     public int currentPP;
     public int maxPP;
 
+    public int delay;
+    public int currentTime;
+
     public UnitUI ui;
 
     // Start is called before the first frame update
@@ -28,6 +31,9 @@ public class Unit : MonoBehaviour
     {
         // this will be replaced 
         currentHP = maxHP;
+
+        delay = 100 - speed;
+        currentTime = delay;
     }
 
     // Update is called once per frame
@@ -100,6 +106,21 @@ public class Unit : MonoBehaviour
         return speed;
     }
 
+    public int getDelay()
+    {
+        return delay;
+    }
+
+    public int getTime()
+    {
+        return currentTime;
+    }
+
+    public void setCurrent(int newTime)
+    {
+        currentTime = newTime;
+    }
+
     public string getName()
     {
         return unitName;
@@ -118,6 +139,16 @@ public class Unit : MonoBehaviour
     public void DamageNum(int setNum)
     {
         ui.DamageLevel(setNum);
+    }
+
+    public void ToggleDelay(bool delay)
+    {
+        ui.SetDelay(delay);
+    }
+
+    public void DelayNum(int setNum)
+    {
+        ui.DelayLevel(setNum);
     }
 
     public IEnumerator DamageDisplay(int damage, float time)

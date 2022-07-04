@@ -215,9 +215,9 @@ public class BattleManager : MonoBehaviour
     void placeParty()
     {
         setUnit(true, playerPool[0], heroPos1);
-        setUnit(true, playerPool[0], heroPos2);
-        setUnit(true, playerPool[0], heroPos3);
-        setUnit(true, playerPool[0], heroPos4);
+        setUnit(true, playerPool[1], heroPos2);
+        setUnit(true, playerPool[2], heroPos3);
+        setUnit(true, playerPool[3], heroPos4);
     }
 
     // Puts a unit in the battle
@@ -484,12 +484,17 @@ public class BattleManager : MonoBehaviour
     }
 
     //merges for merge sort
-    public void MergeUnits(List<Unit> unts, int lowerB, int mid, int upperB, int sort)
+    public void MergeUnits(List<Unit> unts, int lowerB, int mid, int upperB)
     {
 
     }
 
-    public void UnitSort(List<Unit> unts, int lowerB, int mid, int upperB, int sort)
+    public void UnitSort(List<Unit> unts, int lowerB, int upperB)
+    {
+
+    }
+
+    public void SwapUnits(Unit u1, Unit u2)
     {
 
     }

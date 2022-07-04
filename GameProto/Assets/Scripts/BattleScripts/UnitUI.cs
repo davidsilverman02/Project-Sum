@@ -7,6 +7,7 @@ public class UnitUI : MonoBehaviour
 {
     public GameObject selected;
     public TMP_Text text;
+    public TMP_Text delayNum;
 
     public void Start()
     {
@@ -33,9 +34,20 @@ public class UnitUI : MonoBehaviour
         text.text = level.ToString();
     }
 
+    public void SetDelay(bool active)
+    {
+        delayNum.gameObject.SetActive(active);
+    }
+
+    public void DelayLevel(int level)
+    {
+        delayNum.text = level.ToString();
+    }
+
     public void Reset()
     {
         SetTarget(false);
         SetDamage(false);
+        SetDelay(false);
     }
 }
