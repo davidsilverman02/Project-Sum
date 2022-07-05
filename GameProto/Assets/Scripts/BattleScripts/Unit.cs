@@ -30,9 +30,9 @@ public class Unit : MonoBehaviour
     public virtual void Start()
     {
         // this will be replaced 
-        currentHP = maxHP;
+        delay = FightMath.CounterSpeed(speed, 0);
 
-        delay = 100 - speed;
+        currentHP = maxHP;
         currentTime = delay;
     }
 
@@ -106,6 +106,11 @@ public class Unit : MonoBehaviour
         return speed;
     }
 
+    public void setDelay(int spd)
+    {
+        delay = spd;
+    }
+
     public int getDelay()
     {
         return delay;
@@ -139,6 +144,11 @@ public class Unit : MonoBehaviour
     public void DamageNum(int setNum)
     {
         ui.DamageLevel(setNum);
+    }
+
+    public void ColorDamage(Color color)
+    {
+        ui.DamageColor(color);
     }
 
     public void ToggleDelay(bool delay)

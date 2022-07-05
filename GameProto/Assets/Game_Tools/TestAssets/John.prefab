@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5677303159588189362}
   - component: {fileID: 4020851245194347453}
   - component: {fileID: 8367574733649355702}
-  - component: {fileID: 6836269970061647324}
+  - component: {fileID: 5158399829485762020}
   m_Layer: 0
   m_Name: John
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6836269970061647324
+--- !u!114 &5158399829485762020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,24 +106,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 8865059362681146953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c988954b3030e754f89b2b2f53e764ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 74572a6ececaa4f4693298122675def2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer: 1
+  isPlayer: 0
   hasTurn: 0
   isDead: 0
-  unitName: John
+  unitName: 
   unitLevel: 0
-  strength: 1
+  strength: 0
   defense: 0
-  speed: 0
-  currentHP: 5
+  speed: 5
+  currentHP: 0
   maxHP: 5
   currentPP: 0
   maxPP: 0
   delay: 0
   currentTime: 0
-  ui: {fileID: 0}
+  ui: {fileID: 6377520791083781060}
+  opts: 00000000
 --- !u!1001 &3144341616815415031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,3 +151,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8296601744083064119, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 3144341616815415031}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6377520791083781060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8296601744083064115, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+  m_PrefabInstance: {fileID: 3144341616815415031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e392779039985a544b90eeb46336b129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

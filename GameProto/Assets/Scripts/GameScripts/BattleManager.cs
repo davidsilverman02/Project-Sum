@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WIN, LOSE }
+public enum BattleState { START, CALCULATING, PLAYERTURN, ENEMYTURN, WIN, LOSE }
 public enum Target { ONE}
-public enum PlayerCommand { ATTACK}
 
 public class BattleManager : MonoBehaviour
 {
@@ -42,7 +41,7 @@ public class BattleManager : MonoBehaviour
 
     public BattleState state;
     public Target choice;
-    public PlayerCommand maneuver;
+    public FightMath.Option maneuver;
     public Unit currentUnit;
     public Unit selectOne;
     public bool choose;
@@ -148,9 +147,12 @@ public class BattleManager : MonoBehaviour
                 {
                     switch (maneuver)
                     {
-                        case PlayerCommand.ATTACK:
+                        case FightMath.Option.ATTACK:
                             StartCoroutine(playerAttack(selectOne));
                             break;
+                        case FightMath.Option.LIFE:
+                            break;
+
                     }
                     
                 }
@@ -242,7 +244,7 @@ public class BattleManager : MonoBehaviour
         ui.ToggleOverhead(false);
         determineTurnOrder();
         currentUnit = playerOrder[unitMoving];
-        state = stateIn(currentUnit);
+        state = BattleState.CALCULATING;
     }
 
     // Determines the fighters order in battle
@@ -334,9 +336,9 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    // The script for the player attack
-    public void playerAttackButton()
+    public void ChoiceMade(FightMath.Option opt)
     {
+        maneuver = opt;
         select();
     }
 

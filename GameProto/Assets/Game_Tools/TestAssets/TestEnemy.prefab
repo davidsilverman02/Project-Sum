@@ -116,11 +116,13 @@ MonoBehaviour:
   unitLevel: 0
   strength: 1
   defense: 0
-  speed: 0
+  speed: 90
   currentHP: 0
-  maxHP: 3
+  maxHP: 5
   currentPP: 0
   maxPP: 0
+  delay: 0
+  currentTime: 0
   ui: {fileID: 6524402576585675549}
   man: {fileID: 0}
 --- !u!1001 &3001691789594543662

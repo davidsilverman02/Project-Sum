@@ -34,6 +34,11 @@ public class UnitUI : MonoBehaviour
         text.text = level.ToString();
     }
 
+    public void DamageColor(Color colo)
+    {
+        text.color = colo;
+    }
+
     public void SetDelay(bool active)
     {
         delayNum.gameObject.SetActive(active);
