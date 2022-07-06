@@ -8,11 +8,18 @@ public class SkillBar : MonoBehaviour
 
     public SkillBarButton[] barButtons = new SkillBarButton[SIZE];
 
-    public void SetSkills(Unit basis)
+    public void SetSkills(Hero basis)
     {
         for(int i = 0; i < SIZE; i++)
         {
+            if(basis.GetOptions()[i] == FightMath.Option.NOTHING)
+            {
+                
+            }
+            else
+            {
 
+            }
         }
     }
 }
