@@ -116,7 +116,7 @@ MonoBehaviour:
   unitLevel: 0
   strength: 1
   defense: 0
-  speed: 90
+  speed: 2
   currentHP: 0
   maxHP: 5
   currentPP: 0

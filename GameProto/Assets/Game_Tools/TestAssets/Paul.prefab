@@ -114,16 +114,17 @@ MonoBehaviour:
   isDead: 0
   unitName: 
   unitLevel: 0
-  strength: 0
+  strength: 5
   defense: 0
   speed: 0
   currentHP: 0
-  maxHP: 0
+  maxHP: 10
   currentPP: 0
   maxPP: 0
   delay: 0
   currentTime: 0
-  ui: {fileID: 0}
+  ui: {fileID: 9016815049221332136}
+  opts: 01000000000000000000000000000000
 --- !u!1001 &1009187673804294555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -150,3 +151,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8296601744083064119, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 1009187673804294555}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9016815049221332136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8296601744083064115, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+  m_PrefabInstance: {fileID: 1009187673804294555}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e392779039985a544b90eeb46336b129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

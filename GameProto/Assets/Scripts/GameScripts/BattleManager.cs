@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
     const int ENEMY_UNITS = 4;
     const int ALL = 8;
 
+    public int battleSpeed = 1;
     public int selectedUnit;
     public int choce;
     public int unitMoving;
@@ -110,10 +111,31 @@ public class BattleManager : MonoBehaviour
             }
         }
 
+        if(state == BattleState.CALCULATING)
+        {
+            if(checkUnits())
+            {
+                if(goingUnit() != null)
+                {
+                    currentUnit = goingUnit();
+                    state = stateIn(currentUnit);
+                }
+            }
+            else
+            {
+                foreach(Unit unit in playerOrder)
+                {
+                    unit.countBack(battleSpeed);
+                }
+            }
+        }
+
+        /*
         if(state == BattleState.PLAYERTURN || state == BattleState.ENEMYTURN)
         {
             state = stateIn(currentUnit);
         }
+        */
 
         if(state == BattleState.PLAYERTURN)
         {
@@ -345,9 +367,21 @@ public class BattleManager : MonoBehaviour
     // Has an opponent take damage
     void dealDamage(int damage, Unit target)
     {
+        target.ColorDamage(Color.black);
+
         target.StartCoroutine(target.DamageDisplay(damage, 0.2f));
 
         target.TakeDamage(damage);
+    }
+
+    // Heals a unit
+    void heal(int strength, Unit target)
+    {
+        target.ColorDamage(Color.green);
+
+        target.StartCoroutine(target.DamageDisplay(strength, 0.2f));
+
+        target.Restore(strength);
     }
 
     public IEnumerator playerAttack(Unit target)
@@ -368,7 +402,15 @@ public class BattleManager : MonoBehaviour
         }
         
     }
-    
+
+    public IEnumerator playerHeal(Unit target)
+    {
+        heal(currentUnit.getStrength(), target);
+
+        yield return new WaitForSeconds(0f);
+
+        choose = false;
+    }
     
     public IEnumerator killEnemy(Unit target)
     {
@@ -382,6 +424,31 @@ public class BattleManager : MonoBehaviour
         nextTurn();
     }
     
+    public bool checkUnits()
+    {
+        foreach(Unit unit in playerOrder)
+        {
+            if(unit.getTime() <= 0)
+            {
+                unit.setCurrent(0);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Unit goingUnit()
+    {
+        foreach (Unit unit in playerOrder)
+        {
+            if(unit.getTime() <= 0)
+            {
+                return unit;
+            }
+        }
+        return null;
+    }
+
     public void nextTurn()
     {
         

@@ -64,6 +64,16 @@ public class Unit : MonoBehaviour
         currentHP -= damage;
     }
 
+    public void Restore(int strength)
+    {
+        currentHP += strength;
+
+        if(currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
+    }
+
     public bool Player()
     {
         return isPlayer;
@@ -104,6 +114,17 @@ public class Unit : MonoBehaviour
     public int getSpeed()
     {
         return speed;
+    }
+
+    public void countBack(int tickBack)
+    {
+        currentTime -= tickBack;
+    }
+
+    public void resetTime()
+    {
+        delay = FightMath.CounterSpeed(speed, 0);
+        currentTime = delay;
     }
 
     public void setDelay(int spd)
