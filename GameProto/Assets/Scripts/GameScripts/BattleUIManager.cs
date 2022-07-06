@@ -8,11 +8,11 @@ public class BattleUIManager : MonoBehaviour
 {
     public BattleManager bManager;
     public StatBar stat;
+    public SkillBar optionsBox;
 
     public GameObject all;
 
     public GameObject descBox;
-    public GameObject optionsBox;
     public TMP_Text battleDesc;
 
     // Start is called before the first frame update
@@ -52,6 +52,11 @@ public class BattleUIManager : MonoBehaviour
     // Toggles player info
     public void TogglePlayer(bool tog)
     {
-        optionsBox.SetActive(tog);
+        optionsBox.gameObject.SetActive(tog);
+    }
+
+    public void setAbilities(Hero assign)
+    {
+        optionsBox.SetSkills(assign);
     }
 }

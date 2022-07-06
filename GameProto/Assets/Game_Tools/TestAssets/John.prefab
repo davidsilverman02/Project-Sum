@@ -112,7 +112,7 @@ MonoBehaviour:
   isPlayer: 0
   hasTurn: 0
   isDead: 0
-  unitName: 
+  unitName: John
   unitLevel: 0
   strength: 10
   defense: 0

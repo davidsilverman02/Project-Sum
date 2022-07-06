@@ -112,11 +112,11 @@ MonoBehaviour:
   isPlayer: 0
   hasTurn: 0
   isDead: 0
-  unitName: 
+  unitName: George
   unitLevel: 0
   strength: 3
   defense: 0
-  speed: 50
+  speed: 56
   currentHP: 0
   maxHP: 5
   currentPP: 0

@@ -112,7 +112,7 @@ MonoBehaviour:
   isPlayer: 0
   hasTurn: 0
   isDead: 0
-  unitName: 
+  unitName: Paul
   unitLevel: 0
   strength: 5
   defense: 0

@@ -493,9 +493,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bManager: {fileID: 0}
   stat: {fileID: 751225238}
+  optionsBox: {fileID: 1054401549}
   all: {fileID: 884030907}
   descBox: {fileID: 97713057}
-  optionsBox: {fileID: 1054401545}
   battleDesc: {fileID: 412013506}
 --- !u!1 &381836137
 GameObject:
@@ -1604,9 +1604,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barButtons:
   - {fileID: 574888764}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1369504182}
+  - {fileID: 1155666473}
+  - {fileID: 2138210538}
 --- !u!1 &1059131990
 GameObject:
   m_ObjectHideFlags: 0

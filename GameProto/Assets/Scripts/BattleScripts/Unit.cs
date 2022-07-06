@@ -57,11 +57,18 @@ public class Unit : MonoBehaviour
         {
             isDead = false;
         }
+
+        DelayNum(currentTime);
     }
 
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
+
+        if(currentHP < 0)
+        {
+            currentHP = 0;
+        }
     }
 
     public void Restore(int strength)

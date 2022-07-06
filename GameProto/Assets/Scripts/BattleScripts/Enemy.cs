@@ -9,10 +9,11 @@ using UnityEngine;
 public class Enemy : Unit
 {
     public BattleManager man;
+    public Unit choosing;
 
     public override void Start()
     {
-        currentHP = maxHP;
+        base.Start();
     }
 
     public void Awake()
@@ -33,6 +34,8 @@ public class Enemy : Unit
 
     public void CompleteTurn()
     {
+        man.disableTalk();
+
         man.nextTurn();
     }
 
@@ -44,10 +47,45 @@ public class Enemy : Unit
 
     IEnumerator BaseSkill()
     {
-        Debug.Log("yep");
+        man.attackTalk("Attack");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
+
+        man.dealDamage(strength, selectLivingPlayer());
+
+        yield return new WaitForSeconds(0.5f);
 
         CompleteTurn();
+    }
+
+    public virtual Unit getRandomPlayer()
+    {
+        int size = man.getPlayers().Count;
+
+        return man.getPlayers()[Random.Range(0, size - 1)];
+    }
+
+    public virtual Unit getRandomEnemy()
+    {
+        int size = man.getEnemies().Count;
+
+        return man.getEnemies()[Random.Range(0, size - 1)];
+    }
+
+    public virtual Unit getRandom()
+    {
+        int size = man.getAll().Count;
+
+        return man.getAll()[Random.Range(0, size - 1)];
+    }
+
+    public Unit selectLivingPlayer()
+    {
+        do
+        {
+            choosing = getRandomPlayer(); 
+        } while (choosing.Dead());
+
+        return choosing;
     }
 }
