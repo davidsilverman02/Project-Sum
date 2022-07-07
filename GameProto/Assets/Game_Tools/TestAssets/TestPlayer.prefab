@@ -121,7 +121,9 @@ MonoBehaviour:
   maxHP: 5
   currentPP: 0
   maxPP: 0
-  ui: {fileID: 1513099023992181857}
+  delay: 0
+  currentTime: 0
+  ui: {fileID: 3056395061302068677}
 --- !u!1001 &7484112727908958546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -228,9 +230,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8296601744083064119, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 7484112727908958546}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1513099023992181857 stripped
+--- !u!114 &3056395061302068677 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8296601744083064115, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5599830050453406871, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 7484112727908958546}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
