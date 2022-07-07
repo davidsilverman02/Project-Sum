@@ -123,7 +123,7 @@ MonoBehaviour:
   maxPP: 0
   delay: 0
   currentTime: 0
-  ui: {fileID: 6377520791083781060}
+  ui: {fileID: 7355616003169442400}
   opts: 01000000000000000000000000000000
 --- !u!1001 &3144341616815415031
 PrefabInstance:
@@ -151,9 +151,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8296601744083064119, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 3144341616815415031}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6377520791083781060 stripped
+--- !u!114 &7355616003169442400 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8296601744083064115, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5599830050453406871, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 3144341616815415031}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
