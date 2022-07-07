@@ -123,7 +123,7 @@ MonoBehaviour:
   maxPP: 0
   delay: 0
   currentTime: 0
-  ui: {fileID: 8891584133294902065}
+  ui: {fileID: 5039708569535683221}
   opts: 01000000000000000000000000000000
 --- !u!1001 &596221162082524674
 PrefabInstance:
@@ -132,6 +132,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8558154801487451303}
     m_Modifications:
+    - target: {fileID: 1729398823085161301, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729398823085161301, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8296601744083064114, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
       propertyPath: m_Name
       value: UnitOverlay
@@ -227,9 +235,9 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8296601744083064119, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 596221162082524674}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8891584133294902065 stripped
+--- !u!114 &5039708569535683221 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8296601744083064115, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5599830050453406871, guid: 08f1a868d6bf772488db0ba50e3631b3, type: 3}
   m_PrefabInstance: {fileID: 596221162082524674}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
