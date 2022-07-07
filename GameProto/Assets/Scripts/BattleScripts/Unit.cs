@@ -34,6 +34,10 @@ public class Unit : MonoBehaviour
 
         currentHP = maxHP;
         currentTime = delay;
+
+        ui.setMaxHP(maxHP);
+
+        ui.SetHPBar(currentHP);
     }
 
     // Update is called once per frame
@@ -69,6 +73,8 @@ public class Unit : MonoBehaviour
         {
             currentHP = 0;
         }
+
+        setHealthBar();
     }
 
     public void Restore(int strength)
@@ -79,6 +85,8 @@ public class Unit : MonoBehaviour
         {
             currentHP = maxHP;
         }
+
+        setHealthBar();
     }
 
     public bool Player()
@@ -198,5 +206,10 @@ public class Unit : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         ToggleDamage(false);
+    }
+
+    public void setHealthBar()
+    {
+        ui.SetHPBar(currentHP);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UnitUI : MonoBehaviour
@@ -8,6 +9,8 @@ public class UnitUI : MonoBehaviour
     public GameObject selected;
     public TMP_Text text;
     public TMP_Text delayNum;
+    public Slider hpBar;
+    
 
     public void Start()
     {
@@ -37,6 +40,16 @@ public class UnitUI : MonoBehaviour
     public void DamageColor(Color colo)
     {
         text.color = colo;
+    }
+
+    public void SetHPBar(int set)
+    {
+        hpBar.value = set;
+    }
+
+    public void setMaxHP(int set)
+    {
+        hpBar.maxValue = set;
     }
 
     public void SetDelay(bool active)

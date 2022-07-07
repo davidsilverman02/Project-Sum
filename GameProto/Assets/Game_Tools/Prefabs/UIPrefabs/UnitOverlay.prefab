@@ -706,7 +706,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1729398823085161301}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8296601744083064116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,3 +929,4 @@ MonoBehaviour:
   selected: {fileID: 8296601743708976607}
   text: {fileID: 7870684721450307889}
   delayNum: {fileID: 388042904450743995}
+  hpBar: {fileID: 4416647828369353213}
