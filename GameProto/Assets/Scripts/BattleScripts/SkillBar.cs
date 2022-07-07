@@ -14,11 +14,12 @@ public class SkillBar : MonoBehaviour
         {
             if(basis.GetOptions()[i] == FightMath.Option.NOTHING)
             {
-                
+                barButtons[i].gameObject.SetActive(false);
             }
             else
             {
-
+                barButtons[i].gameObject.SetActive(true);
+                barButtons[i].Activate(basis.GetOptions()[i]);
             }
         }
     }

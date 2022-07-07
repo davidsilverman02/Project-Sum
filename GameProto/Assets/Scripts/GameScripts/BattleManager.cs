@@ -14,6 +14,7 @@ public class BattleManager : MonoBehaviour
     const int ENEMY_UNITS = 4;
     const int ALL = 8;
 
+    public int battleSpeed = 1;
     public int selectedUnit;
     public int choce;
     public int unitMoving;
@@ -27,14 +28,10 @@ public class BattleManager : MonoBehaviour
     public Transform heroPos3;
     public Transform heroPos4;
 
-    public List<SelectRect> heroAim;
-
     public Transform enemyPos1;
     public Transform enemyPos2;
     public Transform enemyPos3;
     public Transform enemyPos4;
-
-    public List<SelectRect> enemyAim;
 
     public List<Unit> players;
     public List<Unit> monsters;
@@ -110,16 +107,34 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if(state == BattleState.PLAYERTURN || state == BattleState.ENEMYTURN)
+        if(state == BattleState.CALCULATING)
         {
-            state = stateIn(currentUnit);
-        }
+            setCountDown(true);
+
+            if(checkUnits())
+            {
+                if(goingUnit() != null)
+                {
+                    currentUnit = goingUnit();
+                    state = stateIn(currentUnit);
+                }
+            }
+            else
+            {
+                foreach(Unit unit in playerOrder)
+                {
+                    unit.countBack(battleSpeed);
+                }
+            }
+        }     
 
         if(state == BattleState.PLAYERTURN)
         {
             if (choose == false)
             {
                 ui.TogglePlayer(true);
+
+                ui.setAbilities(currentUnit.GetComponent<Hero>());
 
                 disableSelectors();
             }
@@ -151,6 +166,7 @@ public class BattleManager : MonoBehaviour
                             StartCoroutine(playerAttack(selectOne));
                             break;
                         case FightMath.Option.LIFE:
+                            StartCoroutine(playerHeal(selectOne));
                             break;
 
                     }
@@ -194,7 +210,7 @@ public class BattleManager : MonoBehaviour
             {
                 case 1:
                     setUnit(false, enemyPool[0], enemyPos1);
-                    //setUnit(false, enemyPool[0], enemyPos2);
+                    setUnit(false, enemyPool[0], enemyPos2);
                     //setUnit(false, enemyPool[0], enemyPos3);
                     //setUnit(false, enemyPool[0], enemyPos4);
 
@@ -235,6 +251,24 @@ public class BattleManager : MonoBehaviour
         {
             monsters.Add(spawn.GetComponent<Unit>());
         }
+    }
+
+    // Gets the players
+    public List<Unit> getPlayers()
+    {
+        return players;
+    }
+
+    // Gets the enemies
+    public List<Unit> getEnemies()
+    {
+        return monsters;
+    }
+
+    // Gets all
+    public List<Unit> getAll()
+    {
+        return playerOrder;
     }
 
     // This script starts the battle
@@ -343,11 +377,23 @@ public class BattleManager : MonoBehaviour
     }
 
     // Has an opponent take damage
-    void dealDamage(int damage, Unit target)
+    public void dealDamage(int damage, Unit target)
     {
+        target.ColorDamage(Color.black);
+
         target.StartCoroutine(target.DamageDisplay(damage, 0.2f));
 
         target.TakeDamage(damage);
+    }
+
+    // Heals a unit
+    public void heal(int strength, Unit target)
+    {
+        target.ColorDamage(Color.green);
+
+        target.StartCoroutine(target.DamageDisplay(strength, 0.2f));
+
+        target.Restore(strength);
     }
 
     public IEnumerator playerAttack(Unit target)
@@ -368,7 +414,17 @@ public class BattleManager : MonoBehaviour
         }
         
     }
-    
+
+    public IEnumerator playerHeal(Unit target)
+    {
+        heal(currentUnit.getStrength(), target);
+
+        yield return new WaitForSeconds(0f);
+
+        choose = false;
+
+        nextTurn();
+    }
     
     public IEnumerator killEnemy(Unit target)
     {
@@ -382,23 +438,36 @@ public class BattleManager : MonoBehaviour
         nextTurn();
     }
     
+    public bool checkUnits()
+    {
+        foreach(Unit unit in playerOrder)
+        {
+            if(unit.getTime() <= 0)
+            {
+                unit.setCurrent(0);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Unit goingUnit()
+    {
+        foreach (Unit unit in playerOrder)
+        {
+            if(unit.getTime() <= 0)
+            {
+                return unit;
+            }
+        }
+        return null;
+    }
+
     public void nextTurn()
     {
-        
-        do
-        {
-            if (unitMoving >= playerOrder.Count - 1)
-            {
-                unitMoving = 0;
-            }
-            else
-            {
-                unitMoving++;
-            }
-            
-            currentUnit = playerOrder[unitMoving];
-        } while (currentUnit.CanFight() == false);
-        
+        currentUnit.resetTime();
+
+        state = BattleState.CALCULATING;
 
         turnCalled = false;
     }
@@ -423,10 +492,15 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void attackTalk(string words)
+    public void attackTalk(string words)
     {
         ui.ToggleOverhead(true);
         ui.SetBattleDescription(words);
+    }
+
+    public void disableTalk()
+    {
+        ui.ToggleOverhead(false);
     }
 
     //Physically removes a unit
@@ -435,17 +509,11 @@ public class BattleManager : MonoBehaviour
         if(toRemove.isPlayer)
         {
             indexPoint = players.IndexOf(toRemove);
-            Destroy(heroAim[indexPoint].gameObject);
-            heroAim.RemoveAt(indexPoint);
             players.Remove(toRemove);
         }
         else
         {
-            Debug.Log("Hit");
-
             indexPoint = monsters.IndexOf(toRemove);
-            Destroy(enemyAim[indexPoint].gameObject);
-            enemyAim.RemoveAt(indexPoint);
             monsters.Remove(toRemove);
         }
 
@@ -483,6 +551,21 @@ public class BattleManager : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void setCountDown(bool active)
+    {
+        foreach(Unit unit in playerOrder)
+        {
+            if(unit.isDead == false)
+            {
+                unit.ToggleDelay(active);
+            }
+            else
+            {
+                unit.ToggleDelay(false);
+            }
+        }
     }
 
     //merges for merge sort

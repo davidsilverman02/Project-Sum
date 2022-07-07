@@ -112,18 +112,19 @@ MonoBehaviour:
   isPlayer: 0
   hasTurn: 0
   isDead: 0
-  unitName: 
+  unitName: George
   unitLevel: 0
-  strength: 0
+  strength: 3
   defense: 0
-  speed: 0
+  speed: 56
   currentHP: 0
-  maxHP: 0
+  maxHP: 5
   currentPP: 0
   maxPP: 0
   delay: 0
   currentTime: 0
   ui: {fileID: 8891584133294902065}
+  opts: 01000000000000000000000000000000
 --- !u!1001 &596221162082524674
 PrefabInstance:
   m_ObjectHideFlags: 0

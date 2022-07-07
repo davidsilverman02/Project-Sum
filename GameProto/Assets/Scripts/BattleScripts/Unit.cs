@@ -57,11 +57,28 @@ public class Unit : MonoBehaviour
         {
             isDead = false;
         }
+
+        DelayNum(currentTime);
     }
 
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
+
+        if(currentHP < 0)
+        {
+            currentHP = 0;
+        }
+    }
+
+    public void Restore(int strength)
+    {
+        currentHP += strength;
+
+        if(currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
     }
 
     public bool Player()
@@ -104,6 +121,17 @@ public class Unit : MonoBehaviour
     public int getSpeed()
     {
         return speed;
+    }
+
+    public void countBack(int tickBack)
+    {
+        currentTime -= tickBack;
+    }
+
+    public void resetTime()
+    {
+        delay = FightMath.CounterSpeed(speed, 0);
+        currentTime = delay;
     }
 
     public void setDelay(int spd)
