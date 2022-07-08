@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour
 
     // Individual Stats for a unit
     public int strength;
+    public int magic;
     public int defense;
     public int speed;
 
@@ -119,6 +120,11 @@ public class Unit : MonoBehaviour
     public int getStrength()
     {
         return strength;
+    }
+
+    public int getMagic()
+    {
+        return magic;
     }
 
     public int getDefense()

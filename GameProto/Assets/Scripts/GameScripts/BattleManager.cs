@@ -20,6 +20,8 @@ public class BattleManager : MonoBehaviour
     public int unitMoving;
     public int indexPoint;
 
+    public float decompRate = 0.05f;
+
     public GameManager manager;
     public BattleUIManager ui;
 
@@ -422,7 +424,7 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator playerHeal(Unit target)
     {
-        heal(currentUnit.getStrength(), target);
+        heal(currentUnit.getMagic(), target);
 
         yield return new WaitForSeconds(0f);
 
@@ -433,10 +435,15 @@ public class BattleManager : MonoBehaviour
     
     public IEnumerator killEnemy(Unit target)
     {
-        for (float i = 20f; i < 0; i--)
+        
+        for (float i = 1f; i > 0.0f; i -= decompRate)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(decompRate);
         }
+         
+        
+
+        //yield return new WaitForSeconds(1.0f);
 
         RemoveUnit(target);
 
