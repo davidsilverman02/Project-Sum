@@ -147,6 +147,12 @@ public class Unit : MonoBehaviour
         delay = spd;
     }
 
+    public void setForTurn(int attackRank)
+    {
+        delay = FightMath.CounterSpeed(speed, attackRank);
+        currentTime = delay;
+    }
+
     public int getDelay()
     {
         return delay;

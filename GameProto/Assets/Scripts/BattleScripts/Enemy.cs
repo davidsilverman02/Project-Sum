@@ -10,6 +10,7 @@ public class Enemy : Unit
 {
     public BattleManager man;
     public Unit choosing;
+    public int priority;
 
     public override void Start()
     {
@@ -36,6 +37,8 @@ public class Enemy : Unit
     {
         man.disableTalk();
 
+        man.setRank(priority);
+
         man.nextTurn();
     }
 
@@ -48,6 +51,8 @@ public class Enemy : Unit
     IEnumerator BaseSkill()
     {
         man.attackTalk("Attack");
+
+        priority = 1;
 
         yield return new WaitForSeconds(0.5f);
 

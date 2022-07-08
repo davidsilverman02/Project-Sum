@@ -53,6 +53,8 @@ public class BattleManager : MonoBehaviour
 
     public List<Unit> selected;
 
+    int attackRank;
+
     private void Awake()
     {
         manager = FindObjectOfType<GameManager>();
@@ -123,7 +125,10 @@ public class BattleManager : MonoBehaviour
             {
                 foreach(Unit unit in playerOrder)
                 {
-                    unit.countBack(battleSpeed);
+                    if(unit.CanFight())
+                    {
+                        unit.countBack(battleSpeed);
+                    }
                 }
             }
         }     
@@ -140,12 +145,10 @@ public class BattleManager : MonoBehaviour
             }
             else
             {
-                
                 ui.TogglePlayer(false);
 
                 if (choice == Target.ONE)
                 {
-
                     oneSelect();
 
                     if (onEnemy)
@@ -163,9 +166,11 @@ public class BattleManager : MonoBehaviour
                     switch (maneuver)
                     {
                         case FightMath.Option.ATTACK:
+                            attackRank = 0;
                             StartCoroutine(playerAttack(selectOne));
                             break;
                         case FightMath.Option.LIFE:
+                            attackRank = 0;
                             StartCoroutine(playerHeal(selectOne));
                             break;
 
@@ -442,7 +447,7 @@ public class BattleManager : MonoBehaviour
     {
         foreach(Unit unit in playerOrder)
         {
-            if(unit.getTime() <= 0)
+            if(unit.getTime() <= 0 && unit.CanFight())
             {
                 unit.setCurrent(0);
                 return true;
@@ -455,7 +460,7 @@ public class BattleManager : MonoBehaviour
     {
         foreach (Unit unit in playerOrder)
         {
-            if(unit.getTime() <= 0)
+            if(unit.getTime() <= 0 && unit.CanFight())
             {
                 return unit;
             }
@@ -467,9 +472,16 @@ public class BattleManager : MonoBehaviour
     {
         currentUnit.resetTime();
 
+        currentUnit.setForTurn(attackRank);
+
         state = BattleState.CALCULATING;
 
         turnCalled = false;
+    }
+
+    public void setRank(int strength)
+    {
+        attackRank = strength;
     }
 
     public BattleState stateIn(Unit get)
