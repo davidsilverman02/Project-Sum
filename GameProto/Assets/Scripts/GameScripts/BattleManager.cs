@@ -61,6 +61,8 @@ public class BattleManager : MonoBehaviour
 
     int attackRank;
 
+    public int positionNum = 10;
+
     private void Awake()
     {
         manager = FindObjectOfType<GameManager>();
@@ -288,6 +290,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ui.ToggleOverhead(false);
         determineTurnOrder();
+        setPlayerUIOrder();
         currentUnit = playerOrder[unitMoving];
         state = BattleState.CALCULATING;
     }
@@ -485,6 +488,8 @@ public class BattleManager : MonoBehaviour
 
         currentUnit.setForTurn(attackRank);
 
+        setPlayerUIOrder();
+
         state = BattleState.CALCULATING;
 
         turnCalled = false;
@@ -530,12 +535,10 @@ public class BattleManager : MonoBehaviour
     {
         uiOrderCalc.Clear();
 
-        /*
         for(int i = 0; i < playerOrder.Count; i++)
         {
             uiOrderCalc.Add(playerOrder[i].getDelay());
         }
-        */
     }
 
     bool findZero()
@@ -550,23 +553,42 @@ public class BattleManager : MonoBehaviour
         return false;
     }
 
+    int goingTime()
+    {
+        for (int i = 0; i < uiOrderCalc.Count; i++)
+        {
+            if(uiOrderCalc[i] <= 0)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public List<Unit> getPlayer()
+    {
+        return uiOrder;
+    }
+
     public void setPlayerUIOrder()
     {
-        Unit beReturned;
-
         setUpOrder();
 
-        while(uiOrder[uiOrder.Count - 1] != null)
+        while(uiOrder.Count < positionNum)
         {
             if(findZero())
             {
-
+                if(goingTime() >= 0)
+                {
+                    uiOrder.Add(playerOrder[goingTime()]);
+                    uiOrderCalc[goingTime()] = playerOrder[goingTime()].getDelay();
+                }
             }
             else
             {
                 for(int i = 0; i < uiOrderCalc.Count; i++)
                 {
-                    
+                    uiOrderCalc[i]--;
                 }
             }
         }
