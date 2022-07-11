@@ -55,6 +55,10 @@ public class BattleManager : MonoBehaviour
 
     public List<Unit> selected;
 
+    public List<Unit> uiOrder;
+
+    public List<int> uiOrderCalc;
+
     int attackRank;
 
     private void Awake()
@@ -520,6 +524,52 @@ public class BattleManager : MonoBehaviour
     public void disableTalk()
     {
         ui.ToggleOverhead(false);
+    }
+
+    void setUpOrder()
+    {
+        uiOrderCalc.Clear();
+
+        /*
+        for(int i = 0; i < playerOrder.Count; i++)
+        {
+            uiOrderCalc.Add(playerOrder[i].getDelay());
+        }
+        */
+    }
+
+    bool findZero()
+    {
+        foreach(int calc in uiOrderCalc)
+        {
+            if(calc <= 0)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void setPlayerUIOrder()
+    {
+        Unit beReturned;
+
+        setUpOrder();
+
+        while(uiOrder[uiOrder.Count - 1] != null)
+        {
+            if(findZero())
+            {
+
+            }
+            else
+            {
+                for(int i = 0; i < uiOrderCalc.Count; i++)
+                {
+                    
+                }
+            }
+        }
     }
 
     //Physically removes a unit
