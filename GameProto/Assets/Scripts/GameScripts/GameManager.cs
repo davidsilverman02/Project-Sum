@@ -6,18 +6,23 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
+    public GameObject UI;
 
 
     public enum gameState {OVERWORLD, BATTLE, MENU}
     public gameState state;
     public Player ovPlayer;
+    public OverworldUIManager ovUI;
     public int level;
     public int curLevel;
     public float spawnX;
     public float spawnY;
     public float spawnZ;
+    public List<NPC> npcs;
 
     public bool playerMoving;
+    public bool isTalk;
+    public float isClose = 3f;
 
     void Awake()
     {
@@ -38,7 +43,9 @@ public class GameManager : MonoBehaviour
             spawnX = ovPlayer.gameObject.transform.position.x;
             spawnY = ovPlayer.gameObject.transform.position.y;
             spawnZ = ovPlayer.gameObject.transform.position.z;
+
             level = SceneManager.GetActiveScene().buildIndex;
+
             if(ovPlayer != null)
             {
                 if((ovPlayer.playe.movingX != 0 || ovPlayer.playe.movingY != 0) || ovPlayer.playe.movingZ != 0)
@@ -54,6 +61,8 @@ public class GameManager : MonoBehaviour
             {
                 playerMoving = false;
             }
+
+
         }
 
         if(state == gameState.BATTLE)
@@ -98,6 +107,12 @@ public class GameManager : MonoBehaviour
                 GameObject plaer = Instantiate(player, new Vector3(spawnX, spawnY, spawnZ), gameObject.transform.rotation) as GameObject;
             }
             ovPlayer = FindObjectOfType<Player>();
+
+            if(GameObject.Find("OverworldUI") == null)
+            {
+                GameObject ui = Instantiate(UI, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+            }
+            ovUI = FindObjectOfType<OverworldUIManager>();
         }
         else
         {

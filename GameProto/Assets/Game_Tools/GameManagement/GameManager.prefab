@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 791344665169994811, guid: 3f4ba317c2d9b564e8f8af9445d2296b, type: 3}
+  UI: {fileID: 7156249690172560785, guid: 47f63eec717359047bfb6587694bc494, type: 3}
   state: 0
   ovPlayer: {fileID: 0}
+  ovUI: {fileID: 0}
   level: 0
   curLevel: 0
   spawnX: 0

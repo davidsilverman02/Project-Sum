@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class NPC : MonoBehaviour
 {
-    public string level;
-    public PlayerMovement playe;
+    public NPCDisplay display;
+
     public GameManager man;
 
-    void Awake()
+    public bool isTalking;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        playe = GetComponent<PlayerMovement>();
         man = FindObjectOfType<GameManager>();
     }
 
@@ -18,5 +21,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public virtual void Interact()
+    {
+
     }
 }
