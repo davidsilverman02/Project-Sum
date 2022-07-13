@@ -19,4 +19,14 @@ public class Player : MonoBehaviour
     {
         
     }
+
+    public Vector3 getPlace()
+    {
+        return gameObject.transform.position;
+    }
+
+    public void immobile(bool immobile)
+    {
+        playe.enabled = immobile;
+    }
 }

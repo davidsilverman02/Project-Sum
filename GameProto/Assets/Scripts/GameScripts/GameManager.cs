@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public float spawnY;
     public float spawnZ;
     public List<NPC> npcs;
+    public NPC interact;
 
     public bool playerMoving;
     public bool isTalk;
@@ -62,9 +63,43 @@ public class GameManager : MonoBehaviour
                 playerMoving = false;
             }
 
+            if(npcs.Count > 0)
+            {
+                if (getClosestNPCToPlayer() != null)
+                {
+                    if (getClosestNPCToPlayer() != interact)
+                    {
+                        if(interact != null)
+                        {
+                            interact.canChat(false);
+                        }
+                        interact = getClosestNPCToPlayer();
+                    }
 
+                    if (isTalk == false && Input.GetKeyDown(KeyCode.Return))
+                    {
+                        isTalk = true;
+                    }
+                    else if(Input.GetKeyDown(KeyCode.Return))
+                    {
+
+                    }
+                    else
+                    {
+                        interact.canChat(true);
+                    }
+                }
+                else
+                {
+                    if(interact != null)
+                    {
+                        interact.canChat(false);
+                        interact = null;
+                    }
+                }
+            }
+            
         }
-
         if(state == gameState.BATTLE)
         {
             playerMoving = false;
@@ -84,6 +119,8 @@ public class GameManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         curLevel = SceneManager.GetActiveScene().buildIndex;
+
+        npcs.Clear();
 
         switch (curLevel)
         {
@@ -117,6 +154,8 @@ public class GameManager : MonoBehaviour
         else
         {
             ovPlayer = null;
+            ovUI = null;
+            interact = null;
         }
     }
 
@@ -129,5 +168,29 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(index);
 
+    }
+
+    public void addNPC(NPC toAdd)
+    {
+        npcs.Add(toAdd);
+    }
+
+    NPC getClosestNPCToPlayer()
+    {
+        NPC closest = null;
+        float minDis = Mathf.Infinity;
+        float dis;
+
+        foreach(NPC npc in npcs)
+        {
+            dis = Vector3.Distance(ovPlayer.getPlace(), npc.getPos());
+            if(dis < minDis && dis <= isClose)
+            {
+                closest = npc;
+                minDis = dis;
+            }
+        }
+
+        return closest;
     }
 }

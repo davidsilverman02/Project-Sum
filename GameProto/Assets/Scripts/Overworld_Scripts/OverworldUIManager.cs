@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class OverworldUIManager : MonoBehaviour
 {
+    public BattleManager man;
+
+    public GameObject chatBar;
+    public TMP_Text text;
+
     // Start is called before the first frame update
     void Start()
     {
