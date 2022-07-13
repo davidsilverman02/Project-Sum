@@ -14,12 +14,27 @@ public class OverworldUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Reset();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void setChatBar(bool isOn)
+    {
+        chatBar.SetActive(isOn);
+    }
+
+    public void setText(string dia)
+    {
+        text.text = dia;
+    }
+
+    public void Reset()
+    {
+        setChatBar(false);
     }
 }

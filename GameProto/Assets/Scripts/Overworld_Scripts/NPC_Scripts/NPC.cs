@@ -13,6 +13,8 @@ public class NPC : MonoBehaviour
 
     public List<string> dialogue;
 
+    int currentLine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,9 @@ public class NPC : MonoBehaviour
 
     public virtual void Interact()
     {
-        
+        display.setCanChat(false);
+        man.setBar(true);
+        speak();
     }
 
     public Vector3 getPos()
@@ -50,5 +54,31 @@ public class NPC : MonoBehaviour
     public void stopChat()
     {
         man.isTalk = false;
+    }
+
+    public virtual void speak()
+    {
+        man.setUIChat(dialogue[currentLine]);
+    }
+
+    public virtual void Continue()
+    {
+        if(dialogue.Count - 1 <= currentLine)
+        {
+            Conclude();
+        }
+        else
+        {
+            currentLine++;
+            speak();
+        }
+    }
+
+    public virtual void Conclude()
+    {
+        currentLine = 0;
+        man.setBar(false);
+        man.setPlay(false);
+        stopChat();
     }
 }

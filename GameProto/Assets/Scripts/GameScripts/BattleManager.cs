@@ -82,7 +82,8 @@ public class BattleManager : MonoBehaviour
     // Runs items not run by the interfaces
     private void Update()
     {
-        if(monsters.Count <= 0 || allDead(monsters))
+        //monsters.Count <= 0 || allDead(monsters)
+        if (monsters.Count <= 0)
         {
             state = BattleState.WIN;
         }
@@ -416,8 +417,6 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(0f);
 
-        choose = false;
-
         if (target.Dead() && target.Player() == false)
         {
             StartCoroutine(killEnemy(target));
@@ -435,22 +434,15 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(0f);
 
-        choose = false;
-
         nextTurn();
     }
     
     public IEnumerator killEnemy(Unit target)
     {
-        
         for (float i = 1f; i > 0.0f; i -= decompRate)
         {
             yield return new WaitForSeconds(decompRate);
         }
-         
-        
-
-        //yield return new WaitForSeconds(1.0f);
 
         RemoveUnit(target);
 
@@ -493,6 +485,8 @@ public class BattleManager : MonoBehaviour
         state = BattleState.CALCULATING;
 
         turnCalled = false;
+
+        choose = false;
     }
 
     public void setRank(int strength)

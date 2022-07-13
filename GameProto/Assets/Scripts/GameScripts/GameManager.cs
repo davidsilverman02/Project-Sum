@@ -79,12 +79,15 @@ public class GameManager : MonoBehaviour
                     if (isTalk == false && Input.GetKeyDown(KeyCode.Return))
                     {
                         isTalk = true;
+                        ovPlayer.immobile(true);
+                        interact.Interact();
+
                     }
                     else if(Input.GetKeyDown(KeyCode.Return))
                     {
-
+                        interact.Continue();
                     }
-                    else
+                    else if(isTalk == false)
                     {
                         interact.canChat(true);
                     }
@@ -98,7 +101,6 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            
         }
         if(state == gameState.BATTLE)
         {
@@ -192,5 +194,20 @@ public class GameManager : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public void setBar(bool on)
+    {
+        ovUI.setChatBar(on);
+    }
+
+    public void setUIChat(string message)
+    {
+        ovUI.setText(message);
+    }
+
+    public void setPlay(bool set)
+    {
+        ovPlayer.immobile(set);
     }
 }

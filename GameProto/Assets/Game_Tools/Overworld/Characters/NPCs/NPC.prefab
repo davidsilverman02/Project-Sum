@@ -129,7 +129,9 @@ MonoBehaviour:
   display: {fileID: 6452917106531536847}
   man: {fileID: 0}
   isTalking: 0
-  dialogue: []
+  dialogue:
+  - It's not an ostrich!
+  - It's an emu!
 --- !u!1001 &1919364029424675456
 PrefabInstance:
   m_ObjectHideFlags: 0
