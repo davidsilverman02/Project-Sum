@@ -256,7 +256,7 @@ public class BattleManager : MonoBehaviour
     {
         setUnit(true, playerPool[0], heroPos1);
         setUnit(true, playerPool[1], heroPos2);
-        //setUnit(true, playerPool[2], heroPos3);
+        setUnit(true, playerPool[2], heroPos3);
         setUnit(true, playerPool[3], heroPos4);
     }
 
@@ -308,22 +308,24 @@ public class BattleManager : MonoBehaviour
     {
         playerOrder.Clear();
 
-        /*
+        
         foreach(Unit unit in players)
         {
             playerOrder.Add(unit);
         }
-        */
+        
 
         foreach (Unit unit in monsters)
         {
             playerOrder.Add(unit);
         }
 
+        /*
         foreach (Unit unit in players)
         {
             playerOrder.Add(unit);
         }
+        */
 
         setPlayerUIOrder();
     }
@@ -497,7 +499,7 @@ public class BattleManager : MonoBehaviour
     {
         bool enemyDied = false;
 
-        interpretSkill(skill, goingUnit(), selectedUnit);
+        interpretSkill(skill, goingUnit(), target);
 
         yield return new WaitForSeconds(goingUnit().attack.duration);
 

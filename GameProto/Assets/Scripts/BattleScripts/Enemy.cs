@@ -27,7 +27,6 @@ public class Enemy : Unit
         TurnCalled();
         man.enemySelect(attack);
         choosing = selectLivingPlayer();
-        Debug.Log(choosing);
         StartCoroutine(man.useSkill(attack, choosing));
     }
 
@@ -57,7 +56,7 @@ public class Enemy : Unit
 
         int size = man.getPlayers().Count;
 
-        return Random.Range(0, size - 1);
+        return Random.Range(0, size);
     }
 
     public virtual int getRandomEnemy()
@@ -66,7 +65,7 @@ public class Enemy : Unit
 
         int size = man.getEnemies().Count;
 
-        return Random.Range(0, size - 1);
+        return Random.Range(0, size);
     }
 
     public virtual int getRandom()
