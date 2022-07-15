@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Hero : Unit
 {
-    public List<FightMath.Option> opts;
-
     public override void Start()
     {
         isPlayer = true;
@@ -13,8 +11,4 @@ public class Hero : Unit
         base.Start();
     }
 
-    public List<FightMath.Option> GetOptions()
-    {
-        return opts;
-    }
 }

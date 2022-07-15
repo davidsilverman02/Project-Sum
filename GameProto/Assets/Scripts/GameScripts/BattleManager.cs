@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum BattleState { START, CALCULATING, PLAYERTURN, ENEMYTURN, WIN, LOSE }
-public enum Target { ONE}
+public enum Target {SELF, ONE}
 
 public class BattleManager : MonoBehaviour
 {
@@ -156,33 +156,41 @@ public class BattleManager : MonoBehaviour
             {
                 ui.TogglePlayer(false);
 
-                if (choice == Target.ONE)
+                switch(choice)
                 {
-                    oneSelect();
+                    case Target.SELF:
+                        setSelect(currentUnit);
+                        break;
+                    case Target.ONE:
+                        oneSelect();
 
-                    if (onEnemy)
-                    {
-                        selectOne = monsters[selectedUnit];
-                    }
-                    else
-                    {
-                        selectOne = players[selectedUnit];
-                    }
+                        if (onEnemy)
+                        {
+                            selectOne = monsters[selectedUnit];
+                        }
+                        else
+                        {
+                            selectOne = players[selectedUnit];
+                        }
+                        break;
                 }
-
+                
                 if(Input.GetKeyDown(KeyCode.Return))
                 {
                     switch (maneuver)
                     {
                         case FightMath.Option.ATTACK:
                             attackRank = 0;
-                            StartCoroutine(playerAttack(selectOne));
+                            StartCoroutine(useSkill(currentUnit.attack, selectedUnit));
                             break;
-                        case FightMath.Option.LIFE:
+                        case FightMath.Option.SKILL:
                             attackRank = 0;
                             StartCoroutine(playerHeal(selectOne));
                             break;
-
+                        case FightMath.Option.DEFEND:
+                            attackRank = 0;
+                            StartCoroutine(useSkill(currentUnit.defend, 0));
+                            break;
                     }
                     
                 }
@@ -291,7 +299,6 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ui.ToggleOverhead(false);
         determineTurnOrder();
-        setPlayerUIOrder();
         currentUnit = playerOrder[unitMoving];
         state = BattleState.CALCULATING;
     }
@@ -301,27 +308,40 @@ public class BattleManager : MonoBehaviour
     {
         playerOrder.Clear();
 
+        /*
         foreach(Unit unit in players)
         {
             playerOrder.Add(unit);
         }
+        */
 
         foreach (Unit unit in monsters)
         {
             playerOrder.Add(unit);
         }
+
+        foreach (Unit unit in players)
+        {
+            playerOrder.Add(unit);
+        }
+
+        setPlayerUIOrder();
     }
 
     // Has the player select which unit is being targetted in battle
-    void select()
+    void select(Skill skill)
     {
-        choose = true;
+        choice = Target.SELF;
 
-        switch(choice)
+        for(int i = 0; i < skill.targets.Length; i++)
         {
-            case Target.ONE:
-                break;
+            if(skill.targets[i].target == Target.ONE)
+            {
+                choice = Target.ONE;
+            }
         }
+
+        choose = true;
     }
 
     int seal()
@@ -385,17 +405,31 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    void setSelect(Unit unit)
+    {
+        unit.ToggleSelected(true);
+    }
+
     public void ChoiceMade(FightMath.Option opt)
     {
         maneuver = opt;
-        select();
+        if(maneuver == FightMath.Option.SKILL || maneuver == FightMath.Option.ITEM)
+        {
+
+        }
+        else if(maneuver == FightMath.Option.ATTACK)
+        {
+            select(currentUnit.attack);
+        }
+        else if(maneuver == FightMath.Option.DEFEND)
+        {
+            select(currentUnit.defend);
+        }
     }
 
     // Has an opponent take damage
     public void dealDamage(int damage, Unit target)
     {
-        target.ColorDamage(Color.black);
-
         target.StartCoroutine(target.DamageDisplay(damage, 0.2f));
 
         target.TakeDamage(damage);
@@ -411,21 +445,29 @@ public class BattleManager : MonoBehaviour
         target.Restore(strength);
     }
 
-    public IEnumerator playerAttack(Unit target)
+    public IEnumerator playerAttack(int target)
     {
-        dealDamage(currentUnit.getStrength(), target);
+        bool enemyDied = false;
 
-        yield return new WaitForSeconds(0f);
+        interpretSkill(goingUnit().attack, goingUnit(), selectedUnit);
 
-        if (target.Dead() && target.Player() == false)
+        yield return new WaitForSeconds(goingUnit().attack.duration);
+
+        foreach(Unit targe in monsters)
         {
-            StartCoroutine(killEnemy(target));
+            if(targe.Dead())
+            {
+                StartCoroutine(killEnemy(targe));
+                enemyDied = true;
+            }
         }
-        else
+
+        if(enemyDied)
         {
-            nextTurn();
+            yield return new WaitForSeconds(1f);
         }
-        
+
+        nextTurn();
     }
 
     public IEnumerator playerHeal(Unit target)
@@ -433,6 +475,33 @@ public class BattleManager : MonoBehaviour
         heal(currentUnit.getMagic(), target);
 
         yield return new WaitForSeconds(0f);
+
+        nextTurn();
+    }
+
+    public IEnumerator useSkill(Skill skill, int target)
+    {
+        bool enemyDied = false;
+
+        interpretSkill(skill, goingUnit(), selectedUnit);
+
+        yield return new WaitForSeconds(goingUnit().attack.duration);
+
+        ui.ToggleOverhead(false);
+
+        foreach (Unit targe in monsters)
+        {
+            if (targe.Dead())
+            {
+                StartCoroutine(killEnemy(targe));
+                enemyDied = true;
+            }
+        }
+
+        if (enemyDied)
+        {
+            yield return new WaitForSeconds(1f);
+        }
 
         nextTurn();
     }
@@ -446,7 +515,9 @@ public class BattleManager : MonoBehaviour
 
         RemoveUnit(target);
 
-        nextTurn();
+        selectOne = null;
+
+        determineTurnOrder();
     }
     
     public bool checkUnits()
@@ -531,7 +602,7 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < playerOrder.Count; i++)
         {
-            uiOrderCalc.Add(playerOrder[i].getDelay());
+            uiOrderCalc.Add(playerOrder[i].getTime());
         }
     }
 
@@ -567,6 +638,8 @@ public class BattleManager : MonoBehaviour
     public void setPlayerUIOrder()
     {
         setUpOrder();
+
+        uiOrder.Clear();
 
         while(uiOrder.Count < positionNum)
         {
@@ -638,6 +711,51 @@ public class BattleManager : MonoBehaviour
         return true;
     }
 
+    public void interpretSkill(Skill inta, Unit user, int target)
+    {
+        for (int i = 0; i < inta.targets.Length; i++)
+        {
+            Unit affected = null;
+            int calculated;
+
+            switch (choice)
+            {
+                case Target.SELF:
+                    affected = user;
+                    break;
+                case Target.ONE:
+                    if (onEnemy)
+                    {
+                        affected = monsters[target];
+                    }
+                    else
+                    {
+                        affected = players[target];
+                    }
+                    break;
+            }
+
+            if (inta.targets[i].GetEffect().damage != 0)
+            {
+                if(inta.physical)
+                {
+                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getStrength());
+                }
+                else
+                {
+                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getMagic());
+                }
+
+                dealDamage(FightMath.CalculateDamage(inta.physical, calculated, affected.getDefense()), affected);
+            }
+        }
+
+        ui.SetBattleDescription(inta.name);
+        ui.ToggleOverhead(true);
+
+        attackRank = inta.priority;
+    }
+
     public void setCountDown(bool active)
     {
         foreach(Unit unit in playerOrder)
@@ -651,6 +769,16 @@ public class BattleManager : MonoBehaviour
                 unit.ToggleDelay(false);
             }
         }
+    }
+
+    public void setTarget(bool enemies)
+    {
+        onEnemy = enemies;
+    }
+
+    public bool getTarget()
+    {
+        return onEnemy;
     }
 
     //merges for merge sort
@@ -700,4 +828,6 @@ public class BattleManager : MonoBehaviour
 
         manager.LoadLevel(3);
     }
+
+    
 }

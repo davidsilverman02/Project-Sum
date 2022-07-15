@@ -125,6 +125,7 @@ MonoBehaviour:
   delay: 0
   currentTime: 0
   ui: {fileID: 2186229689625230190}
+  attack: {fileID: 11400000, guid: b63116517c208984eb25e0b6d2bcfedf, type: 2}
   man: {fileID: 0}
   choosing: {fileID: 0}
   priority: 0

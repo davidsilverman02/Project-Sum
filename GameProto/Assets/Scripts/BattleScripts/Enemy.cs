@@ -9,7 +9,7 @@ using UnityEngine;
 public class Enemy : Unit
 {
     public BattleManager man;
-    public Unit choosing;
+    public int choosing;
     public int priority;
 
     public override void Start()
@@ -25,7 +25,8 @@ public class Enemy : Unit
     public virtual void Behavior()
     {
         TurnCalled();
-        StartCoroutine(BaseSkill());
+        choosing = selectLivingPlayer();
+        StartCoroutine(man.useSkill(attack, choosing));
     }
 
     public virtual void ItemDrop()
@@ -48,49 +49,85 @@ public class Enemy : Unit
         man.turnCalled = true;
     }
 
-    IEnumerator BaseSkill()
+    public virtual int getRandomPlayer()
     {
-        man.attackTalk("Attack");
+        man.setTarget(false);
 
-        priority = 1;
-
-        yield return new WaitForSeconds(0.5f);
-
-        man.dealDamage(strength, selectLivingPlayer());
-
-        yield return new WaitForSeconds(0.5f);
-
-        CompleteTurn();
-    }
-
-    public virtual Unit getRandomPlayer()
-    {
         int size = man.getPlayers().Count;
 
-        return man.getPlayers()[Random.Range(0, size - 1)];
+        return Random.Range(0, size - 1);
     }
 
-    public virtual Unit getRandomEnemy()
+    public virtual int getRandomEnemy()
     {
+        man.setTarget(true);
+
         int size = man.getEnemies().Count;
 
-        return man.getEnemies()[Random.Range(0, size - 1)];
+        return Random.Range(0, size - 1);
     }
 
-    public virtual Unit getRandom()
+    public virtual int getRandom()
     {
-        int size = man.getAll().Count;
+        int differ = Random.Range(0, 1);
 
-        return man.getAll()[Random.Range(0, size - 1)];
+        if(differ > 0)
+        {
+            return getRandomPlayer();
+        }
+        else
+        {
+            return getRandomEnemy();
+        }
     }
 
-    public Unit selectLivingPlayer()
+    public bool getEnemyDead(int index)
     {
+        if(man.getPlayers()[index].Dead())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool getPlayerDead(int index)
+    {
+        if (man.getEnemies()[index].Dead())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /*
+    public bool getDead()
+    {
+        if(man.getTarget())
+        {
+            if(man.getM)
+        }
+        else
+        {
+
+        }
+    }
+    */
+
+    public int selectLivingPlayer()
+    {
+        int user;
+
         do
         {
-            choosing = getRandomPlayer(); 
-        } while (choosing.Dead());
+            user = getRandomPlayer();
+        } while (getPlayerDead(user));
 
-        return choosing;
+        return user;
     }
 }

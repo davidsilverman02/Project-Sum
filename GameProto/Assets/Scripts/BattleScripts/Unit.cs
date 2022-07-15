@@ -27,6 +27,9 @@ public class Unit : MonoBehaviour
 
     public UnitUI ui;
 
+    public Skill attack;
+    public Skill defend;
+
     // Start is called before the first frame update
     public virtual void Start()
     {

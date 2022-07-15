@@ -57,6 +57,6 @@ public class BattleUIManager : MonoBehaviour
 
     public void setAbilities(Hero assign)
     {
-        optionsBox.SetSkills(assign);
+        //optionsBox.SetSkills(assign);
     }
 }

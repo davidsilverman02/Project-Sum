@@ -14,6 +14,7 @@ public class SkillBarButton : MonoBehaviour
         manager = FindObjectOfType<BattleManager>();
     }
 
+    /*
     public void Activate(FightMath.Option kind)
     {
         type = kind;
@@ -27,6 +28,7 @@ public class SkillBarButton : MonoBehaviour
                 break;
         }
     }
+    */
 
     public void Use()
     {

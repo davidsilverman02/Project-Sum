@@ -125,7 +125,8 @@ MonoBehaviour:
   delay: 0
   currentTime: 0
   ui: {fileID: 4697639498713753352}
-  opts: 01000000000000000000000000000000
+  attack: {fileID: 11400000, guid: b63116517c208984eb25e0b6d2bcfedf, type: 2}
+  defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
 --- !u!1001 &902912346768810911
 PrefabInstance:
   m_ObjectHideFlags: 0

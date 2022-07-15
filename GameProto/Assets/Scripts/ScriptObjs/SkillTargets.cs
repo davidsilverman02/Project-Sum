@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Targeted { Self, Other }
-
 [System.Serializable]
-public class SkillTargets
+[CreateAssetMenu(fileName = "Skill", menuName = "Skill/Skill Target")]
+public class SkillTargets : ScriptableObject
 {
-    public Target mode;
+    public Target target;
 
-    public SkillEffect[] effects;
+    public SkillEffect effects;
 
-    private Unit[] targets;
+    private List<List<bool>> list;
 
     public void Enact()
     {
-        EngageSkill();
+        
     }
 
-    void EngageSkill()
+    public SkillEffect GetEffect()
     {
-
+        return effects;
     }
+
 }
