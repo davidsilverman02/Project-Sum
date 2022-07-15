@@ -25,7 +25,9 @@ public class Enemy : Unit
     public virtual void Behavior()
     {
         TurnCalled();
+        man.enemySelect(attack);
         choosing = selectLivingPlayer();
+        Debug.Log(choosing);
         StartCoroutine(man.useSkill(attack, choosing));
     }
 
@@ -83,7 +85,7 @@ public class Enemy : Unit
 
     public bool getEnemyDead(int index)
     {
-        if(man.getPlayers()[index].Dead())
+        if(man.getEnemies()[index].Dead())
         {
             return true;
         }
@@ -95,7 +97,7 @@ public class Enemy : Unit
 
     public bool getPlayerDead(int index)
     {
-        if (man.getEnemies()[index].Dead())
+        if (man.getPlayers()[index].Dead())
         {
             return true;
         }

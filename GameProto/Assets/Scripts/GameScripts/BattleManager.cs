@@ -256,7 +256,7 @@ public class BattleManager : MonoBehaviour
     {
         setUnit(true, playerPool[0], heroPos1);
         setUnit(true, playerPool[1], heroPos2);
-        setUnit(true, playerPool[2], heroPos3);
+        //setUnit(true, playerPool[2], heroPos3);
         setUnit(true, playerPool[3], heroPos4);
     }
 
@@ -342,6 +342,20 @@ public class BattleManager : MonoBehaviour
         }
 
         choose = true;
+    }
+
+    // Has Enemies select
+    public void enemySelect(Skill skill)
+    {
+        choice = Target.SELF;
+
+        for(int i = 0; i<skill.targets.Length; i++)
+        {
+            if(skill.targets[i].target == Target.ONE)
+            {
+                choice = Target.ONE;
+            }
+        }
     }
 
     int seal()
