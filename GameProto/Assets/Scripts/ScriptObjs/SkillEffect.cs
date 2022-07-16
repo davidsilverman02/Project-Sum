@@ -10,11 +10,12 @@ public class SkillEffect : ScriptableObject
     public float healing;
 
     public bool appliesSlow;
+    public bool appliesDefend;
 
-    public bool buffsAttack;
-    public bool buffsMagic;
-    public bool buffsDefense;
-    public bool buffsSpeed;
+    public Vector3Int buffsAttack;
+    public Vector3Int buffsMagic;
+    public Vector3Int buffsDefense;
+    public Vector3Int buffsSpeed;
 
     public virtual void Execute(Unit[] targets)
     {

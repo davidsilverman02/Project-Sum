@@ -12,10 +12,10 @@ public class Unit : MonoBehaviour
     public int unitLevel;
 
     // Individual Stats for a unit
-    public int strength;
-    public int magic;
-    public int defense;
-    public int speed;
+    public Stat strength;
+    public Stat magic;
+    public Stat defense;
+    public Stat speed;
 
     public int currentHP;
     public int maxHP;
@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour
     public virtual void Start()
     {
         // this will be replaced 
-        delay = FightMath.CounterSpeed(speed, 0);
+        delay = FightMath.CounterSpeed(speed.get(), 0);
 
         currentHP = maxHP;
         currentTime = delay;
@@ -122,32 +122,60 @@ public class Unit : MonoBehaviour
 
     public int getStrength()
     {
-        return strength;
+        return strength.get();
+    }
+
+    public void buffAttack(int tier, int delay)
+    {
+        Vector2Int vec = new Vector2Int(tier, delay);
+        strength.addBuff(vec);
     }
 
     public int getMagic()
     {
-        return magic;
+        return magic.get();
+    }
+
+    public void buffMagic(int tier, int delay)
+    {
+        Vector2Int vec = new Vector2Int(tier, delay);
+        magic.addBuff(vec);
     }
 
     public int getDefense()
     {
-        return defense;
+        return defense.get();
+    }
+
+    public void buffDefense(int tier, int delay)
+    {
+        Vector2Int vec = new Vector2Int(tier, delay);
+        defense.addBuff(vec);
     }
 
     public int getSpeed()
     {
-        return speed;
+        return speed.get();
+    }
+
+    public void buffSpeed(int tier, int delay)
+    {
+        Vector2Int vec = new Vector2Int(tier, delay);
+        speed.addBuff(vec);
     }
 
     public void countBack(int tickBack)
     {
         currentTime -= tickBack;
+        strength.countBack(tickBack);
+        magic.countBack(tickBack);
+        defense.countBack(tickBack);
+        speed.countBack(tickBack);
     }
 
     public void resetTime()
     {
-        delay = FightMath.CounterSpeed(speed, 0);
+        //delay = FightMath.CounterSpeed(speed.get(), 0);
         currentTime = delay;
     }
 
@@ -158,8 +186,7 @@ public class Unit : MonoBehaviour
 
     public void setForTurn(int attackRank)
     {
-        delay = FightMath.CounterSpeed(speed, attackRank);
-        currentTime = delay;
+        delay = FightMath.CounterSpeed(speed.get(), attackRank);
     }
 
     public int getDelay()

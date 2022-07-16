@@ -114,12 +114,20 @@ MonoBehaviour:
   isDead: 0
   unitName: George
   unitLevel: 0
-  strength: 3
-  magic: 0
-  defense: 0
-  speed: 56
+  strength:
+    power: 5
+    buffs: []
+  magic:
+    power: 0
+    buffs: []
+  defense:
+    power: 50
+    buffs: []
+  speed:
+    power: 0
+    buffs: []
   currentHP: 0
-  maxHP: 5
+  maxHP: 10
   currentPP: 0
   maxPP: 0
   delay: 0

@@ -30,7 +30,7 @@ public class FightMath
 
     public static int CounterSpeed(int rank, int speed)
     {
-        return Mathf.RoundToInt((float)speedRank(rank) + moveRank(speed));
+        return Mathf.RoundToInt((float)speedRank(rank) - moveRank(speed));
     }
 
     public static int CalculateDamage(bool magic, int attackMod, int defense)

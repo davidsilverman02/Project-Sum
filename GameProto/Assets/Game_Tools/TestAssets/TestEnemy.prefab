@@ -114,10 +114,18 @@ MonoBehaviour:
   isDead: 0
   unitName: Es
   unitLevel: 0
-  strength: 1
-  magic: 0
-  defense: 0
-  speed: 0
+  strength:
+    power: 1
+    buffs: []
+  magic:
+    power: 0
+    buffs: []
+  defense:
+    power: 0
+    buffs: []
+  speed:
+    power: 0
+    buffs: []
   currentHP: 0
   maxHP: 6
   currentPP: 0
@@ -126,8 +134,9 @@ MonoBehaviour:
   currentTime: 0
   ui: {fileID: 2186229689625230190}
   attack: {fileID: 11400000, guid: b63116517c208984eb25e0b6d2bcfedf, type: 2}
+  defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
   man: {fileID: 0}
-  choosing: {fileID: 0}
+  choosing: 0
   priority: 0
 --- !u!1001 &6044283231381192697
 PrefabInstance:

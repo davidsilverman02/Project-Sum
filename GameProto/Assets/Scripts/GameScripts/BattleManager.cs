@@ -565,8 +565,6 @@ public class BattleManager : MonoBehaviour
     {
         currentUnit.resetTime();
 
-        currentUnit.setForTurn(attackRank);
-
         setPlayerUIOrder();
 
         state = BattleState.CALCULATING;
@@ -729,6 +727,13 @@ public class BattleManager : MonoBehaviour
 
     public void interpretSkill(Skill inta, Unit user, int target)
     {
+        ui.SetBattleDescription(inta.name);
+        ui.ToggleOverhead(true);
+
+        attackRank = inta.priority;
+
+        user.setForTurn(attackRank);
+
         for (int i = 0; i < inta.targets.Length; i++)
         {
             Unit affected = null;
@@ -764,12 +769,29 @@ public class BattleManager : MonoBehaviour
 
                 dealDamage(FightMath.CalculateDamage(inta.physical, calculated, affected.getDefense()), affected);
             }
+
+            if(inta.targets[i].GetEffect().healing != 0)
+            {
+                if (inta.physical)
+                {
+                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getStrength());
+                }
+                else
+                {
+                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getMagic());
+                }
+            }
+
+            if(inta.targets[i].GetEffect().appliesSlow)
+            {
+
+            }
+
+            if(inta.targets[i].GetEffect().appliesDefend)
+            {
+                affected.buffDefense(3, affected.getDelay());
+            }
         }
-
-        ui.SetBattleDescription(inta.name);
-        ui.ToggleOverhead(true);
-
-        attackRank = inta.priority;
     }
 
     public void setCountDown(bool active)

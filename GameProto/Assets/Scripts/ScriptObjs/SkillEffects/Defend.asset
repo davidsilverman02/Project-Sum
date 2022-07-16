@@ -15,3 +15,8 @@ MonoBehaviour:
   damage: 0
   healing: 0
   appliesSlow: 0
+  appliesDefend: 1
+  buffsAttack: {x: 0, y: 0, z: 0}
+  buffsMagic: {x: 0, y: 0, z: 0}
+  buffsDefense: {x: 0, y: 0, z: 0}
+  buffsSpeed: {x: 0, y: 0, z: 0}

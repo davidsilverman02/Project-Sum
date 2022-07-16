@@ -114,10 +114,18 @@ MonoBehaviour:
   isDead: 0
   unitName: Paul
   unitLevel: 0
-  strength: 5
-  magic: 0
-  defense: 0
-  speed: 0
+  strength:
+    power: 3
+    buffs: []
+  magic:
+    power: 0
+    buffs: []
+  defense:
+    power: 0
+    buffs: []
+  speed:
+    power: 56
+    buffs: []
   currentHP: 0
   maxHP: 10
   currentPP: 0

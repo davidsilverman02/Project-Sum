@@ -114,10 +114,18 @@ MonoBehaviour:
   isDead: 0
   unitName: John
   unitLevel: 0
-  strength: 10
-  magic: 0
-  defense: 0
-  speed: 0
+  strength:
+    power: 5
+    buffs: []
+  magic:
+    power: 0
+    buffs: []
+  defense:
+    power: 0
+    buffs: []
+  speed:
+    power: 0
+    buffs: []
   currentHP: 0
   maxHP: 5
   currentPP: 0
