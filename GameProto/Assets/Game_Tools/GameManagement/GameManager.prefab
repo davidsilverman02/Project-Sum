@@ -53,4 +53,50 @@ MonoBehaviour:
   spawnX: 0
   spawnY: 0.5
   spawnZ: 0
+  npcs: []
+  interact: {fileID: 0}
   playerMoving: 0
+  isTalk: 0
+  isClose: 3
+  party: 00000000010000000200000003000000
+  players:
+  - name: John
+    unitName: John
+    attack: 10
+    magic: 0
+    defense: 0
+    speed: 0
+    currentHP: 5
+    maxHP: 5
+    currentPP: 0
+    maxPP: 0
+  - name: Paul
+    unitName: Paul
+    attack: 3
+    magic: 0
+    defense: 0
+    speed: 56
+    currentHP: 5
+    maxHP: 5
+    currentPP: 0
+    maxPP: 0
+  - name: George
+    unitName: George
+    attack: 5
+    magic: 0
+    defense: 50
+    speed: 0
+    currentHP: 10
+    maxHP: 10
+    currentPP: 0
+    maxPP: 0
+  - name: Ringo
+    unitName: Ringo
+    attack: 5
+    magic: 3
+    defense: 0
+    speed: 0
+    currentHP: 5
+    maxHP: 5
+    currentPP: 0
+    maxPP: 0

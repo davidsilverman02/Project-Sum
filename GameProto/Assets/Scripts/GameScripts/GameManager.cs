@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using StatSave;
 
 public class GameManager : MonoBehaviour
 {
+    
     public GameObject player;
     public GameObject UI;
 
@@ -24,6 +26,10 @@ public class GameManager : MonoBehaviour
     public bool playerMoving;
     public bool isTalk;
     public float isClose = 3f;
+
+
+    public List<int> party;
+    public List<StatContainer.StatObject> players;
 
     void Awake()
     {

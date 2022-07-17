@@ -254,10 +254,25 @@ public class BattleManager : MonoBehaviour
     // This script places players on the folder
     void placeParty()
     {
-        setUnit(true, playerPool[0], heroPos1);
-        setUnit(true, playerPool[1], heroPos2);
-        setUnit(true, playerPool[2], heroPos3);
-        setUnit(true, playerPool[3], heroPos4);
+        setUnit(true, playerPool[manager.party[0]], heroPos1);
+        players[0].GetComponent<Hero>().setStats(manager.players[manager.party[0]]);
+
+        setUnit(true, playerPool[manager.party[1]], heroPos2);
+        players[1].GetComponent<Hero>().setStats(manager.players[manager.party[1]]);
+
+        setUnit(true, playerPool[manager.party[2]], heroPos3);
+        players[2].GetComponent<Hero>().setStats(manager.players[manager.party[2]]);
+
+        setUnit(true, playerPool[manager.party[3]], heroPos4);
+        players[3].GetComponent<Hero>().setStats(manager.players[manager.party[3]]);
+    }
+
+    void exitBattle()
+    {
+        manager.players[0].set(players[0].GetComponent<Hero>().getStats());
+        manager.players[1].set(players[1].GetComponent<Hero>().getStats());
+        manager.players[2].set(players[2].GetComponent<Hero>().getStats());
+        manager.players[3].set(players[3].GetComponent<Hero>().getStats());
     }
 
     // Puts a unit in the battle
@@ -851,6 +866,8 @@ public class BattleManager : MonoBehaviour
         ui.ToggleOverhead(true);
 
         yield return new WaitForSeconds(1f);
+
+        exitBattle();
 
         manager.LoadBack();
     }
