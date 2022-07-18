@@ -9,12 +9,13 @@ public class GameManager : MonoBehaviour
     
     public GameObject player;
     public GameObject UI;
-
+    public GameObject menu;
 
     public enum gameState {OVERWORLD, BATTLE, MENU}
     public gameState state;
     public Player ovPlayer;
     public OverworldUIManager ovUI;
+    public MenuManager ovMenu;
     public int level;
     public int curLevel;
     public float spawnX;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public bool playerMoving;
     public bool isTalk;
+    public bool inMenu;
     public float isClose = 3f;
 
 
@@ -107,6 +109,12 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                inMenu = !inMenu;
+                ovMenu.setMenu(inMenu);
+            }
         }
         if(state == gameState.BATTLE)
         {
@@ -158,11 +166,18 @@ public class GameManager : MonoBehaviour
                 GameObject ui = Instantiate(UI, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
             }
             ovUI = FindObjectOfType<OverworldUIManager>();
+
+            if(GameObject.Find("MenuUI") == null)
+            {
+                GameObject meni = Instantiate(menu, gameObject.transform.position, gameObject.transform.rotation) as GameObject;
+            }
+            ovMenu = FindObjectOfType<MenuManager>();
         }
         else
         {
             ovPlayer = null;
             ovUI = null;
+            ovMenu = null;
             interact = null;
         }
     }

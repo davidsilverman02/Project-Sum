@@ -45,9 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 791344665169994811, guid: 3f4ba317c2d9b564e8f8af9445d2296b, type: 3}
   UI: {fileID: 7156249690172560785, guid: 47f63eec717359047bfb6587694bc494, type: 3}
+  menu: {fileID: 2801524726175578920, guid: 0c38f878b0804dc4a99611d0cba2f10b, type: 3}
   state: 0
   ovPlayer: {fileID: 0}
   ovUI: {fileID: 0}
+  ovMenu: {fileID: 0}
   level: 0
   curLevel: 0
   spawnX: 0
@@ -57,6 +59,7 @@ MonoBehaviour:
   interact: {fileID: 0}
   playerMoving: 0
   isTalk: 0
+  inMenu: 0
   isClose: 3
   party: 00000000010000000200000003000000
   players:
