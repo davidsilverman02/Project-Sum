@@ -8,6 +8,7 @@ using StatSave;
 public class UnitInMenu : MonoBehaviour
 {
     public bool selected;
+    public bool fighting;
 
     public Image portrait;
 
@@ -20,8 +21,12 @@ public class UnitInMenu : MonoBehaviour
     public Slider ppBar;
 
     public GameObject recticle;
+    public GameObject inParty;
 
-
+    public void setChosen(bool isActive)
+    {
+        recticle.SetActive(isActive);
+    }
 
     public void setSelf(StatContainer.StatObject player)
     {

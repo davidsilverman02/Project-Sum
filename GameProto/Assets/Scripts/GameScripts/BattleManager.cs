@@ -25,15 +25,9 @@ public class BattleManager : MonoBehaviour
     public GameManager manager;
     public BattleUIManager ui;
 
-    public Transform heroPos1;
-    public Transform heroPos2;
-    public Transform heroPos3;
-    public Transform heroPos4;
+    public List<Transform> heroPos;
 
-    public Transform enemyPos1;
-    public Transform enemyPos2;
-    public Transform enemyPos3;
-    public Transform enemyPos4;
+    public List<Transform> enemyPos;
 
     public List<Unit> players;
     public List<Unit> monsters;
@@ -231,8 +225,8 @@ public class BattleManager : MonoBehaviour
             switch (battleRandom)
             {
                 case 1:
-                    setUnit(false, enemyPool[0], enemyPos1);
-                    setUnit(false, enemyPool[0], enemyPos2);
+                    setUnit(false, enemyPool[0], enemyPos[0]);
+                    setUnit(false, enemyPool[0], enemyPos[1]);
                     //setUnit(false, enemyPool[0], enemyPos3);
                     //setUnit(false, enemyPool[0], enemyPos4);
 
@@ -254,17 +248,11 @@ public class BattleManager : MonoBehaviour
     // This script places players on the folder
     void placeParty()
     {
-        setUnit(true, playerPool[manager.party[0]], heroPos1);
-        players[0].GetComponent<Hero>().setStats(manager.players[manager.party[0]]);
-
-        setUnit(true, playerPool[manager.party[1]], heroPos2);
-        players[1].GetComponent<Hero>().setStats(manager.players[manager.party[1]]);
-
-        setUnit(true, playerPool[manager.party[2]], heroPos3);
-        players[2].GetComponent<Hero>().setStats(manager.players[manager.party[2]]);
-
-        setUnit(true, playerPool[manager.party[3]], heroPos4);
-        players[3].GetComponent<Hero>().setStats(manager.players[manager.party[3]]);
+        for(int i = 0; i < manager.party.Count; i++)
+        {
+            setUnit(true, playerPool[manager.party[i]], heroPos[i]);
+            players[i].GetComponent<Hero>().setStats(manager.players[manager.party[i]]);
+        }
     }
 
     void exitBattle()
