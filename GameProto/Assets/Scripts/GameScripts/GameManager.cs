@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public List<int> party;
     public List<StatContainer.StatObject> players;
+    // Insert all players if switching through story
 
     void Awake()
     {
