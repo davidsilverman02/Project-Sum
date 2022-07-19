@@ -8,7 +8,6 @@ public class SelectBar : MonoBehaviour
 
     public MenuManager menu;
     public List<GameObject> notes;
-    public GameObject position;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class SelectBar : MonoBehaviour
 
         for (int i = 0; i < menu.getPlayers().Count; i++)
         {
-            GameObject spawn = Instantiate(barElement, position.transform.position, Quaternion.identity);
+            GameObject spawn = Instantiate(barElement, gameObject.transform.position, Quaternion.identity);
             notes.Add(spawn);
         }
     }
@@ -27,7 +26,14 @@ public class SelectBar : MonoBehaviour
     {
         for(int i = 0; i < menu.getPlayers().Count; i++)
         {
-
+            if(i == menu.selected)
+            {
+                notes[i].transform.localScale = new Vector3(2, 2);
+            }
+            else
+            {
+                notes[i].transform.localScale = new Vector3(1, 1);
+            }
         }
     }
 }

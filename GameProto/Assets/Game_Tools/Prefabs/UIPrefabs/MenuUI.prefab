@@ -780,7 +780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6807194273203256547}
   - component: {fileID: 611627594723525745}
-  - component: {fileID: 9001330116091668360}
+  - component: {fileID: 2808533866549686468}
   m_Layer: 5
   m_Name: SelectBar
   m_TagString: Untagged
@@ -804,7 +804,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 59, y: 158}
+  m_AnchoredPosition: {x: 59, y: 121}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &611627594723525745
@@ -833,7 +833,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &9001330116091668360
+--- !u!114 &2808533866549686468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -842,9 +842,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4880228432876954534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f4aa4e83e511641a5e7f8d2d4be76e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3cdf838725ad34c9d1d16afde3f9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barElement: {fileID: 3959610608041499224, guid: 2debe34a5621a174fbbe92e87eaff73c, type: 3}
+  menu: {fileID: 0}
+  notes: []
 --- !u!1 &4882840584854509045
 GameObject:
   m_ObjectHideFlags: 0
