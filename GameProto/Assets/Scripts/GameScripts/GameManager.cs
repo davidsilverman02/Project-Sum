@@ -85,14 +85,14 @@ public class GameManager : MonoBehaviour
                         interact = getClosestNPCToPlayer();
                     }
 
-                    if (isTalk == false && Input.GetKeyDown(KeyCode.Return))
+                    if ((inMenu && isTalk == false) && Input.GetKeyDown(KeyCode.Return))
                     {
                         isTalk = true;
                         ovPlayer.immobile(true);
                         interact.Interact();
 
                     }
-                    else if(Input.GetKeyDown(KeyCode.Return))
+                    else if(inMenu && Input.GetKeyDown(KeyCode.Return))
                     {
                         interact.Continue();
                     }
@@ -113,8 +113,11 @@ public class GameManager : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.X))
             {
-                inMenu = !inMenu;
-                ovMenu.setMenu(inMenu);
+                if(!(inMenu && (party.Count < 1 || party.Count > 4)))
+                {
+                    inMenu = !inMenu;
+                    ovMenu.setMenu(inMenu);
+                }
             }
         }
         if(state == gameState.BATTLE)

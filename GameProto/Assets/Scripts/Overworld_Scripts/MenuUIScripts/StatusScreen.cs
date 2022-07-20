@@ -7,6 +7,8 @@ using StatSave;
 
 public class StatusScreen : MonoBehaviour
 {
+    public MenuManager menu;
+
     public Image portrait;
 
     public TMP_Text charaName;
@@ -21,6 +23,16 @@ public class StatusScreen : MonoBehaviour
     public TMP_Text magicTxt;
     public TMP_Text defenseTxt;
     public TMP_Text speedTxt;
+
+    private void Start()
+    {
+        menu = FindObjectOfType<MenuManager>();
+    }
+
+    public void Update()
+    {
+        setCurrent(menu.getCurrent());
+    }
 
     public void setCurrent(StatContainer.StatObject player)
     {
