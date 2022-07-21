@@ -17,6 +17,7 @@ public class SelectBar : MonoBehaviour
         for (int i = 0; i < menu.getPlayers().Count; i++)
         {
             GameObject spawn = Instantiate(barElement, gameObject.transform.position, Quaternion.identity);
+            spawn.transform.SetParent(gameObject.transform);
             notes.Add(spawn);
         }
     }

@@ -257,10 +257,10 @@ public class BattleManager : MonoBehaviour
 
     void exitBattle()
     {
-        manager.players[0].set(players[0].GetComponent<Hero>().getStats());
-        manager.players[1].set(players[1].GetComponent<Hero>().getStats());
-        manager.players[2].set(players[2].GetComponent<Hero>().getStats());
-        manager.players[3].set(players[3].GetComponent<Hero>().getStats());
+        for(int i = 0; i < manager.party.Count; i++)
+        {
+            manager.players[i].set(players[i].GetComponent<Hero>().getStats());
+        }
     }
 
     // Puts a unit in the battle
@@ -768,9 +768,17 @@ public class BattleManager : MonoBehaviour
                 else
                 {
                     calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getMagic());
+                    
                 }
 
-                dealDamage(FightMath.CalculateDamage(inta.physical, calculated, affected.getDefense()), affected);
+                if(choice == Target.ONE || choice == Target.SELF)
+                {
+                    dealDamage(FightMath.CalculateDamage(inta.physical, calculated, affected.getDefense()), affected);
+                }
+                else
+                {
+
+                }
             }
 
             if(inta.targets[i].GetEffect().healing != 0)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaknessCalculator;
 
 public class Unit : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class Unit : MonoBehaviour
     public int maxHP;
     public int currentPP;
     public int maxPP;
+
+    public Weakness calc = new Weakness();
 
     public int delay;
     public int currentTime;
@@ -253,5 +256,10 @@ public class Unit : MonoBehaviour
     public void setHealthBar()
     {
         ui.SetHPBar(currentHP);
+    }
+
+    public int damCalc(int raw, DamageType element)
+    {
+        return calc.effectiveDamage(raw, element);
     }
 }

@@ -847,7 +847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barElement: {fileID: 3959610608041499224, guid: 2debe34a5621a174fbbe92e87eaff73c, type: 3}
-  menu: {fileID: 0}
+  menu: {fileID: 28840958987450586}
   notes: []
 --- !u!1 &4882840584854509045
 GameObject:
@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215bf8e020ea3dd46baddade39e663cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 0}
   portrait: {fileID: 2972954706850957306}
   charaName: {fileID: 5633619533781687201}
   hpText: {fileID: 8109359681973164561}

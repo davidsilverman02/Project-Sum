@@ -36,6 +36,8 @@ public class StatusScreen : MonoBehaviour
 
     public void setCurrent(StatContainer.StatObject player)
     {
+        charaName.text = player.unitName;
+
         hpText.text = player.currentHP.ToString() + "/" + player.maxHP.ToString();
         ppText.text = player.currentPP.ToString() + "/" + player.maxPP.ToString();
 

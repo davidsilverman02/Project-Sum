@@ -56,6 +56,9 @@ public class MenuManager : MonoBehaviour
                     }
                 }
                 break;
+            case MenuState.STATUS:
+                setStatus();
+                break;
         }
         cycle();
     }
@@ -109,6 +112,13 @@ public class MenuManager : MonoBehaviour
                 charas[i].setChosen(false);
             }
         }
+    }
+
+    public void setStatus()
+    {
+        StatusScreen status = charaProf.GetComponent<StatusScreen>();
+
+        status.setCurrent(getPlayers()[selected]);
     }
 
     public void setMenu(bool set)
