@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee95bab43cad0654c83802da0a2050a5, type: 3}
-  m_Name: Damage
+  m_Name: ShallowCut
   m_EditorClassIdentifier: 
   damage: 0.75
   healing: 0

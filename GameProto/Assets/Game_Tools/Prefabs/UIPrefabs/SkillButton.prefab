@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3679230654889777485}
   - component: {fileID: 6672780787870301343}
   - component: {fileID: 6761567078653748392}
+  - component: {fileID: 2210856468559166112}
   m_Layer: 5
   m_Name: SkillButton
   m_TagString: Untagged
@@ -120,7 +121,34 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6672780787870301343}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2210856468559166112}
+        m_TargetAssemblyTypeName: SkillBarButton, Assembly-CSharp
+        m_MethodName: Use
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2210856468559166112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221121816906538040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dbe8c0b772edd4458d699b80869167d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+  nom: {fileID: 7068142812680183805}
+  type: 0
 --- !u!1 &6807321314865709566
 GameObject:
   m_ObjectHideFlags: 0

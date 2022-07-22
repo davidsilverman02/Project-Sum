@@ -33,8 +33,22 @@ public class FightMath
         return Mathf.RoundToInt((float)speedRank(rank) - moveRank(speed));
     }
 
-    public static int CalculateDamage(bool magic, int attackMod, int defense)
+    public static void CalculateDamage(Skill skill, Unit user, Unit target, int effect)
     {
-        return attackMod * (100 / 100 + defense);
+        int calculated;
+        int baseDamage;
+
+        if (skill.physical)
+        {
+            calculated = Mathf.RoundToInt(skill.targets[effect].GetEffect().damage * (float)user.getStrength());
+        }
+        else
+        {
+            calculated = Mathf.RoundToInt(skill.targets[effect].GetEffect().damage * (float)user.getMagic());
+        }
+
+        baseDamage = calculated * (100 / 100 + target.getDefense());
+
+        target.runDamage(baseDamage, skill.targets[effect].GetEffect().kind, user);
     }
 }

@@ -258,8 +258,8 @@ public class Unit : MonoBehaviour
         ui.SetHPBar(currentHP);
     }
 
-    public int damCalc(int raw, DamageType element)
+    public void runDamage(int raw, DamageType element, Unit opponent)
     {
-        return calc.effectiveDamage(raw, element);
+        calc.effectiveDamage(raw, element, opponent, this);
     }
 }

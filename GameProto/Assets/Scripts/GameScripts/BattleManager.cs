@@ -38,6 +38,7 @@ public class BattleManager : MonoBehaviour
     public Unit currentUnit;
     public Unit selectOne;
     public bool choose;
+    public bool skillChoice;
     public bool onEnemy;
     public bool turnCalled;
     public bool hasEnded;
@@ -52,6 +53,8 @@ public class BattleManager : MonoBehaviour
     public List<Unit> uiOrder;
 
     public List<int> uiOrderCalc;
+
+    public List<SkillUI> skill;
 
     int attackRank;
 
@@ -193,7 +196,7 @@ public class BattleManager : MonoBehaviour
         else
         {
             ui.TogglePlayer(false);
-
+            ui.ToggleOptions(false);
             
         }
         
@@ -432,7 +435,11 @@ public class BattleManager : MonoBehaviour
     public void ChoiceMade(FightMath.Option opt)
     {
         maneuver = opt;
-        if(maneuver == FightMath.Option.SKILL || maneuver == FightMath.Option.ITEM)
+        if(maneuver == FightMath.Option.SKILL)
+        {
+
+        }
+        else if(maneuver == FightMath.Option.ITEM)
         {
 
         }
@@ -446,6 +453,11 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void ActivateSkills(bool isItems)
+    {
+
+    }
+
     // Has an opponent take damage
     public void dealDamage(int damage, Unit target)
     {
@@ -453,6 +465,8 @@ public class BattleManager : MonoBehaviour
 
         target.TakeDamage(damage);
     }
+
+    //public IEnumerator damageDisplay()
 
     // Heals a unit
     public void heal(int strength, Unit target)
@@ -768,12 +782,11 @@ public class BattleManager : MonoBehaviour
                 else
                 {
                     calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getMagic());
-                    
                 }
 
-                if(choice == Target.ONE || choice == Target.SELF)
+                if((choice == Target.ONE || choice == Target.SELF))
                 {
-                    dealDamage(FightMath.CalculateDamage(inta.physical, calculated, affected.getDefense()), affected);
+                    FightMath.CalculateDamage(inta, user, affected, i);
                 }
                 else
                 {

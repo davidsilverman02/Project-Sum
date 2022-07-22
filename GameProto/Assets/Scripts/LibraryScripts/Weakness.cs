@@ -23,25 +23,24 @@ namespace WeaknessCalculator
 
         }
 
-        public int effectiveDamage(int raw, DamageType element)
+        public void effectiveDamage(int raw, DamageType element, Unit user, Unit target)
         {
-            return damageCalculator(raw, effectiveness[(int)element]);
-        }
-
-        private int damageCalculator(int raw, State type)
-        {
-            switch(type)
+            switch(effectiveness[(int)element])
             {
                 case State.NORMAL:
-                    return raw;
+                    user.TakeDamage(raw);
+                    break;
                 case State.RESIST:
-                    return raw / 2;
+                    user.TakeDamage(raw / 2);
+                    break;
                 case State.WEAK:
-                    return raw * 2;
+                    user.TakeDamage(raw * 2);
+                    break;
                 case State.IMMUNE:
-                    return 0;
+                    user.TakeDamage(0);
+                    break;
                 default:
-                    return raw;
+                    break;
             }
         }
     }

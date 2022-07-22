@@ -7,8 +7,8 @@ using TMPro;
 public class BattleUIManager : MonoBehaviour
 {
     public BattleManager bManager;
-    public StatBar stat;
     public SkillBar optionsBox;
+    public SkillItemBar options;
 
     public GameObject all;
 
@@ -19,22 +19,12 @@ public class BattleUIManager : MonoBehaviour
     void Start()
     {
         bManager = FindObjectOfType<BattleManager>();
-        stat.ActivateUnits();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        if (bManager.state == BattleState.PLAYERTURN)
-        {
-            stat.selectActive(true);
-            stat.selectUsing(bManager.findPlayerIndex());
-        }
-        else
-        {
-            stat.selectActive(false);
-        }
     }
 
     // Sets the description of the battle
@@ -53,6 +43,11 @@ public class BattleUIManager : MonoBehaviour
     public void TogglePlayer(bool tog)
     {
         optionsBox.gameObject.SetActive(tog);
+    }
+
+    public void ToggleOptions(bool tog)
+    {
+        options.gameObject.SetActive(tog);
     }
 
     public void setAbilities(Hero assign)

@@ -9,8 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1452dff41bb04224d99ebd59825ae9ac, type: 3}
-  m_Name: MinorDamage
+  m_Script: {fileID: 11500000, guid: ee95bab43cad0654c83802da0a2050a5, type: 3}
+  m_Name: BaseFire
   m_EditorClassIdentifier: 
-  target: 1
-  effects: {fileID: 11400000, guid: 1e5be458d31d17a43878e4411f3de9fa, type: 2}
+  damage: 1
+  healing: 0
+  kind: 1
+  appliesSlow: 0
+  appliesDefend: 0
+  buffsAttack: {x: 0, y: 0}
+  buffsMagic: {x: 0, y: 0}
+  buffsDefense: {x: 0, y: 0}
+  buffsSpeed: {x: 0, y: 0}
