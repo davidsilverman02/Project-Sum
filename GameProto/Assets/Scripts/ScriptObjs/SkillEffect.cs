@@ -9,6 +9,7 @@ public class SkillEffect : ScriptableObject
 {
     public float damage;
     public float healing;
+    public bool drain;
 
     public DamageType kind;
 

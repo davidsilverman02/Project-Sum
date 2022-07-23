@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using StatSave;
+using WeaknessCalculator;
 
 public class Hero : Unit
 {
+    public List<Skill> powers;
+
     public override void Start()
     {
         isPlayer = true;
@@ -25,6 +28,10 @@ public class Hero : Unit
         magic.setPower(mang.magic);
         defense.setPower(mang.defense);
         speed.setPower(mang.speed);
+
+        calc.setWeaknesses(mang.weakness);
+
+        powers = mang.skills;
     }
 
     public StatContainer.StatObject getStats()

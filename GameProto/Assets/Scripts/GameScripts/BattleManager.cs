@@ -47,14 +47,15 @@ public class BattleManager : MonoBehaviour
     public GameObject[] playerPool = new GameObject[PLAYERS];
 
     public List<Unit> playerOrder;
-
     public List<Unit> selected;
-
     public List<Unit> uiOrder;
 
     public List<int> uiOrderCalc;
 
     public List<SkillUI> skill;
+    public GameObject skillItem;
+
+    public GameObject bar;
 
     int attackRank;
 
@@ -141,17 +142,29 @@ public class BattleManager : MonoBehaviour
 
         if(state == BattleState.PLAYERTURN)
         {
-            if (choose == false)
+            if (choose == false && skillChoice == false)
             {
                 ui.TogglePlayer(true);
 
+                ui.ToggleOptions(false);
+
                 ui.setAbilities(currentUnit.GetComponent<Hero>());
+
+                disableSelectors();
+            }
+            else if(choose == false && skillChoice == true)
+            {
+                ui.TogglePlayer(false);
+
+                ui.ToggleOptions(true);
 
                 disableSelectors();
             }
             else
             {
                 ui.TogglePlayer(false);
+
+                ui.ToggleOptions(false);
 
                 switch(choice)
                 {
@@ -437,7 +450,7 @@ public class BattleManager : MonoBehaviour
         maneuver = opt;
         if(maneuver == FightMath.Option.SKILL)
         {
-
+            ActivateSkills(false);
         }
         else if(maneuver == FightMath.Option.ITEM)
         {
@@ -455,7 +468,22 @@ public class BattleManager : MonoBehaviour
 
     public void ActivateSkills(bool isItems)
     {
+        skillChoice = true;
 
+        if(isItems)
+        {
+
+        }
+        else
+        {
+
+        }
+    }
+
+    public void placeSkills()
+    {
+        skill.Clear();
+        //for(int i = 0)
     }
 
     // Has an opponent take damage
@@ -699,6 +727,10 @@ public class BattleManager : MonoBehaviour
         {
             indexPoint = players.IndexOf(toRemove);
             players.Remove(toRemove);
+            if (selectedUnit >= players.Count)
+            {
+                selectedUnit--;
+            }
         }
         else
         {
@@ -775,18 +807,9 @@ public class BattleManager : MonoBehaviour
 
             if (inta.targets[i].GetEffect().damage != 0)
             {
-                if(inta.physical)
-                {
-                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getStrength());
-                }
-                else
-                {
-                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getMagic());
-                }
-
                 if((choice == Target.ONE || choice == Target.SELF))
                 {
-                    FightMath.CalculateDamage(inta, user, affected, i);
+                    FightMath.CalculateDamage(inta, user, affected, i, inta.targets[i].effects.drain);
                 }
                 else
                 {
@@ -796,13 +819,13 @@ public class BattleManager : MonoBehaviour
 
             if(inta.targets[i].GetEffect().healing != 0)
             {
-                if (inta.physical)
+                if ((choice == Target.ONE || choice == Target.SELF))
                 {
-                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getStrength());
+                    FightMath.CalculateHealing(inta, user, affected, i);
                 }
                 else
                 {
-                    calculated = Mathf.RoundToInt(inta.targets[i].GetEffect().damage * (float)user.getMagic());
+
                 }
             }
 

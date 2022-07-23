@@ -74,6 +74,8 @@ public class Unit : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        StartCoroutine(DamageDisplay(damage, 0.2f));
+
         currentHP -= damage;
 
         if(currentHP < 0)
@@ -86,6 +88,8 @@ public class Unit : MonoBehaviour
 
     public void Restore(int strength)
     {
+        StartCoroutine(DamageDisplay(strength, 0.2f));
+
         currentHP += strength;
 
         if(currentHP > maxHP)
@@ -246,6 +250,8 @@ public class Unit : MonoBehaviour
     {
         DamageNum(damage);
 
+        //Maybe change color
+
         ToggleDamage(true);
 
         yield return new WaitForSeconds(time);
@@ -258,8 +264,8 @@ public class Unit : MonoBehaviour
         ui.SetHPBar(currentHP);
     }
 
-    public void runDamage(int raw, DamageType element, Unit opponent)
+    public void runDamage(int raw, DamageType element, Unit opponent, bool drain)
     {
-        calc.effectiveDamage(raw, element, opponent, this);
+        calc.effectiveDamage(raw, element, opponent, this, drain);
     }
 }

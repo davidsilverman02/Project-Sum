@@ -33,7 +33,7 @@ public class FightMath
         return Mathf.RoundToInt((float)speedRank(rank) - moveRank(speed));
     }
 
-    public static void CalculateDamage(Skill skill, Unit user, Unit target, int effect)
+    public static void CalculateDamage(Skill skill, Unit user, Unit target, int effect, bool drain)
     {
         int calculated;
         int baseDamage;
@@ -49,6 +49,22 @@ public class FightMath
 
         baseDamage = calculated * (100 / 100 + target.getDefense());
 
-        target.runDamage(baseDamage, skill.targets[effect].GetEffect().kind, user);
+        target.runDamage(baseDamage, skill.targets[effect].GetEffect().kind, user, drain);
+    }
+
+    public static void CalculateHealing(Skill skill, Unit user, Unit target, int effect)
+    {
+        int calculated;
+
+        if (skill.physical)
+        {
+            calculated = Mathf.RoundToInt(skill.targets[effect].GetEffect().healing * (float)user.getStrength());
+        }
+        else
+        {
+            calculated = Mathf.RoundToInt(skill.targets[effect].GetEffect().healing * (float)user.getMagic());
+        }
+
+        target.Restore(calculated);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using WeaknessCalculator;
 
 namespace StatSave
 {
@@ -24,7 +25,12 @@ namespace StatSave
             public int currentPP;
             public int maxPP;
 
-            //public List<Skill> skills;
+            public Weakness weakness;
+
+            public Skill strike;
+            public Skill defend;
+
+            public List<Skill> skills;
 
             public StatObject()
             {

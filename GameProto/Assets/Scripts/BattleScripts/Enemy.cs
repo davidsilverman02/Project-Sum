@@ -30,6 +30,8 @@ public class Enemy : Unit
         StartCoroutine(man.useSkill(attack, choosing));
     }
 
+
+
     public virtual void ItemDrop()
     {
 

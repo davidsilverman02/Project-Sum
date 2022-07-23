@@ -23,25 +23,42 @@ namespace WeaknessCalculator
 
         }
 
-        public void effectiveDamage(int raw, DamageType element, Unit user, Unit target)
+        public void effectiveDamage(int raw, DamageType element, Unit user, Unit target, bool drain)
         {
             switch(effectiveness[(int)element])
             {
                 case State.NORMAL:
-                    user.TakeDamage(raw);
+                    target.TakeDamage(raw);
+                    if(drain)
+                    {
+                        user.Restore(raw / 4);
+                    }
                     break;
                 case State.RESIST:
-                    user.TakeDamage(raw / 2);
+                    target.TakeDamage(raw / 2);
+                    if (drain)
+                    {
+                        user.Restore(raw / 8);
+                    }
                     break;
                 case State.WEAK:
-                    user.TakeDamage(raw * 2);
+                    target.TakeDamage(raw * 2);
+                    if (drain)
+                    {
+                        user.Restore(raw / 2);
+                    }
                     break;
                 case State.IMMUNE:
-                    user.TakeDamage(0);
+                    target.TakeDamage(0);
                     break;
                 default:
                     break;
             }
+        }
+
+        public void setWeaknesses(Weakness weak)
+        {
+            effectiveness = weak.effectiveness;
         }
     }
 }
