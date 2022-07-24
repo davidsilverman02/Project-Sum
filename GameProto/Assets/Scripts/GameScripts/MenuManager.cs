@@ -65,27 +65,30 @@ public class MenuManager : MonoBehaviour
 
     public void cycle()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        if(stat != MenuState.GRID)
         {
-            if(selected == 0)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             {
-                selected = getPlayers().Count - 1;
+                if (selected == 0)
+                {
+                    selected = getPlayers().Count - 1;
+                }
+                else
+                {
+                    selected--;
+                }
             }
-            else
-            {
-                selected--;
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            if (selected == getPlayers().Count - 1)
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
-                selected = 0;
-            }
-            else
-            {
-                selected++;
+                if (selected == getPlayers().Count - 1)
+                {
+                    selected = 0;
+                }
+                else
+                {
+                    selected++;
+                }
             }
         }
     }
