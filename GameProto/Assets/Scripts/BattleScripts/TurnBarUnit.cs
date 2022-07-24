@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnBarUnit : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public Unit representing;
+
+    public Image border;
+
+    public Sprite allyBorder;
+    public Sprite enemyBorder;
+
+    public void Setup (bool ally, Unit unit)
     {
-        
+        representing = unit;
+        if (ally) border.sprite = allyBorder;
+        else border.sprite = enemyBorder;
     }
 }

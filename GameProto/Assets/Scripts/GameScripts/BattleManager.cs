@@ -57,6 +57,8 @@ public class BattleManager : MonoBehaviour
 
     public GameObject bar;
 
+    public TurnBar turnBar;
+
     int attackRank;
 
     public Skill playerSkill;
@@ -67,6 +69,7 @@ public class BattleManager : MonoBehaviour
     {
         manager = FindObjectOfType<GameManager>();
         ui = FindObjectOfType<BattleUIManager>();
+        turnBar = FindObjectOfType<TurnBar>();
         state = BattleState.START;
         SetupBattle(1);
         StartCoroutine(StartBattle());
@@ -706,6 +709,9 @@ public class BattleManager : MonoBehaviour
                 }
             }
         }
+
+        turnBar.SetTurns(uiOrder, players);
+
     }
 
     //Physically removes a unit
