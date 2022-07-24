@@ -4,22 +4,32 @@ using UnityEngine;
 
 public class TurnBar : MonoBehaviour
 {
-    public List<TurnBarUnit> turns;
+    public GameObject turnBarIcon;
+    public Transform parent;
+    public List<TurnBarUnit> icons;
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetTurns(List<Unit> order, List<Unit> players)
     {
-        
-    }
+        foreach (TurnBarUnit tbu in icons)
+        {
+            Destroy(tbu.gameObject);
+        }
+        icons.Clear();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void setTurns()
-    {
-
+        foreach (Unit u in order)
+        {
+            TurnBarUnit newIcon = Instantiate(turnBarIcon, parent).GetComponent<TurnBarUnit>();
+            bool ally = false;
+            for (int i = 0; i < players.Count; i ++)
+            {
+                if (u == players[i])
+                {
+                    ally = true;
+                    break;
+                }
+            }
+            newIcon.Setup(ally, u);
+            icons.Add(newIcon);
+        }
     }
 }
