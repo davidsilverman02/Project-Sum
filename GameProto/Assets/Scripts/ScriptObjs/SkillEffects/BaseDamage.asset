@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee95bab43cad0654c83802da0a2050a5, type: 3}
   m_Name: BaseDamage
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   healing: 0
+  drain: 0
   kind: 0
   appliesSlow: 0
   appliesDefend: 0
-  buffsAttack: {x: 0, y: 0, z: 0}
-  buffsMagic: {x: 0, y: 0, z: 0}
-  buffsDefense: {x: 0, y: 0, z: 0}
-  buffsSpeed: {x: 0, y: 0, z: 0}
+  buffsAttack: {x: 0, y: 0}
+  buffsMagic: {x: 0, y: 0}
+  buffsDefense: {x: 0, y: 0}
+  buffsSpeed: {x: 0, y: 0}

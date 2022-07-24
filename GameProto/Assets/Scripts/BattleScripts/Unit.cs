@@ -40,11 +40,14 @@ public class Unit : MonoBehaviour
         delay = FightMath.CounterSpeed(speed.get(), 0);
 
         currentHP = maxHP;
+        currentPP = maxPP;
         currentTime = delay;
 
         ui.setMaxHP(maxHP);
-
         ui.SetHPBar(currentHP);
+
+        ui.setMaxPP(maxPP);
+        ui.setPPBar(currentPP);
     }
 
     // Update is called once per frame
@@ -98,6 +101,37 @@ public class Unit : MonoBehaviour
         }
 
         setHealthBar();
+    }
+
+    public void DrainPower(int cost)
+    {
+        if(cost != 0)
+        {
+            StartCoroutine(DrainDisplay(cost, 0.2f));
+        }
+
+        currentPP -= cost;
+
+        if (currentPP < 0)
+        {
+            currentPP = 0;
+        }
+
+        setPowerBar();
+    }
+
+    public void GivePower(int strength)
+    {
+        StartCoroutine(DrainDisplay(strength, 0.2f));
+
+        currentHP += strength;
+
+        if (currentPP > maxPP)
+        {
+            currentPP = maxPP;
+        }
+
+        setPowerBar();
     }
 
     public bool Player()
@@ -226,7 +260,17 @@ public class Unit : MonoBehaviour
         ui.SetDamage(damage);
     }
 
+    public void ToggleDrain(bool drain)
+    {
+        ui.SetDrain(drain);
+    }
+
     public void DamageNum(int setNum)
+    {
+        ui.DamageLevel(setNum);
+    }
+
+    public void DrainNum(int setNum)
     {
         ui.DamageLevel(setNum);
     }
@@ -259,9 +303,27 @@ public class Unit : MonoBehaviour
         ToggleDamage(false);
     }
 
+    public IEnumerator DrainDisplay(int drain, float time)
+    {
+        DrainNum(drain);
+
+        //Maybe change color
+
+        ToggleDrain(true);
+
+        yield return new WaitForSeconds(time);
+
+        ToggleDrain(false);
+    }
+
     public void setHealthBar()
     {
         ui.SetHPBar(currentHP);
+    }
+
+    public void setPowerBar()
+    {
+        ui.setPPBar(currentPP);
     }
 
     public void runDamage(int raw, DamageType element, Unit opponent, bool drain)

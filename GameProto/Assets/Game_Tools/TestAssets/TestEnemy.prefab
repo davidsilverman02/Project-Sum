@@ -130,10 +130,12 @@ MonoBehaviour:
   maxHP: 6
   currentPP: 0
   maxPP: 0
+  calc:
+    effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
   delay: 0
   currentTime: 0
   ui: {fileID: 2186229689625230190}
-  attack: {fileID: 11400000, guid: b63116517c208984eb25e0b6d2bcfedf, type: 2}
+  attack: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
   defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
   man: {fileID: 0}
   choosing: 0

@@ -27,4 +27,12 @@ public class SkillUI : MonoBehaviour
         skillName.text = power.name;
         ppCount.text = power.cost.ToString();
     }
+
+    public void useSkill()
+    {
+        if(manager.currentUnit.currentPP >= skill.cost)
+        {
+            manager.selectPower(skill);
+        }
+    }
 }

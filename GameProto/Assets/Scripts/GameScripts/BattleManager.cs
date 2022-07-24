@@ -52,12 +52,14 @@ public class BattleManager : MonoBehaviour
 
     public List<int> uiOrderCalc;
 
-    public List<SkillUI> skill;
+    public List<GameObject> skills;
     public GameObject skillItem;
 
     public GameObject bar;
 
     int attackRank;
+
+    public Skill playerSkill;
 
     public int positionNum = 10;
 
@@ -195,7 +197,7 @@ public class BattleManager : MonoBehaviour
                             break;
                         case FightMath.Option.SKILL:
                             attackRank = 0;
-                            StartCoroutine(playerHeal(selectOne));
+                            StartCoroutine(useSkill(playerSkill, selectedUnit));
                             break;
                         case FightMath.Option.DEFEND:
                             attackRank = 0;
@@ -365,6 +367,13 @@ public class BattleManager : MonoBehaviour
         choose = true;
     }
 
+    public void selectPower(Skill skill)
+    {
+        select(skill);
+
+        playerSkill = skill;
+    }
+
     // Has Enemies select
     public void enemySelect(Skill skill)
     {
@@ -468,22 +477,33 @@ public class BattleManager : MonoBehaviour
 
     public void ActivateSkills(bool isItems)
     {
+        foreach(GameObject obj in skills)
+        {
+            GameObject.Destroy(obj);
+        }
+
         skillChoice = true;
+        skills.Clear();
 
         if(isItems)
         {
-
+            
         }
         else
         {
-
+            placeSkills();
         }
     }
 
     public void placeSkills()
     {
-        skill.Clear();
-        //for(int i = 0)
+        for (int i = 0; i < currentUnit.GetComponent<Hero>().powers.Count; i++)
+        {
+            GameObject skill = Instantiate(skillItem, bar.transform.position, bar.transform.rotation) as GameObject;
+            skill.GetComponent<RectTransform>().SetParent(bar.transform, false);
+            skill.GetComponent<SkillUI>().setSkill(currentUnit.GetComponent<Hero>().powers[i]);
+            skills.Add(skill);
+        }
     }
 
     // Has an opponent take damage
@@ -504,40 +524,6 @@ public class BattleManager : MonoBehaviour
         target.StartCoroutine(target.DamageDisplay(strength, 0.2f));
 
         target.Restore(strength);
-    }
-
-    public IEnumerator playerAttack(int target)
-    {
-        bool enemyDied = false;
-
-        interpretSkill(goingUnit().attack, goingUnit(), selectedUnit);
-
-        yield return new WaitForSeconds(goingUnit().attack.duration);
-
-        foreach(Unit targe in monsters)
-        {
-            if(targe.Dead())
-            {
-                StartCoroutine(killEnemy(targe));
-                enemyDied = true;
-            }
-        }
-
-        if(enemyDied)
-        {
-            yield return new WaitForSeconds(1f);
-        }
-
-        nextTurn();
-    }
-
-    public IEnumerator playerHeal(Unit target)
-    {
-        heal(currentUnit.getMagic(), target);
-
-        yield return new WaitForSeconds(0f);
-
-        nextTurn();
     }
 
     public IEnumerator useSkill(Skill skill, int target)
@@ -617,6 +603,8 @@ public class BattleManager : MonoBehaviour
         turnCalled = false;
 
         choose = false;
+
+        skillChoice = false;
     }
 
     public void setRank(int strength)
@@ -839,6 +827,8 @@ public class BattleManager : MonoBehaviour
                 affected.buffDefense(3, affected.getDelay());
             }
         }
+
+        user.DrainPower(inta.cost);
     }
 
     public void setCountDown(bool active)

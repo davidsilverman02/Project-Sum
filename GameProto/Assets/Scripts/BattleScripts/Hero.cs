@@ -12,7 +12,17 @@ public class Hero : Unit
     {
         isPlayer = true;
 
-        base.Start();
+        //base.Start();
+
+        delay = FightMath.CounterSpeed(speed.get(), 0);
+
+        currentTime = delay;
+
+        ui.setMaxHP(maxHP);
+        ui.SetHPBar(currentHP);
+
+        ui.setMaxPP(maxPP);
+        ui.setPPBar(currentPP);
     }
 
     public void setStats(StatContainer.StatObject mang)
@@ -32,6 +42,9 @@ public class Hero : Unit
         calc.setWeaknesses(mang.weakness);
 
         powers = mang.skills;
+
+        attack = mang.strike;
+        defend = mang.defend;
     }
 
     public StatContainer.StatObject getStats()

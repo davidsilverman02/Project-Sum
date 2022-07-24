@@ -15,7 +15,7 @@ namespace WeaknessCalculator
     [Serializable]
     public class Weakness
     {
-        [NamedArray(typeof(DamageType))]
+        //[NamedArray(typeof(DamageType))]
         public State[] effectiveness = new State[9];
 
         public Weakness()

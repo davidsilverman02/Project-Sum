@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1452dff41bb04224d99ebd59825ae9ac, type: 3}
   m_Name: OneBaseDeathDrain
   m_EditorClassIdentifier: 
-  target: 0
+  target: 1
   effects: {fileID: 11400000, guid: a404b6d772d6f6c439c0b71b87de7e83, type: 2}
