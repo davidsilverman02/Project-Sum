@@ -34,6 +34,21 @@ public class GameManager : MonoBehaviour
     public List<StatContainer.StatObject> players;
     // Insert all players if switching through story
 
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame(this);
+    }
+
+    public void LoadGame()
+    {
+        SaveData data = SaveSystem.LoadGame();
+
+        level = data.level;
+        spawnX = data.playerX;
+        spawnY = data.playerY;
+        spawnZ = data.playerZ;
+    }
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);

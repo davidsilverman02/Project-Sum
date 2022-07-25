@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using StatSave;
 
+[Serializable]
 public class MenuManager : MonoBehaviour
 {
     public enum MenuState { MAIN = 0, PARTY = 1, INVENTORY = 2, EQUIP = 3, STATUS = 4, GRID = 5, CONFIG = 6, HELP = 7 }
@@ -65,30 +66,27 @@ public class MenuManager : MonoBehaviour
 
     public void cycle()
     {
-        if(stat != MenuState.GRID)
+        if (Input.GetKeyDown(KeyCode.PageUp))
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            if (selected == 0)
             {
-                if (selected == 0)
-                {
-                    selected = getPlayers().Count - 1;
-                }
-                else
-                {
-                    selected--;
-                }
+                selected = getPlayers().Count - 1;
             }
-
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            else
             {
-                if (selected == getPlayers().Count - 1)
-                {
-                    selected = 0;
-                }
-                else
-                {
-                    selected++;
-                }
+                selected--;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            if (selected == getPlayers().Count - 1)
+            {
+                selected = 0;
+            }
+            else
+            {
+                selected++;
             }
         }
     }

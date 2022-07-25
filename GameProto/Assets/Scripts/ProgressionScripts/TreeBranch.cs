@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StatSave;
 
 [System.Serializable]
 public class TreeBranch : MonoBehaviour
@@ -14,15 +15,13 @@ public class TreeBranch : MonoBehaviour
     public TreeBranch down;
     public TreeBranch right;
 
-    // Start is called before the first frame update
-    void Start()
+    public UnlockedSkills unlock;
+    
+    public void activate(StatContainer.StatObject stobj)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(active == false)
+        {
+            unlock.upgradeUnit(stobj);
+        }
     }
 }

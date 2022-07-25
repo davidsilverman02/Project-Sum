@@ -32,6 +32,8 @@ namespace StatSave
 
             public List<Skill> skills;
 
+            public List<bool> unlockedSkills;
+
             public StatObject()
             {
 
