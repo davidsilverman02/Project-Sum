@@ -9,19 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public float movingX;
     public float movingY;
     public float movingZ;
-    public float directionX;
-    public float directionY;
-    public float directionZ;
     public int direct;
 
     //public BoxCollider2D collider;
-    public Rigidbody rigid;
+    public CharacterController cc;
 
     // Start is called before the first frame update
     void Start()
     {
         //collider = GetComponent<BoxCollider2D>();
-        rigid = GetComponent<Rigidbody>();
+        cc = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -37,9 +34,12 @@ public class PlayerMovement : MonoBehaviour
         movingY = 0;
         movingZ = Input.GetAxisRaw("Vertical");
 
-        directionX = movingX * speed;
-        directionZ = movingZ * speed;
+        Vector3 movement = new Vector3(movingX, 0, movingZ);
 
-        rigid.velocity = new Vector3(directionX, 0, directionZ);
+        movement = Quaternion.FromToRotation(Vector3.forward, transform.forward) * movement;
+
+        movement = movement.normalized * speed;
+
+        cc.SimpleMove(movement);
     }
 }
