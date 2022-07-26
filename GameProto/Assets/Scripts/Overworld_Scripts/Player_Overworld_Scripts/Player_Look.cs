@@ -93,22 +93,17 @@ public class Player_Look : MonoBehaviour
     //make sure there is LOS from camera to player, and zoom in if there is something blocking the camera
     void FindDistance()
     {
-        //from camera to player, used to determine if there is something blocking the camera from the player
-        Ray toPlayer = new Ray(cam_obj.transform.position, transform.position - cam_obj.transform.position);
+
+        //from camera to player, used if there is a conflict, to determine how far forward the camera must go
+        Vector3 vecToCam = cam_obj.transform.position - transform.position;
+        Ray toCam = new Ray(transform.position, vecToCam);
         RaycastHit hit1;
-
         //does the camera see the player? if true there is something in the way, and so we must move closer to see the player
-        Physics.Raycast(toPlayer, out hit1);
-        if (hit1.collider.tag != "Player")
+        Physics.Raycast(toCam, out hit1, cam_dist_max);
+        if (hit1.collider != null)
         {
-            //from camera to player, used if there is a conflict, to determine how far forward the camera must go
-            Vector3 vecToCam = cam_obj.transform.position - transform.position;
-            Ray toCam = new Ray(transform.position, vecToCam);
-            RaycastHit hit2;
-            Physics.Raycast(toCam, out hit2);
 
-            //set our distance to be as far as we can be, while still able to see the player
-            desired_cam_loc = Vector3.Distance(transform.position, hit2.point) - cam_sph_rad;
+            desired_cam_loc = Vector3.Distance(transform.position, hit1.point) - cam_sph_rad;
 
         }
         else
