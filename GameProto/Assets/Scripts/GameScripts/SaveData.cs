@@ -15,6 +15,11 @@ public class SaveData
     public List<int> group;
     public List<StatContainer.StatObject> stObjs;
 
+    public SaveData()
+    {
+
+    }
+
     public SaveData(GameManager manager)
     {
         level = manager.level;

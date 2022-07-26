@@ -6,35 +6,37 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
+    public static string directory = "/Save/";
+    public static string fileName = "SaveData.txt";
+
     public static void SaveGame(GameManager manager)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.state";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
         SaveData data = new SaveData(manager);
 
-        formatter.Serialize(stream, data);
-        stream.Close();
+        string dir = Application.persistentDataPath + directory;
+
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(dir + fileName, json);
     }
 
     public static SaveData LoadGame()
     {
-        string path = Application.persistentDataPath + "/player.state";
+        string path = Application.persistentDataPath + directory + fileName;
+        SaveData data = new SaveData();
+
         if(File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            SaveData data = formatter.Deserialize(stream) as SaveData;
-            stream.Close();
-
-            return data;
+            string json = File.ReadAllText(path);
+            data = JsonUtility.FromJson<SaveData>(json);
         }
         else
         {
             Debug.LogError("Save not found");
-            return null;
         }
+
+        return data;
     }
 }

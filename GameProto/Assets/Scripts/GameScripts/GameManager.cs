@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
         spawnX = data.playerX;
         spawnY = data.playerY;
         spawnZ = data.playerZ;
+
+        party = data.group;
+        players = data.stObjs;
+
+        SceneManager.LoadScene(level);
     }
 
     void Awake()
@@ -138,6 +143,16 @@ public class GameManager : MonoBehaviour
         if(state == gameState.BATTLE)
         {
             playerMoving = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            SaveGame();
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            LoadGame();
         }
     }
 
