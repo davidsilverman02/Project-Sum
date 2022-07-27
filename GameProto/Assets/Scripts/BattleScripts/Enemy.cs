@@ -51,12 +51,17 @@ public class Enemy : Unit
     public virtual void Behavior()
     {
         TurnCalled();
+        ai.selectTarget(man.getEnemies(), man.getPlayers());
+        man.enemySelect(ai.getSkillUsing());
+        setTarget(ai.target());
+        StartCoroutine(man.useSkill(ai.getSkillUsing(), ai.getTarget()));
+
+        /*
         man.enemySelect(attack);
         choosing = selectLivingPlayer();
         StartCoroutine(man.useSkill(attack, choosing));
+        */
     }
-
-
 
     public virtual void ItemDrop()
     {
@@ -85,6 +90,11 @@ public class Enemy : Unit
         int size = man.getPlayers().Count;
 
         return Random.Range(0, size);
+    }
+
+    public virtual void setTarget(bool set)
+    {
+        man.setTarget(set);
     }
 
     public virtual int getRandomEnemy()

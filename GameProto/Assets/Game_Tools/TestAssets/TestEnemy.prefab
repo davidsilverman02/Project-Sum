@@ -62,7 +62,7 @@ MonoBehaviour:
     power: 0
     buffs: []
   currentHP: 0
-  maxHP: 6
+  maxHP: 0
   currentPP: 0
   maxPP: 0
   calc:
@@ -73,10 +73,31 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
   defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
   model: {fileID: 0}
+  bod: {fileID: 0}
+  ai:
+    skills: []
+    enemies: []
+    players: []
+    exploitHP: 0
+    exploitDef: 0
+    strategize: 0
+    caring: 0
+    targetingAllies: 0
+    targeted: 0
+    randomSize: 0
+    randomTarget: 0
+    randRange: 0
+    usin:
+      skill: {fileID: 0}
+      forParty: 0
+      defProbab: 0
+      probability: 0
+      priority: 0
+    lis: 
   man: {fileID: 0}
   choosing: 0
   priority: 0
-  statLoader: {fileID: 0}
+  statLoader: {fileID: 11400000, guid: 0274b344bc7a7f345809be74988cabdc, type: 2}
 --- !u!1001 &6044283231381192697
 PrefabInstance:
   m_ObjectHideFlags: 0

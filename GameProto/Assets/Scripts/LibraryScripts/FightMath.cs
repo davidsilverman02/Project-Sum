@@ -69,6 +69,20 @@ public class FightMath
         target.Restore(calculated);
     }
 
+    public static List<Unit> copier(List<Unit> lis)
+    {
+        List<Unit> ret = new List<Unit>();
+        ret.Clear();
+
+        for(int i= 0; i < lis.Count; i++)
+        {
+            ret.Add(lis[i]);
+        }
+
+        return ret;
+    }
+
+    [System.Serializable]
     public class EnemyAI
     {
         public List<ProbableSkill> skills;
@@ -108,8 +122,8 @@ public class FightMath
             enemies.Clear();
             players.Clear();
 
-            enemies = enems;
-            players = plays;
+            enemies = copier(enems);
+            players = copier(plays);
 
             if(average(enemies) < average(players))
             {
@@ -280,7 +294,7 @@ public class FightMath
 
                 if(k >= randRange && isIn == false)
                 {
-                    isIn = false;
+                    isIn = true;
                     ret = i;
                 }
             }
@@ -351,15 +365,21 @@ public class FightMath
 
             if(target() == true)
             {
-                targeted = getPlayer();
+                targeted = getEnemy();
             }
             else
             {
-                targeted = getEnemy();
+                targeted = getPlayer();
             }
+        }
+
+        public Skill getSkillUsing()
+        {
+            return usin.skill;
         }
     }
 
+    [System.Serializable]
     public class ProbableSkill
     {
         public Skill skill;
@@ -370,7 +390,7 @@ public class FightMath
 
         public ProbableSkill()
         {
-            string name = skill.name;
+            
         }
 
         public void setPriority()

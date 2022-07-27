@@ -332,7 +332,6 @@ public class BattleManager : MonoBehaviour
     {
         playerOrder.Clear();
 
-        
         foreach(Unit unit in players)
         {
             playerOrder.Add(unit);

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb612a3b7ee63d46b19b3410e6eed08, type: 3}
+  m_Name: TestEnemyLoad
+  m_EditorClassIdentifier: 
+  unitName: Test
+  unitLevel: 0
+  strength: 1
+  magic: 0
+  defense: 0
+  speed: 0
+  maxHP: 3
+  maxPP: 0
+  calc:
+    effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
+  ai:
+    skills:
+    - skill: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
+      forParty: 0
+      defProbab: 20
+      probability: 20
+      priority: 20
+    enemies: []
+    players: []
+    exploitHP: 0
+    exploitDef: 0
+    strategize: 0
+    caring: 0
+    targetingAllies: 0
+    targeted: 0
+    randomSize: 0
+    randomTarget: 0
+    randRange: 0
+    usin:
+      skill: {fileID: 0}
+      forParty: 0
+      defProbab: 0
+      probability: 0
+      priority: 0
+    lis: 
+  model: {fileID: 5509079484409715529, guid: 600d9c152da364a4ead4874da2bc8951, type: 3}
