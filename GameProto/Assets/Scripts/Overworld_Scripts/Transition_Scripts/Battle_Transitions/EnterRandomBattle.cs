@@ -23,12 +23,4 @@ public class EnterRandomBattle : MonoBehaviour
             SceneManager.LoadScene("FightScene");
         }
     }
-
-    void OnCollisionStay(Collision collide)
-    {
-        if(collide.gameObject.GetComponent<Player>() == true)
-        {
-            inRange = true;
-        }
-    }
 }

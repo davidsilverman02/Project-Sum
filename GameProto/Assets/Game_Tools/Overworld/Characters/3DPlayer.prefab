@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 791344665169994753}
-  - component: {fileID: 5413114020012312447}
+  - component: {fileID: 215713994965046513}
   - component: {fileID: 7700277832904302295}
   - component: {fileID: 2733802206579384043}
   - component: {fileID: 791344665169994757}
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &5413114020012312447
+--- !u!136 &215713994965046513
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,6 +108,9 @@ MonoBehaviour:
   movingY: 0
   movingZ: 0
   direct: 0
+  grav: 9.8
+  minFallSpeed: 10
+  jumpHeight: 1.5
   cc: {fileID: 0}
 --- !u!114 &791344665169994752
 MonoBehaviour:
