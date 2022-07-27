@@ -45,6 +45,14 @@ public class Hero : Unit
 
         attack = mang.strike;
         defend = mang.defend;
+
+        model = mang.model;
+
+        GameObject ins = Instantiate(model, gameObject.transform.position, gameObject.transform.rotation);
+
+        ins.transform.parent = gameObject.transform;
+
+        bod = ins.GetComponent<UnitBody>();
     }
 
     public StatContainer.StatObject getStats()

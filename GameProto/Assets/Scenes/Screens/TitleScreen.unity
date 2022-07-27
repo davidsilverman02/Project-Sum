@@ -486,6 +486,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: players.Array.data[0].model
+      value: 
+      objectReference: {fileID: 598652721452470915, guid: e624d8ea4b30bd447b0a1fe38dd17145, type: 3}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[0].speed
       value: 5
       objectReference: {fileID: 0}
@@ -501,6 +505,10 @@ PrefabInstance:
       propertyPath: players.Array.data[1].maxPP
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: players.Array.data[1].model
+      value: 
+      objectReference: {fileID: 1859712153281413820, guid: 00b3010a0556bda4f87424bc16d5a7f0, type: 3}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[1].speed
       value: 2
@@ -518,6 +526,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: players.Array.data[2].model
+      value: 
+      objectReference: {fileID: 4375678391745361337, guid: 077d3592b3a81954bb75682116aa9913, type: 3}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[2].speed
       value: 5
       objectReference: {fileID: 0}
@@ -529,6 +541,10 @@ PrefabInstance:
       propertyPath: players.Array.data[3].maxPP
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: players.Array.data[3].model
+      value: 
+      objectReference: {fileID: 6073229654651159870, guid: 1538994509cd7644b8e059515a3ed601, type: 3}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[3].speed
       value: 2

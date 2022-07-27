@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaknessCalculator;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "Skill", menuName = "Skill/Skill Target")]
@@ -22,4 +23,8 @@ public class SkillTargets : ScriptableObject
         return effects;
     }
 
+    public DamageType damageKind()
+    {
+        return effects.kind;
+    }
 }

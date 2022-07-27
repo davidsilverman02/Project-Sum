@@ -2,18 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /*
  * This Script Generates the Stats for enemies
  * 
  */
 public class Enemy : Unit
 {
+    public FightMath.EnemyAI ai;
+
     public BattleManager man;
     public int choosing;
     public int priority;
 
+    public EnemyLoader statLoader;
+
     public override void Start()
     {
+        unitName = statLoader.unitName;
+        unitLevel = statLoader.unitLevel;
+
+        strength.setPower(statLoader.strength);
+        magic.setPower(statLoader.magic);
+        defense.setPower(statLoader.defense);
+        speed.setPower(statLoader.speed);
+
+        maxHP = statLoader.maxHP;
+        maxPP = statLoader.maxPP;
+
+        ai.LoadFromBase(statLoader.ai);
+
+        model = statLoader.model;
+
+        GameObject ins = Instantiate(model, gameObject.transform.position, gameObject.transform.rotation);
+
+        ins.transform.parent = gameObject.transform;
+
+        bod = ins.GetComponent<UnitBody>();
+
         base.Start();
     }
 

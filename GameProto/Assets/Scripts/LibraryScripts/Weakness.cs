@@ -60,6 +60,30 @@ namespace WeaknessCalculator
         {
             effectiveness = weak.effectiveness;
         }
+
+        public bool effective(DamageType type)
+        {
+            if(effectiveness[(int)type] == State.WEAK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ineffective(DamageType type)
+        {
+            if (effectiveness[(int)type] == State.RESIST || effectiveness[(int)type] == State.IMMUNE)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
 

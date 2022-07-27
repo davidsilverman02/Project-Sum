@@ -33,6 +33,9 @@ public class Unit : MonoBehaviour
     public Skill attack;
     public Skill defend;
 
+    public GameObject model;
+
+    public UnitBody bod;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -329,5 +332,10 @@ public class Unit : MonoBehaviour
     public void runDamage(int raw, DamageType element, Unit opponent, bool drain)
     {
         calc.effectiveDamage(raw, element, opponent, this, drain);
+    }
+
+    public float chance()
+    {
+        return (float)currentHP / (float)maxHP;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WeaknessCalculator;
 
 [CreateAssetMenu(fileName = "Skill", menuName = "Skill/Skill")]
 public class Skill : ScriptableObject
@@ -20,5 +21,15 @@ public class Skill : ScriptableObject
         {
             targets[i].Enact();
         }
+    }
+
+    public DamageType type()
+    {
+        for(int i = 0; i < targets.Length; i++)
+        {
+            if (targets[i].effects.damage > 0)
+                return targets[i].damageKind();
+        }
+        return 0;
     }
 }
