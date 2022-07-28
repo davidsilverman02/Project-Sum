@@ -7,6 +7,8 @@ using TMPro;
 public class UnitUI : MonoBehaviour
 {
     public GameObject selected;
+    public GameObject selected_hp;
+    public GameObject selected_pp;
     public TMP_Text text;
     public TMP_Text drain;
     public TMP_Text delayNum;
@@ -27,6 +29,8 @@ public class UnitUI : MonoBehaviour
     public void SetTarget(bool active)
     {
         selected.SetActive(active);
+        selected_hp.SetActive(active);
+        selected_pp.SetActive(active);
     }
 
     public void SetDamage(bool active)
