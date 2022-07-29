@@ -34,10 +34,12 @@ public class Hero : Unit
         currentPP = mang.currentPP;
         maxPP = mang.maxPP;
 
-        strength.setPower(mang.attack);
-        magic.setPower(mang.magic);
-        defense.setPower(mang.defense);
-        speed.setPower(mang.speed);
+        strength.setPower(mang.attack.getEffective());
+        magic.setPower(mang.magic.getEffective());
+        defense.setPower(mang.defense.getEffective());
+        wisdom.setPower(mang.wisdom.getEffective());
+        agility.setPower(mang.agility.getEffective());
+        speed.setPower(mang.speed.getEffective());
 
         calc.setWeaknesses(mang.weakness);
 
@@ -53,6 +55,8 @@ public class Hero : Unit
         ins.transform.parent = gameObject.transform;
 
         bod = ins.GetComponent<UnitBody>();
+
+        unitLevel = mang.level;
     }
 
     public StatContainer.StatObject getStats()
@@ -66,10 +70,12 @@ public class Hero : Unit
         stats.currentPP = currentPP;
         stats.maxPP = maxPP;
 
-        stats.attack = strength.get();
-        stats.magic = magic.get();
-        stats.defense = defense.get();
-        stats.speed = speed.get();
+        stats.attack.setSubtotal(unitLevel, true);
+        stats.magic.setSubtotal(unitLevel, true);
+        stats.defense.setSubtotal(unitLevel, true);
+        stats.wisdom.setSubtotal(unitLevel, true);
+        stats.agility.setSubtotal(unitLevel, true);
+        stats.speed.setSubtotal(unitLevel, true);
 
         return stats;
     }

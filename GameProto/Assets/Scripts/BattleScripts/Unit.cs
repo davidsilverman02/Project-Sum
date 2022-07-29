@@ -16,6 +16,8 @@ public class Unit : MonoBehaviour
     public Stat strength;
     public Stat magic;
     public Stat defense;
+    public Stat wisdom;
+    public Stat agility;
     public Stat speed;
 
     public int currentHP;
@@ -195,6 +197,28 @@ public class Unit : MonoBehaviour
     {
         Vector2Int vec = new Vector2Int(tier, delay);
         defense.addBuff(vec);
+    }
+
+    public int getWisdom()
+    {
+        return wisdom.get();
+    }
+
+    public void buffWisdom(int tier, int delay)
+    {
+        Vector2Int vec = new Vector2Int(tier, delay);
+        wisdom.addBuff(vec);
+    }
+
+    public int getAgility()
+    {
+        return agility.get();
+    }
+
+    public void buffAgility(int tier, int delay)
+    {
+        Vector2Int vec = new Vector2Int(tier, delay);
+        agility.addBuff(vec);
     }
 
     public int getSpeed()

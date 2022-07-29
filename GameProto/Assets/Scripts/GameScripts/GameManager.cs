@@ -105,14 +105,14 @@ public class GameManager : MonoBehaviour
                         interact = getClosestNPCToPlayer();
                     }
 
-                    if ((inMenu && isTalk == false) && Input.GetKeyDown(KeyCode.Return))
+                    if ((!inMenu && isTalk == false) && Input.GetKeyDown(KeyCode.Return))
                     {
                         isTalk = true;
                         ovPlayer.immobile(true);
                         interact.Interact();
 
                     }
-                    else if(inMenu && Input.GetKeyDown(KeyCode.Return))
+                    else if(!inMenu && Input.GetKeyDown(KeyCode.Return))
                     {
                         interact.Continue();
                     }
