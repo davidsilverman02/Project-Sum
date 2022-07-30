@@ -15,6 +15,8 @@ public class BattleUIManager : MonoBehaviour
     public GameObject descBox;
     public TMP_Text battleDesc;
 
+    public GameObject winScreen;
+
     // Start is called before the first frame update
     void Start()
     {

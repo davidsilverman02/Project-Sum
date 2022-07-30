@@ -17,6 +17,8 @@ MonoBehaviour:
   strength: 1
   magic: 0
   defense: 0
+  wisdom: 0
+  agility: 0
   speed: 0
   maxHP: 3
   maxPP: 0
@@ -48,3 +50,4 @@ MonoBehaviour:
       priority: 0
     lis: 
   model: {fileID: 5509079484409715529, guid: 600d9c152da364a4ead4874da2bc8951, type: 3}
+  exp: 10

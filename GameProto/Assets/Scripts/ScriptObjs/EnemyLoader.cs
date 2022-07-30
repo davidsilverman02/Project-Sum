@@ -13,6 +13,8 @@ public class EnemyLoader : ScriptableObject
     public int strength;
     public int magic;
     public int defense;
+    public int wisdom;
+    public int agility;
     public int speed;
 
     public int maxHP;
@@ -23,4 +25,6 @@ public class EnemyLoader : ScriptableObject
     public FightMath.EnemyAI ai;
 
     public GameObject model;
+
+    public int exp;
 }

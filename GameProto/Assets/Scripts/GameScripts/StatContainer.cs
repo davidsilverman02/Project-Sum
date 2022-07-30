@@ -9,6 +9,8 @@ namespace StatSave
     public class StatContainer : MonoBehaviour
     {
         const float LEVELRATE = 100.0f;
+        const int HPRATE = 2;
+        const int PPRATE = 1;
 
         [Serializable]
         public class LoadStat
@@ -87,6 +89,12 @@ namespace StatSave
             public LoadStat agility;
             public LoadStat speed;
 
+            [SerializeField]
+            private LoadStat vitality;
+
+            [SerializeField]
+            private LoadStat soul;
+
             public int currentHP;
             public int maxHP;
             public int currentPP;
@@ -100,6 +108,8 @@ namespace StatSave
             public List<Skill> skills;
 
             public GameObject model;
+
+            public LevelSkillTree tree;
 
             public StatObject()
             {
@@ -126,6 +136,38 @@ namespace StatSave
             public int newLevel()
             {
                 return Mathf.RoundToInt(LEVELRATE * Mathf.Sqrt(level));
+            }
+
+            public void calcHP()
+            {
+                maxHP = vitality.getEffective() * HPRATE;
+            }
+
+            public void calcPP()
+            {
+                maxPP = soul.getEffective() * PPRATE;
+            }
+
+            public void calcNewStats(int newLevel)
+            {
+                int hpDifference = maxHP - currentHP;
+                int ppDifference = maxPP - currentPP;
+
+                attack.setSubtotal(level, false);
+                magic.setSubtotal(level, false);
+                defense.setSubtotal(level, false);
+                wisdom.setSubtotal(level, false);
+                agility.setSubtotal(level, false);
+                speed.setSubtotal(level, false);
+
+                vitality.setSubtotal(level, false);
+                soul.setSubtotal(level, false);
+
+                calcHP();
+                calcPP();
+
+                currentHP = maxHP - hpDifference;
+                currentPP = maxPP - ppDifference;
             }
         }
     }

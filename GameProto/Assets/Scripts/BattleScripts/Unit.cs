@@ -38,6 +38,10 @@ public class Unit : MonoBehaviour
     public GameObject model;
 
     public UnitBody bod;
+
+    public int probab;
+
+    public int randChanc;
     // Start is called before the first frame update
     public virtual void Start()
     {
@@ -80,7 +84,7 @@ public class Unit : MonoBehaviour
         DelayNum(currentTime);
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         StartCoroutine(DamageDisplay(damage, 0.2f));
 
@@ -351,6 +355,11 @@ public class Unit : MonoBehaviour
     public void setPowerBar()
     {
         ui.setPPBar(currentPP);
+    }
+
+    public virtual bool dodge(Unit opponent)
+    {
+        return false;
     }
 
     public void runDamage(int raw, DamageType element, Unit opponent, bool drain)

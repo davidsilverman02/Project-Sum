@@ -19,6 +19,7 @@ public class BattleManager : MonoBehaviour
     public int choce;
     public int unitMoving;
     public int indexPoint;
+    public int exp;
 
     public float decompRate = 0.05f;
 
@@ -883,6 +884,11 @@ public class BattleManager : MonoBehaviour
         {
             unit.ui.SetTarget(false);
         }
+    }
+
+    public void addEXP(int toAdd)
+    {
+        exp += toAdd;
     }
 
     IEnumerator WinMenu()

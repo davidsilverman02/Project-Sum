@@ -36,19 +36,19 @@ public class FightMath
 
     public static void CalculateDamage(Skill skill, Unit user, Unit target, int effect, bool drain)
     {
-        int calculated;
+        float calculated;
         int baseDamage;
 
         if (skill.physical)
         {
-            calculated = Mathf.RoundToInt(skill.targets[effect].GetEffect().damage * (float)user.getStrength());
+            calculated = skill.targets[effect].GetEffect().damage * (float)user.getStrength();
+            baseDamage = Mathf.RoundToInt(calculated * (100.0f / (100.0f + (float)target.getDefense())));
         }
         else
         {
-            calculated = Mathf.RoundToInt(skill.targets[effect].GetEffect().damage * (float)user.getMagic());
+            calculated = skill.targets[effect].GetEffect().damage * (float)user.getMagic();
+            baseDamage = Mathf.RoundToInt(calculated + (100.0f / (100.0f + (float)target.getWisdom())));
         }
-
-        baseDamage = calculated * (100 / 100 + target.getDefense());
 
         target.runDamage(baseDamage, skill.targets[effect].GetEffect().kind, user, drain);
     }

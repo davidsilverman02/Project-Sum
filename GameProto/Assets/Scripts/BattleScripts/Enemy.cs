@@ -15,6 +15,8 @@ public class Enemy : Unit
     public int choosing;
     public int priority;
 
+    public int exp;
+
     public EnemyLoader statLoader;
 
     public override void Start()
@@ -25,6 +27,8 @@ public class Enemy : Unit
         strength.setPower(statLoader.strength);
         magic.setPower(statLoader.magic);
         defense.setPower(statLoader.defense);
+        wisdom.setPower(statLoader.wisdom);
+        agility.setPower(statLoader.wisdom);
         speed.setPower(statLoader.speed);
 
         maxHP = statLoader.maxHP;
@@ -39,6 +43,8 @@ public class Enemy : Unit
         ins.transform.parent = gameObject.transform;
 
         bod = ins.GetComponent<UnitBody>();
+
+        exp = statLoader.exp;
 
         base.Start();
     }
@@ -168,5 +174,34 @@ public class Enemy : Unit
         } while (getPlayerDead(user));
 
         return user;
+    }
+
+    public override bool dodge(Unit opponent)
+    {
+        int baseProb = this.getAgility() - opponent.getAgility();
+
+        probab = Mathf.Clamp(baseProb, 0, 100);
+
+        randChanc = Random.Range(1, 100);
+
+        if (randChanc <= probab)
+            return true;
+        else
+            return false;
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        StartCoroutine(DamageDisplay(damage, 0.2f));
+
+        currentHP -= damage;
+
+        if (currentHP <= 0)
+        {
+            currentHP = 0;
+            man.addEXP(exp);
+        }
+
+        setHealthBar();
     }
 }

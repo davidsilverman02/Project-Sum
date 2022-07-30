@@ -56,6 +56,7 @@ public class UnlockedSkills
             stObj.currentPP += morePP;
         }
 
+        /*
         if(attackIncrease > 0)
         {
             stObj.attack += attackIncrease;
@@ -75,5 +76,6 @@ public class UnlockedSkills
         {
             stObj.speed += speedIncrease;
         }
+        */
     }
 }

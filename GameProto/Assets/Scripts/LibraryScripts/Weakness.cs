@@ -25,34 +25,41 @@ namespace WeaknessCalculator
 
         public void effectiveDamage(int raw, DamageType element, Unit user, Unit target, bool drain)
         {
-            switch(effectiveness[(int)element])
+            if(target.dodge(user))
             {
-                case State.NORMAL:
-                    target.TakeDamage(raw);
-                    if(drain)
-                    {
-                        user.Restore(raw / 4);
-                    }
-                    break;
-                case State.RESIST:
-                    target.TakeDamage(raw / 2);
-                    if (drain)
-                    {
-                        user.Restore(raw / 8);
-                    }
-                    break;
-                case State.WEAK:
-                    target.TakeDamage(raw * 2);
-                    if (drain)
-                    {
-                        user.Restore(raw / 2);
-                    }
-                    break;
-                case State.IMMUNE:
-                    target.TakeDamage(0);
-                    break;
-                default:
-                    break;
+                
+            }
+            else
+            {
+                switch (effectiveness[(int)element])
+                {
+                    case State.NORMAL:
+                        target.TakeDamage(raw);
+                        if (drain)
+                        {
+                            user.Restore(raw / 4);
+                        }
+                        break;
+                    case State.RESIST:
+                        target.TakeDamage(raw / 2);
+                        if (drain)
+                        {
+                            user.Restore(raw / 8);
+                        }
+                        break;
+                    case State.WEAK:
+                        target.TakeDamage(raw * 2);
+                        if (drain)
+                        {
+                            user.Restore(raw / 2);
+                        }
+                        break;
+                    case State.IMMUNE:
+                        target.TakeDamage(0);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 

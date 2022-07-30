@@ -7,6 +7,7 @@ using WeaknessCalculator;
 public class Hero : Unit
 {
     public List<Skill> powers;
+    const int DODGE = 9;
 
     public override void Start()
     {
@@ -59,6 +60,21 @@ public class Hero : Unit
         unitLevel = mang.level;
     }
 
+    public void setLeveledStats(StatContainer.StatObject mang)
+    {
+        currentHP = mang.currentHP;
+        maxHP = mang.maxHP;
+        currentPP = mang.currentPP;
+        maxPP = mang.maxPP;
+
+        strength.setPower(mang.attack.getEffective());
+        magic.setPower(mang.magic.getEffective());
+        defense.setPower(mang.defense.getEffective());
+        wisdom.setPower(mang.wisdom.getEffective());
+        agility.setPower(mang.agility.getEffective());
+        speed.setPower(mang.speed.getEffective());
+    }
+
     public StatContainer.StatObject getStats()
     {
         StatContainer.StatObject stats = new StatContainer.StatObject();
@@ -78,5 +94,50 @@ public class Hero : Unit
         stats.speed.setSubtotal(unitLevel, true);
 
         return stats;
+    }
+
+    public override bool dodge(Unit opponent)
+    {
+        int baseRank = Mathf.RoundToInt((float)this.getAgility() * 0.4f) - opponent.getAgility() + DODGE;
+
+        int calcRank = Mathf.Clamp(baseRank, 0, 8);
+
+        switch(calcRank)
+        {
+            case 0:
+                probab = 25;
+                break;
+            case 1:
+                probab = 30;
+                break;
+            case 2:
+                probab = 30;
+                break;
+            case 3:
+                probab = 40;
+                break;
+            case 4:
+                probab = 40;
+                break;
+            case 5:
+                probab = 50;
+                break;
+            case 6:
+                probab = 60;
+                break;
+            case 7:
+                probab = 80;
+                break;
+            case 8:
+                probab = 100;
+                break;
+        }
+
+        randChanc = Random.Range(1, 100);
+
+        if (randChanc <= probab)
+            return true;
+        else
+            return false;
     }
 }
