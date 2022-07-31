@@ -900,9 +900,13 @@ public class BattleManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        exitBattle();
+        ui.ToggleEndScreen(true);
 
-        manager.LoadBack();
+
+
+        //exitBattle();
+
+        //manager.LoadBack();
     }
 
     IEnumerator LoseMenu()

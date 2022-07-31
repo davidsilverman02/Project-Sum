@@ -16,6 +16,9 @@ public class BattleUIManager : MonoBehaviour
     public TMP_Text battleDesc;
 
     public GameObject winScreen;
+    public BattleOver endDisplay;
+
+    public List<LevelBar> bars;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +54,13 @@ public class BattleUIManager : MonoBehaviour
     {
         options.gameObject.SetActive(tog);
     }
+
+    public void ToggleEndScreen(bool tog)
+    {
+        winScreen.gameObject.SetActive(tog);
+    }
+
+    
 
     public void setAbilities(Hero assign)
     {
