@@ -433,7 +433,7 @@ public class FightMath
         return false;
     }
 
-    public static bool checkLevelSame(Hero hero, StatContainer.StatObject obj)
+    public static bool checkLevelSame(Unit hero, StatContainer.StatObject obj)
     {
         if (hero.unitLevel == obj.level)
             return true;

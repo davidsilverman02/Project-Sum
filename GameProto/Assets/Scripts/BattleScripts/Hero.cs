@@ -86,12 +86,12 @@ public class Hero : Unit
         stats.currentPP = currentPP;
         stats.maxPP = maxPP;
 
-        stats.attack.setSubtotal(unitLevel, true);
-        stats.magic.setSubtotal(unitLevel, true);
-        stats.defense.setSubtotal(unitLevel, true);
-        stats.wisdom.setSubtotal(unitLevel, true);
-        stats.agility.setSubtotal(unitLevel, true);
-        stats.speed.setSubtotal(unitLevel, true);
+        //stats.attack.setSubtotal(unitLevel, true);
+        //stats.magic.setSubtotal(unitLevel, true);
+        //stats.defense.setSubtotal(unitLevel, true);
+        //stats.wisdom.setSubtotal(unitLevel, true);
+        //stats.agility.setSubtotal(unitLevel, true);
+        //stats.speed.setSubtotal(unitLevel, true);
 
         return stats;
     }

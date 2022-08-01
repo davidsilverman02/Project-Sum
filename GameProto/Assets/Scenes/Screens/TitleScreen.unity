@@ -631,7 +631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[0].exPoints
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[0].unitName
@@ -639,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[1].exPoints
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[1].unitName
@@ -647,7 +647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[2].exPoints
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[2].unitName
@@ -655,7 +655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[3].exPoints
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[3].unitName

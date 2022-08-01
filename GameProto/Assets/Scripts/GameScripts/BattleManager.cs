@@ -299,7 +299,8 @@ public class BattleManager : MonoBehaviour
     {
         for(int i = 0; i < manager.party.Count; i++)
         {
-            manager.players[i].set(players[i].GetComponent<Hero>().getStats(), FightMath.checkLevelSame(players[i].GetComponent<Hero>(), manager.players[i]));
+            manager.players[i].setDifference(players[i]);
+            manager.players[i].set(players[i].gameObject.GetComponent<Hero>().getStats(), FightMath.checkLevelSame(players[i], manager.players[i]));
         }
     }
 

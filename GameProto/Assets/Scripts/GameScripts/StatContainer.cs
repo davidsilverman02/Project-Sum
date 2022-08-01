@@ -112,8 +112,10 @@ namespace StatSave
 
             public int currentHP;
             public int maxHP;
+            private int hpDifference;
             public int currentPP;
             public int maxPP;
+            private int ppDifference;
 
             public Weakness weakness;
 
@@ -137,18 +139,29 @@ namespace StatSave
 
                 if(isUnleveled)
                 {
-                    attack = sts.attack;
-                    magic = sts.magic;
-                    defense = sts.defense;
-                    wisdom = sts.wisdom;
-                    agility = sts.agility;
-                    speed = sts.speed;
+                    //attack = sts.attack;
+                    //magic = sts.magic;
+                    //defense = sts.defense;
+                    //wisdom = sts.wisdom;
+                    //agility = sts.agility;
+                    //speed = sts.speed;
 
                     currentHP = sts.currentHP;
                     maxHP = sts.maxHP;
                     currentPP = sts.currentPP;
                     maxPP = sts.maxPP;
                 }
+                else
+                {
+                    currentHP -= hpDifference;
+                    currentPP -= ppDifference;
+                }
+            }
+
+            public void setDifference(Unit sts)
+            {
+                hpDifference = sts.maxHP - sts.currentHP;
+                ppDifference = sts.maxPP - sts.currentPP;
             }
 
             public void addEXP(int added)
@@ -180,9 +193,6 @@ namespace StatSave
 
             public void calcNewStats(int newLevel)
             {
-                int hpDifference = maxHP - currentHP;
-                int ppDifference = maxPP - currentPP;
-
                 attack.setSubtotal(level, false);
                 magic.setSubtotal(level, false);
                 defense.setSubtotal(level, false);
