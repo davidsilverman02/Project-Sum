@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public enum BattleState { START, CALCULATING, PLAYERTURN, ENEMYTURN, WIN, LOSE }
 public enum Target {SELF, ONE}
 
@@ -43,6 +44,8 @@ public class BattleManager : MonoBehaviour
     public bool onEnemy;
     public bool turnCalled;
     public bool hasEnded;
+    public bool leveling;
+    public bool levelingOver;
     public bool executed;
     public GameObject[] enemyPool = new GameObject[POOL_NUM];
     public GameObject[] playerPool = new GameObject[PLAYERS];
@@ -75,6 +78,7 @@ public class BattleManager : MonoBehaviour
         SetupBattle(1);
         StartCoroutine(StartBattle());
         disableSelectors();
+        ui.ToggleEndScreen(false);
     }
 
     // Start is called before the first frame update
@@ -101,6 +105,20 @@ public class BattleManager : MonoBehaviour
             if(hasEnded == false)
             {
                 StartCoroutine(WinMenu());
+            }
+            else if(leveling == false)
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    StartCoroutine(visualEXP());
+                }
+            }
+            else if(levelingOver == true)
+            {
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    StartCoroutine(WinBattle());
+                }
             }
 
             foreach(Unit unit in playerOrder)
@@ -281,7 +299,7 @@ public class BattleManager : MonoBehaviour
     {
         for(int i = 0; i < manager.party.Count; i++)
         {
-            manager.players[i].set(players[i].GetComponent<Hero>().getStats());
+            manager.players[i].set(players[i].GetComponent<Hero>().getStats(), FightMath.checkLevelSame(players[i].GetComponent<Hero>(), manager.players[i]));
         }
     }
 
@@ -891,10 +909,52 @@ public class BattleManager : MonoBehaviour
         exp += toAdd;
     }
 
+    IEnumerator visualEXP()
+    {
+        leveling = true;
+
+        int size = exp;
+        float speed = 1.0f / (float)size;
+
+        for (int i = 0; i < size; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                //speed = 0;
+            }
+
+            for (int j = 0; j < manager.party.Count; j++)
+            {
+                if(players[j].Dead() == false)
+                {
+                    manager.players[j].addEXP(1);
+                }
+            }
+
+            exp--;
+
+            yield return new WaitForSeconds(speed);
+
+            ui.setEXP(exp);
+            ui.updateBars();
+        }
+
+        levelingOver = true;
+    }
+
+    IEnumerator WinBattle()
+    {
+        yield return new WaitForSeconds(0);
+
+        exitBattle();
+
+        manager.LoadBack();
+    }
+
     IEnumerator WinMenu()
     {
         hasEnded = true;
-
+        
         ui.SetBattleDescription("You Win!");
         ui.ToggleOverhead(true);
 
@@ -902,7 +962,9 @@ public class BattleManager : MonoBehaviour
 
         ui.ToggleEndScreen(true);
 
+        ui.activateBars();
 
+        ui.setEXP(exp);
 
         //exitBattle();
 

@@ -190,6 +190,7 @@ MonoBehaviour:
   battleDesc: {fileID: 8699950425071583877}
   winScreen: {fileID: 4105139372531511031}
   endDisplay: {fileID: 5916981449214000025}
+  bars: []
 --- !u!1 &4105139372531511031
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86647135f8aabde4e9747188280efc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  man: {fileID: 0}
+  expIn: {fileID: 6462792572499974689}
+  placer: {fileID: 738623367071952073}
+  bars: []
+  bar: {fileID: 7088924529438157508, guid: 55a5800c855ef9849ab71c38fcc53c1d, type: 3}
 --- !u!1 &4226628717835027670
 GameObject:
   m_ObjectHideFlags: 0

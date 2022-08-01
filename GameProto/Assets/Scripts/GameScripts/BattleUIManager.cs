@@ -60,7 +60,25 @@ public class BattleUIManager : MonoBehaviour
         winScreen.gameObject.SetActive(tog);
     }
 
-    
+    public void activateBars()
+    {
+        endDisplay.playerDisplay();
+    }
+
+    public void setEXP(int set)
+    {
+        endDisplay.setEXP(set);
+    }
+
+    public void updateBars()
+    {
+        endDisplay.updateBars();
+    }
+
+    public List<LevelBar> GetBars()
+    {
+        return endDisplay.getBars();
+    }
 
     public void setAbilities(Hero assign)
     {

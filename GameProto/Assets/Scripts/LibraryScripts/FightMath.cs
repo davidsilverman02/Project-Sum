@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using WeaknessCalculator;
+using StatSave;
 
 public class FightMath
 {
@@ -430,5 +431,13 @@ public class FightMath
                 return true;
         }
         return false;
+    }
+
+    public static bool checkLevelSame(Hero hero, StatContainer.StatObject obj)
+    {
+        if (hero.unitLevel == obj.level)
+            return true;
+        else
+            return false;
     }
 }

@@ -69,6 +69,21 @@ namespace StatSave
         public class LevelSkillTree
         {
             public List<LevelElem> mileStones;
+
+            public void levelAdd(int level, StatObject addTo)
+            {
+                foreach(LevelElem elem in mileStones)
+                {
+                    if(elem.level == level)
+                    {
+                        foreach(Skill skill in elem.add)
+                        {
+                            addTo.skills.Add(skill);
+                        }
+                    }
+                }
+            }
+
         }
 
         [Serializable]
@@ -116,21 +131,36 @@ namespace StatSave
 
             }
 
-            public void set(StatObject sts)
+            public void set(StatObject sts, bool isUnleveled)
             {
                 unitName = sts.unitName; 
 
-                attack = sts.attack;
-                magic = sts.magic;
-                defense = sts.defense;
-                wisdom = sts.wisdom;
-                agility = sts.agility;
-                speed = sts.speed;
+                if(isUnleveled)
+                {
+                    attack = sts.attack;
+                    magic = sts.magic;
+                    defense = sts.defense;
+                    wisdom = sts.wisdom;
+                    agility = sts.agility;
+                    speed = sts.speed;
 
-                currentHP = sts.currentHP;
-                maxHP = sts.maxHP;
-                currentPP = sts.currentPP;
-                maxPP = sts.maxPP;
+                    currentHP = sts.currentHP;
+                    maxHP = sts.maxHP;
+                    currentPP = sts.currentPP;
+                    maxPP = sts.maxPP;
+                }
+            }
+
+            public void addEXP(int added)
+            {
+                exPoints -= added;
+
+                while(exPoints <= 0)
+                {
+                    level++;
+                    calcNewStats(level);
+                    exPoints += newLevel();
+                }
             }
 
             public int newLevel()
@@ -168,6 +198,8 @@ namespace StatSave
 
                 currentHP = maxHP - hpDifference;
                 currentPP = maxPP - ppDifference;
+
+                tree.levelAdd(newLevel, this);
             }
         }
     }
