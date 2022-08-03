@@ -265,4 +265,9 @@ public class GameManager : MonoBehaviour
     {
         ovPlayer.immobile(set);
     }
+
+    public void addItem(Item item)
+    {
+        
+    }
 }
