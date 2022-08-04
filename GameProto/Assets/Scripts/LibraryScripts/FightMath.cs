@@ -440,4 +440,19 @@ public class FightMath
         else
             return false;
     }
+
+    public static bool getChestOpened(Chest chest, List<bool> opened)
+    {
+        bool returner = false;
+
+        for(int i = 0; i < opened.Count; i++)
+        {
+            if(chest.id == i)
+            {
+                returner = opened[i];
+            }
+        }
+
+        return returner;
+    }
 }

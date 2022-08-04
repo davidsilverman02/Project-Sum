@@ -23,15 +23,21 @@ public class GameManager : MonoBehaviour
     public float spawnZ;
     public List<NPC> npcs;
     public NPC interact;
+    public List<Chest> chests;
+    public Chest closest;
 
     public bool playerMoving;
     public bool isTalk;
     public bool inMenu;
     public float isClose = 3f;
-
+    public float canReach = 1f;
 
     public List<int> party;
     public List<StatContainer.StatObject> players;
+
+    public List<bool> opened;
+
+    public InventorySystem inventory;
     // Insert all players if switching through story
 
     public void SaveGame()
@@ -50,8 +56,13 @@ public class GameManager : MonoBehaviour
 
         party = data.group;
         players = data.stObjs;
+        opened = data.opened;
+
+        inventory = data.inventory;
 
         SceneManager.LoadScene(level);
+
+        setChests();
     }
 
     void Awake()
@@ -59,6 +70,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        setChests();
     }
 
     void Start()
@@ -131,6 +144,42 @@ public class GameManager : MonoBehaviour
                 }
             }
 
+            if(chests.Count > 0)
+            {
+                if (getClosestChestToPlayer() != null)
+                {
+                    if (getClosestChestToPlayer() != closest)
+                    {
+                        /*
+                        if (closest != null)
+                        {
+                            interact.canChat(false);
+                        }
+                        */
+                        closest = getClosestChestToPlayer();
+                    }
+
+                    if ((!inMenu && isTalk == false) && Input.GetKeyDown(KeyCode.Return))
+                    {
+                        isTalk = true;
+                        ovPlayer.immobile(true);
+                        closest.Open();
+
+                    }
+                    else if (!inMenu && Input.GetKeyDown(KeyCode.Return))
+                    {
+                        interact.Continue();
+                    }
+                }
+                else
+                {
+                    if (closest != null)
+                    {
+                        closest = null;
+                    }
+                }
+            }
+
             if(Input.GetKeyDown(KeyCode.X))
             {
                 if(!(inMenu && (party.Count < 1 || party.Count > 4)))
@@ -171,6 +220,7 @@ public class GameManager : MonoBehaviour
         curLevel = SceneManager.GetActiveScene().buildIndex;
 
         npcs.Clear();
+        chests.Clear();
 
         switch (curLevel)
         {
@@ -213,6 +263,7 @@ public class GameManager : MonoBehaviour
             ovUI = null;
             ovMenu = null;
             interact = null;
+            closest = null;
         }
     }
 
@@ -232,6 +283,11 @@ public class GameManager : MonoBehaviour
         npcs.Add(toAdd);
     }
 
+    public void addChest(Chest toAdd)
+    {
+        chests.Add(toAdd);
+    }
+
     NPC getClosestNPCToPlayer()
     {
         NPC closest = null;
@@ -244,6 +300,25 @@ public class GameManager : MonoBehaviour
             if(dis < minDis && dis <= isClose)
             {
                 closest = npc;
+                minDis = dis;
+            }
+        }
+
+        return closest;
+    }
+
+    Chest getClosestChestToPlayer()
+    {
+        Chest closest = null;
+        float minDis = Mathf.Infinity;
+        float dis;
+
+        foreach(Chest chest in chests)
+        {
+            dis = Vector3.Distance(ovPlayer.getPlace(), chest.getPos());
+            if(dis < minDis && dis <= canReach)
+            {
+                closest = chest;
                 minDis = dis;
             }
         }
@@ -266,8 +341,16 @@ public class GameManager : MonoBehaviour
         ovPlayer.immobile(set);
     }
 
+    public void setChests()
+    {
+        for(int i = 0; i < chests.Count; i++)
+        {
+            chests[i].isOpened = FightMath.getChestOpened(chests[i], opened);
+        }
+    }
+
     public void addItem(Item item)
     {
-        
+        inventory.Add(item);
     }
 }

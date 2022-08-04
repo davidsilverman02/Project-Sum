@@ -17,8 +17,6 @@ public class InventorySlot
         addItem();
     }
 
-    //public 
-
     public void addItem()
     {
         if (invenSize !>= MAX)

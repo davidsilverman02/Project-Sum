@@ -4,12 +4,21 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class InventorySystem : MonoBehaviour
+public class InventorySystem
 {
+    [SerializeField]
     private Dictionary<Item, InventorySlot> itemDictionary;
     public List<InventorySlot> inventory;
 
+    /*
     private void Awake()
+    {
+        inventory = new List<InventorySlot>();
+        itemDictionary = new Dictionary<Item, InventorySlot>();
+    }
+    */
+
+    public InventorySystem()
     {
         inventory = new List<InventorySlot>();
         itemDictionary = new Dictionary<Item, InventorySlot>();

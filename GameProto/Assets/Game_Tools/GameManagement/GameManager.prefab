@@ -57,49 +57,207 @@ MonoBehaviour:
   spawnZ: 0
   npcs: []
   interact: {fileID: 0}
+  chests: []
+  closest: {fileID: 0}
   playerMoving: 0
   isTalk: 0
   inMenu: 0
   isClose: 3
+  canReach: 1
   party: 00000000010000000200000003000000
   players:
   - name: John
     unitName: John
-    attack: 10
-    magic: 0
-    defense: 0
-    speed: 0
+    level: 0
+    exPoints: 0
+    attack:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    magic:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    defense:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    wisdom:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    agility:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    speed:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    vitality:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    soul:
+      rate: 0
+      subtotal: 0
+      bonus: 0
     currentHP: 5
     maxHP: 5
     currentPP: 0
     maxPP: 0
+    weakness:
+      effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
+    strike: {fileID: 0}
+    defend: {fileID: 0}
+    skills: []
+    model: {fileID: 0}
+    tree:
+      mileStones: []
   - name: Paul
     unitName: Paul
-    attack: 3
-    magic: 0
-    defense: 0
-    speed: 56
+    level: 0
+    exPoints: 0
+    attack:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    magic:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    defense:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    wisdom:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    agility:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    speed:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    vitality:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    soul:
+      rate: 0
+      subtotal: 0
+      bonus: 0
     currentHP: 5
     maxHP: 5
     currentPP: 0
     maxPP: 0
+    weakness:
+      effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
+    strike: {fileID: 0}
+    defend: {fileID: 0}
+    skills: []
+    model: {fileID: 0}
+    tree:
+      mileStones: []
   - name: George
     unitName: George
-    attack: 5
-    magic: 0
-    defense: 50
-    speed: 0
+    level: 0
+    exPoints: 0
+    attack:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    magic:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    defense:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    wisdom:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    agility:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    speed:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    vitality:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    soul:
+      rate: 0
+      subtotal: 0
+      bonus: 0
     currentHP: 10
     maxHP: 10
     currentPP: 0
     maxPP: 0
+    weakness:
+      effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
+    strike: {fileID: 0}
+    defend: {fileID: 0}
+    skills: []
+    model: {fileID: 0}
+    tree:
+      mileStones: []
   - name: Ringo
     unitName: Ringo
-    attack: 5
-    magic: 3
-    defense: 0
-    speed: 0
+    level: 0
+    exPoints: 0
+    attack:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    magic:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    defense:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    wisdom:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    agility:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    speed:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    vitality:
+      rate: 0
+      subtotal: 0
+      bonus: 0
+    soul:
+      rate: 0
+      subtotal: 0
+      bonus: 0
     currentHP: 5
     maxHP: 5
     currentPP: 0
     maxPP: 0
+    weakness:
+      effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
+    strike: {fileID: 0}
+    defend: {fileID: 0}
+    skills: []
+    model: {fileID: 0}
+    tree:
+      mileStones: []
+  opened: 00
+  inventory:
+    inventory: []

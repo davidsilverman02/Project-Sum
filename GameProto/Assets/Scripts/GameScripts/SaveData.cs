@@ -14,6 +14,9 @@ public class SaveData
 
     public List<int> group;
     public List<StatContainer.StatObject> stObjs;
+    public List<bool> opened;
+
+    public InventorySystem inventory;
 
     public SaveData()
     {
@@ -29,5 +32,8 @@ public class SaveData
 
         group = manager.party;
         stObjs = manager.players;
+        opened = manager.opened;
+
+        inventory = manager.inventory;
     }
 }
