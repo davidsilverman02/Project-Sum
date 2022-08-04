@@ -70,13 +70,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-
-        setChests();
     }
 
     void Start()
     {
-       
+        setChests();
     }
 
     void Update()
@@ -159,7 +157,7 @@ public class GameManager : MonoBehaviour
                         closest = getClosestChestToPlayer();
                     }
 
-                    if ((!inMenu && isTalk == false) && Input.GetKeyDown(KeyCode.Return))
+                    if (((!inMenu && isTalk == false) && Input.GetKeyDown(KeyCode.Return)) && closest.isOpened == false)
                     {
                         isTalk = true;
                         ovPlayer.immobile(true);
@@ -168,7 +166,7 @@ public class GameManager : MonoBehaviour
                     }
                     else if (!inMenu && Input.GetKeyDown(KeyCode.Return))
                     {
-                        interact.Continue();
+                        closest.Exit();
                     }
                 }
                 else

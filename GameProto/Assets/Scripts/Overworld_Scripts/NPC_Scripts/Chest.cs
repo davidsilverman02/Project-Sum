@@ -10,11 +10,13 @@ public class Chest : MonoBehaviour
     public Item treasure;
     public bool isOpened;
 
-    public void Awake()
+    public void Start()
     {
         man = FindObjectOfType<GameManager>();
 
         man.addChest(this);
+
+        isOpened = man.opened[id];
     }
 
     public void Open()

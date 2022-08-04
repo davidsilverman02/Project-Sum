@@ -58,6 +58,7 @@ public class BattleManager : MonoBehaviour
 
     public List<GameObject> skills;
     public GameObject skillItem;
+    public GameObject listItem;
 
     public GameObject bar;
 
@@ -509,7 +510,7 @@ public class BattleManager : MonoBehaviour
 
         if(isItems)
         {
-            
+            placeItems();
         }
         else
         {
@@ -522,6 +523,17 @@ public class BattleManager : MonoBehaviour
         for (int i = 0; i < currentUnit.GetComponent<Hero>().powers.Count; i++)
         {
             GameObject skill = Instantiate(skillItem, bar.transform.position, bar.transform.rotation) as GameObject;
+            skill.GetComponent<RectTransform>().SetParent(bar.transform, false);
+            skill.GetComponent<SkillUI>().setSkill(currentUnit.GetComponent<Hero>().powers[i]);
+            skills.Add(skill);
+        }
+    }
+
+    public void placeItems()
+    {
+        for(int i = 0; i < manager.inventory.inventory.Count; i++)
+        {
+            GameObject skill = Instantiate(listItem, bar.transform.position, bar.transform.rotation) as GameObject;
             skill.GetComponent<RectTransform>().SetParent(bar.transform, false);
             skill.GetComponent<SkillUI>().setSkill(currentUnit.GetComponent<Hero>().powers[i]);
             skills.Add(skill);

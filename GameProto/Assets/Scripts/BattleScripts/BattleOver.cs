@@ -8,6 +8,8 @@ public class BattleOver : MonoBehaviour
 {
     public BattleManager man;
 
+    public TMP_Text description;
+
     public TMP_Text expIn;
     public GameObject placer;
 

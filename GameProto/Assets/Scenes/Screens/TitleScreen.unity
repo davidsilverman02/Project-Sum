@@ -458,6 +458,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: opened.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[0].name
       value: Royland
       objectReference: {fileID: 0}
@@ -628,6 +636,10 @@ PrefabInstance:
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[3].defense
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
+      propertyPath: inventory.inventory.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2957227917504201315, guid: bd13a0da5365bf3429b45c58a48794f0, type: 3}
       propertyPath: players.Array.data[0].exPoints

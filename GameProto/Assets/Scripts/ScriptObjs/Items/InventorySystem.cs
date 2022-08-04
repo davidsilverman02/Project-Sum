@@ -4,11 +4,11 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class InventorySystem
+public class InventorySystem : MonoBehaviour
 {
-    [SerializeField]
     private Dictionary<Item, InventorySlot> itemDictionary;
     public List<InventorySlot> inventory;
+    //{ get; private set; }
 
     /*
     private void Awake()
@@ -59,5 +59,20 @@ public class InventorySystem
                 itemDictionary.Remove(reference);
             }
         }
+    }
+
+    public List<InventorySlot> getConsumables()
+    {
+        List<InventorySlot> returnType = new List<InventorySlot>();
+
+        for(int i = 0; i < inventory.Count; i++)
+        {
+            if(inventory[i].data is Consumable)
+            {
+                returnType.Add(inventory[i]);
+            }
+        }
+
+        return returnType;
     }
 }

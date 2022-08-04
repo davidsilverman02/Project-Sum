@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2957227917504201314}
   - component: {fileID: 2957227917504201315}
+  - component: {fileID: 7521499910230150520}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -259,5 +260,17 @@ MonoBehaviour:
     tree:
       mileStones: []
   opened: 00
-  inventory:
-    inventory: []
+  inventory: {fileID: 7521499910230150520}
+--- !u!114 &7521499910230150520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957227917504201373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2134f9a5332a16048936900e48cb6c27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: []

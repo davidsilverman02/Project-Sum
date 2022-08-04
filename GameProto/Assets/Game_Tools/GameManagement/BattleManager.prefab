@@ -49,6 +49,7 @@ MonoBehaviour:
   choce: 0
   unitMoving: 0
   indexPoint: 0
+  exp: 0
   decompRate: 0.05
   manager: {fileID: 0}
   ui: {fileID: 0}
@@ -66,6 +67,8 @@ MonoBehaviour:
   onEnemy: 0
   turnCalled: 0
   hasEnded: 0
+  leveling: 0
+  levelingOver: 0
   executed: 0
   enemyPool:
   - {fileID: 7696694865609135624, guid: 108bde32409668e4d9ff22c71b93cd84, type: 3}
@@ -78,9 +81,12 @@ MonoBehaviour:
   selected: []
   uiOrder: []
   uiOrderCalc: 
-  skill: []
+  skills: []
   skillItem: {fileID: 7198130313713899142, guid: 6295ccb63d59b0d4886abdd0599d3bdc, type: 3}
+  listItem: {fileID: 0}
   bar: {fileID: 1554261273437816178}
+  turnBar: {fileID: 0}
+  playerSkill: {fileID: 0}
   positionNum: 10
 --- !u!1001 &5982065705953220100
 PrefabInstance:
@@ -117,6 +123,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4105139372531511031, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5916981449214000025, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
+      propertyPath: description
+      value: 
+      objectReference: {fileID: 2872752989903594945}
     - target: {fileID: 6927678329450923208, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -209,6 +223,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8420183805004248005, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
+      propertyPath: m_margin.z
+      value: -229.3629
+      objectReference: {fileID: 0}
     - target: {fileID: 9204348759540629423, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -245,3 +263,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5086052116767380342, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
   m_PrefabInstance: {fileID: 5982065705953220100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2872752989903594945 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8420183805004248005, guid: 2ab6d56aa51d520468270d55b6700548, type: 3}
+  m_PrefabInstance: {fileID: 5982065705953220100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

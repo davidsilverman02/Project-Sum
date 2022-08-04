@@ -19,13 +19,13 @@ public class InventorySlot
 
     public void addItem()
     {
-        if (invenSize !>= MAX)
+        if (invenSize < MAX)
             invenSize++;
     }
 
     public void removeItem()
     {
-        if (invenSize! <= 0)
+        //if (invenSize! <= 0)
             invenSize--;
     }
 }
