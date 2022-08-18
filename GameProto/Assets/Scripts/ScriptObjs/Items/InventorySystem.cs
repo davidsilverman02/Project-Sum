@@ -33,6 +33,15 @@ public class InventorySystem : MonoBehaviour
         return null;
     }
 
+    public string GetCount(Item reference)
+    {
+        if (itemDictionary.TryGetValue(reference, out InventorySlot value))
+        {
+            return value.invenSize.ToString();
+        }
+        return null;
+    }
+
     public void Add(Item reference)
     {
         if(itemDictionary.TryGetValue(reference, out InventorySlot value))

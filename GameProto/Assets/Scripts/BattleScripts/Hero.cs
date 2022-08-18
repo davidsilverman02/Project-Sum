@@ -52,9 +52,9 @@ public class Hero : Unit
         model = mang.model;
 
         GameObject ins = Instantiate(model, gameObject.transform.position, gameObject.transform.rotation);
-
+        
         ins.transform.parent = gameObject.transform;
-
+        
         bod = ins.GetComponent<UnitBody>();
 
         unitLevel = mang.level;

@@ -22,11 +22,11 @@ public class ItemUI : MonoBehaviour
         manager = FindObjectOfType<BattleManager>();
     }
 
-    public void setItem(Consumable power)
+    public void setItem(Item power)
     {
-        eat = power;
+        eat = (Consumable)power;
         itemName.text = power.name;
-        itemCount.text = manager.manager.inventory.Get(power).invenSize.ToString();
+        itemCount.text = manager.manager.inventory.GetCount(power);
     }
 
     public void useItem()

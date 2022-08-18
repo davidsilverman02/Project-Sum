@@ -83,7 +83,7 @@ MonoBehaviour:
   uiOrderCalc: 
   skills: []
   skillItem: {fileID: 7198130313713899142, guid: 6295ccb63d59b0d4886abdd0599d3bdc, type: 3}
-  listItem: {fileID: 0}
+  listItem: {fileID: 7792805999298119098, guid: 1d595f27fac8ac14e94009bc01a8ac0e, type: 3}
   bar: {fileID: 1554261273437816178}
   turnBar: {fileID: 0}
   playerSkill: {fileID: 0}

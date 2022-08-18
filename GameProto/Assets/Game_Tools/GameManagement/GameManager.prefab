@@ -67,10 +67,60 @@ MonoBehaviour:
   canReach: 1
   party: 00000000010000000200000003000000
   players:
-  - name: John
-    unitName: John
-    level: 0
-    exPoints: 0
+  - name: Royland
+    unitName: Royland
+    level: 1
+    exPoints: 100
+    attack:
+      rate: 1
+      subtotal: 5
+      bonus: 0
+    magic:
+      rate: 1
+      subtotal: 5
+      bonus: 0
+    defense:
+      rate: 1
+      subtotal: 5
+      bonus: 0
+    wisdom:
+      rate: 1
+      subtotal: 5
+      bonus: 0
+    agility:
+      rate: 1
+      subtotal: 5
+      bonus: 0
+    speed:
+      rate: 1
+      subtotal: 5
+      bonus: 0
+    vitality:
+      rate: 0.6
+      subtotal: 6
+      bonus: 0
+    soul:
+      rate: 1.2
+      subtotal: 6
+      bonus: 0
+    currentHP: 6
+    maxHP: 6
+    currentPP: 6
+    maxPP: 6
+    weakness:
+      effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
+    strike: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
+    defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
+    skills:
+    - {fileID: 11400000, guid: 9bb95339594bd424fb5fc4594156256f, type: 2}
+    - {fileID: 11400000, guid: 1f2bbcc5657942f49863193ab44333a8, type: 2}
+    model: {fileID: 2045956389598100015, guid: 00d0326d87c6682458a2ff3d85ae6766, type: 3}
+    tree:
+      mileStones: []
+  - name: Brandolf
+    unitName: Brandolf
+    level: 1
+    exPoints: 100
     attack:
       rate: 0
       subtotal: 0
@@ -109,64 +159,19 @@ MonoBehaviour:
     maxPP: 0
     weakness:
       effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
-    strike: {fileID: 0}
-    defend: {fileID: 0}
-    skills: []
-    model: {fileID: 0}
+    strike: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
+    defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
+    skills:
+    - {fileID: 11400000, guid: d500da534afcd954d91db9ae147ec3a7, type: 2}
+    - {fileID: 11400000, guid: 228a2846951605a49906a8ac101f6c36, type: 2}
+    - {fileID: 11400000, guid: ac56d1d4d0dbbf94f97d933759741334, type: 2}
+    model: {fileID: 7209159714932195845, guid: e35d34ea7a4deee4e9913d690313993c, type: 3}
     tree:
       mileStones: []
-  - name: Paul
-    unitName: Paul
-    level: 0
-    exPoints: 0
-    attack:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    magic:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    defense:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    wisdom:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    agility:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    speed:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    vitality:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    soul:
-      rate: 0
-      subtotal: 0
-      bonus: 0
-    currentHP: 5
-    maxHP: 5
-    currentPP: 0
-    maxPP: 0
-    weakness:
-      effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
-    strike: {fileID: 0}
-    defend: {fileID: 0}
-    skills: []
-    model: {fileID: 0}
-    tree:
-      mileStones: []
-  - name: George
-    unitName: George
-    level: 0
-    exPoints: 0
+  - name: Keeva
+    unitName: K
+    level: 1
+    exPoints: 100
     attack:
       rate: 0
       subtotal: 0
@@ -205,16 +210,19 @@ MonoBehaviour:
     maxPP: 0
     weakness:
       effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
-    strike: {fileID: 0}
-    defend: {fileID: 0}
-    skills: []
-    model: {fileID: 0}
+    strike: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
+    defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
+    skills:
+    - {fileID: 11400000, guid: 0be0825410aa25549a0ea6f2ec605a46, type: 2}
+    - {fileID: 11400000, guid: 9bb95339594bd424fb5fc4594156256f, type: 2}
+    - {fileID: 11400000, guid: 2bc3fa2edfa586545b78a3e7c433f73e, type: 2}
+    model: {fileID: 8562698429207855738, guid: c0d548e2571bdbe44b9ac744e63afb66, type: 3}
     tree:
       mileStones: []
-  - name: Ringo
-    unitName: Ringo
-    level: 0
-    exPoints: 0
+  - name: Olivine
+    unitName: O
+    level: 1
+    exPoints: 100
     attack:
       rate: 0
       subtotal: 0
@@ -253,13 +261,16 @@ MonoBehaviour:
     maxPP: 0
     weakness:
       effectiveness: 000000000000000000000000000000000000000000000000000000000000000000000000
-    strike: {fileID: 0}
-    defend: {fileID: 0}
-    skills: []
-    model: {fileID: 0}
+    strike: {fileID: 11400000, guid: 87f0510b3693c214db4b732dbd946482, type: 2}
+    defend: {fileID: 11400000, guid: f70a85d208f49b445bec952227a6f7f5, type: 2}
+    skills:
+    - {fileID: 11400000, guid: d500da534afcd954d91db9ae147ec3a7, type: 2}
+    - {fileID: 11400000, guid: 228a2846951605a49906a8ac101f6c36, type: 2}
+    - {fileID: 11400000, guid: 1f2bbcc5657942f49863193ab44333a8, type: 2}
+    model: {fileID: 558889827919418989, guid: 0759c785bd739f547a72f3fcc83c3c88, type: 3}
     tree:
       mileStones: []
-  opened: 00
+  opened: 0000
   inventory: {fileID: 7521499910230150520}
 --- !u!114 &7521499910230150520
 MonoBehaviour:

@@ -270,7 +270,6 @@ public class BattleManager : MonoBehaviour
                     setUnit(false, enemyPool[0], enemyPos[1]);
                     //setUnit(false, enemyPool[0], enemyPos3);
                     //setUnit(false, enemyPool[0], enemyPos4);
-
                     break;
                 default:
                     break;
@@ -397,6 +396,8 @@ public class BattleManager : MonoBehaviour
         playerSkill = skill;
     }
 
+    // Needs consumable
+
     // Has Enemies select
     public void enemySelect(Skill skill)
     {
@@ -486,7 +487,7 @@ public class BattleManager : MonoBehaviour
         }
         else if(maneuver == FightMath.Option.ITEM)
         {
-
+            ActivateSkills(true);
         }
         else if(maneuver == FightMath.Option.ATTACK)
         {
@@ -531,11 +532,11 @@ public class BattleManager : MonoBehaviour
 
     public void placeItems()
     {
-        for(int i = 0; i < manager.inventory.inventory.Count; i++)
+        for(int i = 0; i < manager.inventory.getConsumables().Count; i++)
         {
             GameObject skill = Instantiate(listItem, bar.transform.position, bar.transform.rotation) as GameObject;
             skill.GetComponent<RectTransform>().SetParent(bar.transform, false);
-            skill.GetComponent<SkillUI>().setSkill(currentUnit.GetComponent<Hero>().powers[i]);
+            skill.GetComponent<ItemUI>().setItem(manager.inventory.getConsumables()[i].data);
             skills.Add(skill);
         }
     }
