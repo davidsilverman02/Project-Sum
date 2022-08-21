@@ -26,7 +26,8 @@ public class ItemUI : MonoBehaviour
     {
         eat = (Consumable)power;
         itemName.text = power.name;
-        itemCount.text = manager.manager.inventory.GetCount(power);
+        // Need help with the line below
+        // itemCount.text = manager.manager.inventory.GetCount(power);
     }
 
     public void useItem()

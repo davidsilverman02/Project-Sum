@@ -158,7 +158,7 @@ public class MenuManager : MonoBehaviour
                 playerOrder.SetActive(false);
                 enablePlayers(false);
                 charaProf.SetActive(true);
-                buttonBar.SetActive(true);
+                buttonBar.SetActive(false);
                 scrollBar.SetActive(true);
                 break;
         }

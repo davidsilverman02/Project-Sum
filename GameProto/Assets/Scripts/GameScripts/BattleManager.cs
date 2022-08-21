@@ -396,6 +396,11 @@ public class BattleManager : MonoBehaviour
         playerSkill = skill;
     }
 
+    public void selectItem(Consumable item)
+    {
+        select(item.skill);
+    }
+
     // Needs consumable
 
     // Has Enemies select
